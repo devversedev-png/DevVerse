@@ -1,0 +1,145 @@
+.navbar{
+    position:sticky;
+    top:0;
+    z-index:999;
+    backdrop-filter:blur(18px);
+    background:rgba(5,8,24,.80);
+    border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.navbar-container{
+    width:90%;
+    max-width:1400px;
+    margin:auto;
+    height:90px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo img{
+    width:170px;
+}
+
+.nav-links{
+    display:flex;
+    gap:40px;
+}
+
+.nav-links a{
+    color:#cfd3e9;
+    text-decoration:none;
+    font-size:15px;
+    font-weight:500;
+    transition:.3s;
+    position:relative;
+}
+
+.nav-links a:hover{
+    color:#fff;
+}
+
+.nav-links .active{
+    color:#fff;
+}
+
+.nav-links .active::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-8px;
+    width:100%;
+    height:2px;
+    background:linear-gradient(90deg,#2d8cff,#ff3ec9);
+}
+
+.talk-btn{
+    padding:14px 28px;
+    border-radius:10px;
+    text-decoration:none;
+    color:white;
+    font-weight:600;
+    background:linear-gradient(135deg,#2563ff,#8b3dff,#ff3ec9);
+    transition:.3s;
+}
+
+.talk-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 15px 30px rgba(140,60,255,.35);
+}
+
+.mobile-btn{
+    display:none;
+    border:none;
+    background:none;
+    color:white;
+    font-size:30px;
+    cursor:pointer;
+}
+
+@media(max-width:900px){
+
+.nav-links{
+display:none;
+}
+
+.nav-links.active{
+display:flex;
+position:absolute;
+top:90px;
+left:0;
+width:100%;
+padding:30px;
+background:#070b18;
+flex-direction:column;
+}
+
+.mobile-btn{
+display:block;
+}
+
+.talk-btn{
+display:none;
+}
+
+.logo img{
+width:150px;
+}
+
+}
+
+.logout-btn {
+  padding: 14px 28px;
+  border: none;
+  border-radius: 10px;
+
+  background: linear-gradient(
+    135deg,
+    #2563ff,
+    #8b3dff,
+    #ff3ec9
+  );
+
+  color: #fff;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.logout-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(140, 60, 255, 0.35);
+}
+
+.logout-btn:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 900px) {
+  .logout-btn {
+    display: none;
+  }
+}

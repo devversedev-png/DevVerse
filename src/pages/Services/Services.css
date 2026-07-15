@@ -1,0 +1,1177 @@
+/* ================================
+   SERVICES PAGE MAIN
+================================ */
+
+.services-page {
+
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at top left,
+            rgba(99, 102, 241, 0.18),
+            transparent 35%),
+        radial-gradient(circle at bottom right,
+            rgba(168, 85, 247, 0.18),
+            transparent 35%),
+        #050816;
+
+    color: #ffffff;
+    padding-bottom: 100px;
+
+}
+
+
+/* Aurora floating lights */
+
+.services-page::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 500px;
+    height: 500px;
+
+    top: 150px;
+    left: -200px;
+
+    background:
+        linear-gradient(135deg,
+            #6366f1,
+            #ec4899);
+
+    filter: blur(150px);
+
+    opacity: .35;
+
+    animation: auroraMove 12s infinite alternate;
+
+}
+
+
+.services-page::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 450px;
+    height: 450px;
+
+    right: -150px;
+    bottom: 300px;
+
+    background:
+        linear-gradient(135deg,
+            #06b6d4,
+            #8b5cf6);
+
+    filter: blur(160px);
+
+    opacity: .25;
+
+    animation: auroraMove 15s infinite alternate-reverse;
+
+}
+
+
+@keyframes auroraMove {
+
+    from {
+
+        transform:
+            translateY(0px) translateX(0px);
+
+    }
+
+
+    to {
+
+        transform:
+            translateY(80px) translateX(60px);
+
+    }
+
+}
+
+
+
+/* ================================
+   HERO SECTION
+================================ */
+
+
+.services-hero {
+
+    max-width: 900px;
+
+    margin: auto;
+
+    text-align: center;
+
+    padding:
+
+        160px 20px 90px;
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+
+
+.services-hero span,
+.development-process span,
+.technology-section span {
+
+    display: inline-block;
+
+    font-size: 14px;
+
+    letter-spacing: 3px;
+
+    font-weight: 600;
+
+    color: #a5b4fc;
+
+    margin-bottom: 25px;
+
+}
+
+
+
+.services-hero h1 {
+
+
+    font-size: clamp(42px,
+            6vw,
+            75px);
+
+
+    line-height: 1.1;
+
+    font-weight: 800;
+
+    letter-spacing: -2px;
+
+}
+
+
+
+.services-hero h1 span {
+
+
+    background:
+
+        linear-gradient(90deg,
+            #6366f1,
+            #ec4899);
+
+
+    -webkit-background-clip: text;
+
+    color: transparent;
+
+}
+
+
+
+.services-hero p {
+
+
+    margin-top: 30px;
+
+    font-size: 20px;
+
+    line-height: 1.8;
+
+    color: #cbd5e1;
+
+    max-width: 750px;
+
+    margin-left: auto;
+
+    margin-right: auto;
+
+}
+
+
+
+/* ================================
+   SERVICES GRID
+================================ */
+
+
+.services-grid {
+
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    padding: 40px 25px;
+
+
+    display: grid;
+
+    grid-template-columns:
+
+        repeat(3, 1fr);
+
+    gap: 30px;
+
+}
+
+
+
+/* ================================
+   SERVICE CARD
+================================ */
+
+
+.service-card {
+
+
+    position: relative;
+
+
+    padding: 35px;
+
+
+    min-height: 330px;
+
+
+    border-radius: 25px;
+
+
+    background:
+
+        rgba(255, 255, 255, 0.06);
+
+
+    backdrop-filter:
+
+        blur(18px);
+
+
+    border:
+
+        1px solid rgba(255, 255, 255, .12);
+
+
+    overflow: hidden;
+
+
+    transition: .4s ease;
+
+
+
+}
+
+
+
+.service-card::before {
+
+
+    content: "";
+
+
+    position: absolute;
+
+
+    inset: 0;
+
+
+    border-radius: 25px;
+
+
+    padding: 1px;
+
+
+    background:
+
+        linear-gradient(135deg,
+            #6366f1,
+            transparent,
+            #ec4899);
+
+
+    -webkit-mask:
+
+        linear-gradient(#fff 0 0) content-box,
+
+        linear-gradient(#fff 0 0);
+
+
+    -webkit-mask-composite:
+
+        xor;
+
+
+    mask-composite:
+
+        exclude;
+
+
+    opacity: 0;
+
+
+    transition: .4s;
+
+
+}
+
+
+
+.service-card:hover::before {
+
+
+    opacity: 1;
+
+
+}
+
+
+
+.service-card:hover {
+
+
+    transform:
+
+        translateY(-12px);
+
+
+    box-shadow:
+
+        0 30px 60px rgba(0, 0, 0, .35);
+
+
+}
+
+
+
+.service-icon {
+
+
+    width: 70px;
+
+    height: 70px;
+
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+
+    font-size: 32px;
+
+
+    border-radius: 20px;
+
+
+    background:
+
+        linear-gradient(135deg,
+            #6366f1,
+            #ec4899);
+
+
+    margin-bottom: 25px;
+
+
+    box-shadow:
+
+        0 10px 30px rgba(99, 102, 241, .35);
+
+
+}
+
+
+
+.service-card h3 {
+
+
+    font-size: 24px;
+
+    margin-bottom: 15px;
+
+
+}
+
+
+
+.service-card p {
+
+
+    color: #cbd5e1;
+
+
+    line-height: 1.7;
+
+
+}
+
+
+
+.service-learn-more {
+    margin-top: 25px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #a5b4fc;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.service-learn-more:hover {
+    gap: 15px;
+    color: #ffffff;
+}
+
+/* ================================
+   DEVELOPMENT PROCESS SECTION
+================================ */
+
+
+.development-process {
+
+    max-width: 1200px;
+
+    margin: 140px auto 0;
+
+    padding: 0 25px;
+
+
+    display: grid;
+
+    grid-template-columns:
+
+        0.8fr 1.2fr;
+
+
+    gap: 70px;
+
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+
+
+/* LEFT CONTENT */
+
+
+.process-left {
+
+
+    position: sticky;
+
+    top: 120px;
+
+    height: max-content;
+
+
+}
+
+
+.process-left h2 {
+
+
+    font-size: clamp(38px,
+            5vw,
+            60px);
+
+
+    line-height: 1.1;
+
+
+    letter-spacing: -1px;
+
+
+}
+
+
+
+.process-left p {
+
+
+    margin-top: 25px;
+
+
+    color: #cbd5e1;
+
+
+    font-size: 18px;
+
+
+    line-height: 1.8;
+
+
+    max-width: 450px;
+
+
+}
+
+
+
+/* RIGHT PROCESS CARDS */
+
+
+.process-right {
+
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 25px;
+
+
+    position: relative;
+
+
+}
+
+
+
+.process-right::before {
+
+
+    content: "";
+
+
+    position: absolute;
+
+
+    left: 32px;
+
+
+    top: 40px;
+
+
+    bottom: 40px;
+
+
+    width: 2px;
+
+
+    background:
+
+        linear-gradient(to bottom,
+
+            #6366f1,
+
+            #ec4899);
+
+
+    opacity: .5;
+
+
+}
+
+
+
+.step-card {
+
+
+    display: flex;
+
+
+    gap: 25px;
+
+
+    align-items: flex-start;
+
+
+    padding: 30px;
+
+
+    border-radius: 22px;
+
+
+    background:
+
+        rgba(255, 255, 255, .05);
+
+
+    border:
+
+        1px solid rgba(255, 255, 255, .1);
+
+
+    backdrop-filter:
+
+        blur(15px);
+
+
+    transition: .4s;
+
+
+    position: relative;
+
+
+}
+
+
+
+.step-card:hover {
+
+
+    transform:
+
+        translateX(15px);
+
+
+    background:
+
+        rgba(255, 255, 255, .09);
+
+
+}
+
+
+
+.step-number {
+
+
+    min-width: 65px;
+
+    height: 65px;
+
+
+    display: flex;
+
+
+    justify-content: center;
+
+
+    align-items: center;
+
+
+    border-radius: 50%;
+
+
+    font-size: 22px;
+
+
+    font-weight: 700;
+
+
+    background:
+
+
+        linear-gradient(135deg,
+
+            #6366f1,
+
+            #ec4899);
+
+
+    box-shadow:
+
+        0 10px 30px rgba(99, 102, 241, .4);
+
+
+    position: relative;
+
+
+    z-index: 2;
+
+
+}
+
+
+
+.step-card h3 {
+
+
+    font-size: 22px;
+
+
+    margin-bottom: 10px;
+
+
+}
+
+
+
+.step-card p {
+
+
+    color: #cbd5e1;
+
+
+    line-height: 1.6;
+
+
+}
+
+
+
+
+/* ================================
+   TECHNOLOGY SECTION
+================================ */
+
+
+.technology-section {
+
+
+    max-width: 1200px;
+
+
+    margin: 150px auto 0;
+
+
+    padding: 0 25px;
+
+
+    text-align: center;
+
+
+    position: relative;
+
+
+    z-index: 2;
+
+
+}
+
+
+
+.technology-section h2 {
+
+
+    font-size: clamp(38px,
+
+            5vw,
+
+            60px);
+
+
+    line-height: 1.1;
+
+
+    margin-bottom: 60px;
+
+
+}
+
+
+
+/* TECHNOLOGY GRID */
+
+
+.tech-grid {
+
+
+    display: grid;
+
+
+    grid-template-columns:
+
+        repeat(4, 1fr);
+
+
+    gap: 25px;
+
+
+}
+
+
+
+/* TECH CARD */
+
+
+.tech-card {
+
+
+    display: flex;
+
+
+    align-items: center;
+
+
+    justify-content: center;
+
+
+    gap: 12px;
+
+
+    padding: 25px;
+
+
+    border-radius: 20px;
+
+
+    background:
+
+        rgba(255, 255, 255, .06);
+
+
+    border:
+
+        1px solid rgba(255, 255, 255, .12);
+
+
+    backdrop-filter:
+
+        blur(15px);
+
+
+    color: #e2e8f0;
+
+
+    font-size: 18px;
+
+
+    font-weight: 600;
+
+
+    transition: .35s;
+
+
+}
+
+
+
+.tech-card svg {
+
+
+    color: #818cf8;
+
+
+    font-size: 22px;
+
+
+}
+
+
+
+.tech-card:hover {
+
+
+    transform:
+
+        translateY(-8px);
+
+
+    border-color:
+
+        rgba(99, 102, 241, .8);
+
+
+    box-shadow:
+
+        0 20px 40px rgba(99, 102, 241, .2);
+
+
+}
+
+
+
+/* ================================
+   CTA SECTION
+================================ */
+
+
+.services-cta {
+
+
+    max-width: 1000px;
+
+
+    margin: 150px auto 50px;
+
+
+    padding: 80px 40px;
+
+
+    text-align: center;
+
+
+    border-radius: 35px;
+
+
+    position: relative;
+
+
+    overflow: hidden;
+
+
+    background:
+
+
+        linear-gradient(135deg,
+
+            rgba(99, 102, 241, .18),
+
+            rgba(236, 72, 153, .18));
+
+
+    border:
+
+        1px solid rgba(255, 255, 255, .15);
+
+
+    backdrop-filter:
+
+        blur(20px);
+
+
+    z-index: 2;
+
+
+}
+
+
+
+.services-cta::before {
+
+
+    content: "";
+
+
+    position: absolute;
+
+
+    width: 250px;
+
+    height: 250px;
+
+
+    background:
+
+        #6366f1;
+
+
+    filter:
+
+        blur(120px);
+
+
+    top: -100px;
+
+
+    left: -100px;
+
+
+}
+
+
+
+.services-cta h2 {
+
+
+    font-size: clamp(38px,
+
+            5vw,
+
+            60px);
+
+
+    line-height: 1.15;
+
+
+    position: relative;
+
+
+}
+
+
+
+.services-cta h2 span {
+
+
+    background:
+
+
+        linear-gradient(90deg,
+
+            #6366f1,
+
+            #ec4899);
+
+
+    -webkit-background-clip: text;
+
+    color: transparent;
+
+
+}
+
+
+
+.services-cta p {
+
+
+    margin: 25px auto 40px;
+
+
+    color: #cbd5e1;
+
+
+    font-size: 18px;
+
+
+}
+
+
+
+.services-cta button {
+
+
+    padding:
+
+        16px 35px;
+
+
+    border: none;
+
+
+    border-radius: 50px;
+
+
+    display: inline-flex;
+
+
+    align-items: center;
+
+
+    gap: 12px;
+
+
+    font-size: 17px;
+
+
+    font-weight: 600;
+
+
+    color: white;
+
+
+    cursor: pointer;
+
+
+    background:
+
+
+        linear-gradient(135deg,
+
+            #6366f1,
+
+            #ec4899);
+
+
+    transition: .35s;
+
+
+}
+
+
+
+.services-cta button:hover {
+
+
+    transform:
+
+        translateY(-5px);
+
+
+    box-shadow:
+
+
+        0 20px 40px rgba(236, 72, 153, .35);
+
+
+}
+
+/* ================================
+   SERVICE LEARN MORE LINK
+================================ */
+
+.service-learn-more {
+    margin-top: 25px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #a5b4fc;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.service-learn-more:hover {
+    gap: 15px;
+    color: #ffffff;
+}
+
+
+/* ================================
+   SERVICES CTA LINK
+================================ */
+
+.services-cta-button {
+    position: relative;
+    z-index: 2;
+    padding: 16px 35px;
+    border-radius: 50px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 17px;
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
+    background: linear-gradient(135deg,
+            #6366f1,
+            #ec4899);
+    transition: 0.35s ease;
+}
+
+.services-cta-button:hover {
+    transform: translateY(-5px);
+    box-shadow:
+        0 20px 40px rgba(236, 72, 153, 0.35);
+}
+
+.service-card::before,
+.service-card::after {
+    pointer-events: none;
+}
+
+.service-card > * {
+    position: relative;
+    z-index: 2;
+}
+
+.service-learn-more {
+    position: relative;
+    z-index: 10;
+    margin-top: 25px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #a5b4fc;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.service-learn-more:hover {
+    gap: 15px;
+    color: #ffffff;
+}

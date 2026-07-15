@@ -1,0 +1,300 @@
+const dotenv = require("dotenv");
+dotenv.config();
+
+const express = require("express");
+const http = require("http");
+const cors = require("cors");
+const { Server } = require("socket.io");
+
+const connectDB = require("./config/db");
+const chatRoutes = require("./routes/chatRoutes");
+const authRoutes = require("./routes/authRoutes");
+
+const Conversation = require("./models/Conversation");
+const Message = require("./models/Message");
+
+const {
+  sendAdminMessageNotification,
+  sendCustomerReplyNotification,
+} = require("./services/emailService");
+
+/* ==============================
+   CONNECT DATABASE
+============================== */
+
+connectDB();
+
+const app = express();
+const server = http.createServer(app);
+
+/* ==============================
+   MIDDLEWARE
+============================== */
+
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    methods: [
+      "GET",
+      "POST",
+      "PUT",
+      "PATCH",
+      "DELETE",
+      "OPTIONS",
+    ],
+    allowedHeaders: [
+      "Content-Type",
+      "Authorization",
+    ],
+    credentials: true,
+  })
+);
+
+app.use(express.json());
+
+/* ==============================
+   API ROUTES
+============================== */
+
+app.use("/api/auth", authRoutes);
+app.use("/api/chat", chatRoutes);
+
+/* ==============================
+   SOCKET.IO
+============================== */
+
+const io = new Server(server, {
+  cors: {
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST"],
+    credentials: true,
+  },
+});
+
+io.on("connection", (socket) => {
+  console.log("User connected:", socket.id);
+
+  /* ==============================
+     JOIN CONVERSATION
+  ============================== */
+
+  socket.on(
+    "join_conversation",
+    (conversationId) => {
+      if (!conversationId) return;
+
+      socket.join(conversationId);
+
+      console.log(
+        `User ${socket.id} joined conversation ${conversationId}`
+      );
+    }
+  );
+
+  /* ==============================
+     SEND MESSAGE
+  ============================== */
+
+  socket.on("send_message", async (data) => {
+    try {
+      const {
+        conversationId,
+        sender,
+        message,
+      } = data;
+
+      /* VALIDATION */
+
+      if (
+        !conversationId ||
+        !["customer", "admin"].includes(sender) ||
+        !message?.trim()
+      ) {
+        return;
+      }
+
+      /* FIND CONVERSATION */
+
+      const conversation =
+        await Conversation.findById(
+          conversationId
+        );
+
+      if (!conversation) {
+        console.log(
+          "Conversation not found:",
+          conversationId
+        );
+        return;
+      }
+
+      const cleanMessage = message.trim();
+
+      /* SAVE MESSAGE */
+
+      const newMessage =
+        await Message.create({
+          conversationId,
+          sender,
+          message: cleanMessage,
+        });
+
+      /* UPDATE CONVERSATION */
+
+      conversation.lastMessage =
+        cleanMessage;
+
+      await conversation.save();
+
+      /* SEND REAL-TIME MESSAGE */
+
+      io.to(conversationId).emit(
+        "receive_message",
+        newMessage
+      );
+
+      /* UPDATE ADMIN INBOX */
+
+      io.emit(
+        "conversation_updated",
+        {
+          conversationId,
+          lastMessage: cleanMessage,
+          sender,
+          updatedAt:
+            newMessage.createdAt,
+        }
+      );
+
+      /* ==============================
+         EMAIL NOTIFICATIONS
+      ============================== */
+
+      // Customer sends message
+      if (sender === "customer") {
+        sendAdminMessageNotification(
+          {
+            name:
+              conversation.customerName,
+            email:
+              conversation.customerEmail,
+          },
+          cleanMessage
+        ).catch((error) => {
+          console.error(
+            "Admin notification error:",
+            error.message
+          );
+        });
+      }
+
+      // Admin replies
+      if (sender === "admin") {
+        sendCustomerReplyNotification(
+          conversation.customerEmail,
+          cleanMessage
+        ).catch((error) => {
+          console.error(
+            "Customer notification error:",
+            error.message
+          );
+        });
+      }
+    } catch (error) {
+      console.error(
+        "Socket message error:",
+        error.message
+      );
+    }
+  });
+
+  /* ==============================
+     EDIT MESSAGE
+  ============================== */
+
+  socket.on(
+    "edit_message",
+    async (data) => {
+      try {
+        const {
+          messageId,
+          conversationId,
+          message,
+        } = data;
+
+        if (
+          !messageId ||
+          !conversationId ||
+          !message?.trim()
+        ) {
+          return;
+        }
+
+        const updatedMessage =
+          await Message.findOneAndUpdate(
+            {
+              _id: messageId,
+              conversationId,
+            },
+            {
+              message: message.trim(),
+              edited: true,
+            },
+            {
+              new: true,
+            }
+          );
+
+        if (!updatedMessage) {
+          return;
+        }
+
+        io.to(conversationId).emit(
+          "message_edited",
+          updatedMessage
+        );
+      } catch (error) {
+        console.error(
+          "Edit message error:",
+          error.message
+        );
+      }
+    }
+  );
+
+  /* ==============================
+     DISCONNECT
+  ============================== */
+
+  socket.on("disconnect", () => {
+    console.log(
+      "User disconnected:",
+      socket.id
+    );
+  });
+});
+
+/* ==============================
+   TEST ROUTE
+============================== */
+
+app.get("/", (req, res) => {
+  res.json({
+    success: true,
+    message:
+      "DevVerse backend is running 🚀",
+  });
+});
+
+/* ==============================
+   START SERVER
+============================== */
+
+const PORT =
+  process.env.PORT || 5000;
+
+server.listen(PORT, () => {
+  console.log(
+    `DevVerse backend running on http://localhost:${PORT}`
+  );
+});
