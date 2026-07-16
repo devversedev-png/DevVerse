@@ -6,6 +6,9 @@ const http = require("http");
 const cors = require("cors");
 const { Server } = require("socket.io");
 
+const app = express();
+const server = http.createServer(app);
+
 const connectDB = require("./config/db");
 const chatRoutes = require("./routes/chatRoutes");
 const authRoutes = require("./routes/authRoutes");
@@ -24,16 +27,34 @@ const {
 
 connectDB();
 
-const app = express();
+const allowedOrigins = process.env.FRONTEND_URL
+  .split(",")
+  .map(origin => origin.trim());
+
 const server = http.createServer(app);
+
 
 /* ==============================
    MIDDLEWARE
 ============================== */
 
+const allowedOrigins = process.env.FRONTEND_URL.split(",");
+
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: function (origin, callback) {
+
+      if (!origin) {
+        return callback(null, true);
+      }
+
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      return callback(new Error("Not allowed by CORS"));
+    },
+
     methods: [
       "GET",
       "POST",
@@ -42,10 +63,12 @@ app.use(
       "DELETE",
       "OPTIONS",
     ],
+
     allowedHeaders: [
       "Content-Type",
       "Authorization",
     ],
+
     credentials: true,
   })
 );
@@ -65,7 +88,7 @@ app.use("/api/chat", chatRoutes);
 
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: allowedOrigins,
     methods: ["GET", "POST"],
     credentials: true,
   },

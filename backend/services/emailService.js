@@ -3,14 +3,13 @@ const nodemailer = require("nodemailer");
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 465,
-  secure: false,
+  secure: true,
+  logger: true,
+  debug: true,
   auth: {
     user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-  connectionTimeout: 10000,
-  greetingTimeout: 10000,
-  socketTimeout: 10000,
+    pass: process.env.EMAIL_PASS
+  }
 });
 
 transporter.verify((error) => {
@@ -59,7 +58,8 @@ const sendCustomerLoginNotification = async (user) => {
 };
 
 const sendAdminMessageNotification = async (user, message) => {
-  const adminChatUrl = `${process.env.FRONTEND_URL}/admin/chats`;
+  const adminChatUrl = `${process.env.CLIENT_URL}/admin/chats`;
+  const chatUrl = `${process.env.CLIENT_URL}/chat`;
 
   await transporter.sendMail({
     from: `"DevVerse Chat" <${process.env.EMAIL_USER}>`,
