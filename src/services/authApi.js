@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5000/api/auth";
+const API_URL = "https://devverse-s609.onrender.com/api/auth";
 
 /* ==============================
    CHECK EMAIL

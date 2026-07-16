@@ -12,8 +12,8 @@ import devverseLogo from "../../assets/devverse-logo.png";
 
 import "./ChatPage.css";
 
-const API_URL = "http://localhost:5000/api/chat";
-const SOCKET_URL = "http://localhost:5000";
+const API_URL = "https://devverse-s609.onrender.com/api/chat";
+const SOCKET_URL = "https://devverse-s609.onrender.com";
 
 function ChatPage() {
   const { user, token } = useAuth();
