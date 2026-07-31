@@ -1,22 +1,18 @@
 const nodemailer = require("nodemailer");
 
 const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 465,
-  secure: true,
-  logger: true,
-  debug: true,
+  service: "gmail",
   auth: {
     user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS
-  }
+    pass: process.env.EMAIL_PASS,
+  },
 });
 
 transporter.verify((error) => {
   if (error) {
-    console.log("SMTP Connection Failed:", error.message);
+    console.log("Connection Failed:", error.message);
   } else {
-    console.log("SMTP Ready");
+    console.log("Ready");
   }
 });
 

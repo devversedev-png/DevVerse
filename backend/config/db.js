@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 
 const connectDB = async () => {
   try {
+    if (!process.env.MONGO_URI) {
+      throw new Error("MONGO_URI is missing. Add it to backend/.env locally or Render Environment Variables in production.");
+    }
+
     const connection = await mongoose.connect(process.env.MONGO_URI);
 
     console.log(

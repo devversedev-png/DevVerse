@@ -5,8 +5,9 @@ import "./AdminChats.css";
 
 import devverseLogo from "../../assets/devverse-logo.png";
 
-const API_URL = "https://devverse-s609.onrender.com/api/chat";
-const SOCKET_URL = "https://devverse-s609.onrender.com";
+const API_BASE_URL = (import.meta.env.VITE_API_URL || "http://localhost:5000/api").replace(/\/$/, "");
+const API_URL = `${API_BASE_URL}/chat`;
+const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || "http://localhost:5000";
 
 function AdminChats() {
   const { token, logout } = useAuth();

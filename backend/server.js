@@ -1,5 +1,6 @@
+const path = require("path");
 const dotenv = require("dotenv");
-dotenv.config();
+dotenv.config({ path: path.join(__dirname, ".env") });
 
 const express = require("express");
 const http = require("http");
@@ -27,18 +28,21 @@ const {
 
 connectDB();
 
-const allowedOrigins = process.env.FRONTEND_URL
-  .split(",")
-  .map(origin => origin.trim());
+// const allowedOrigins = process.env.FRONTEND_URL
+//   .split(",")
+//   .map(origin => origin.trim());
 
-const server = http.createServer(app);
+// // const server = http.createServer(app);
 
 
 /* ==============================
    MIDDLEWARE
 ============================== */
 
-const allowedOrigins = process.env.FRONTEND_URL.split(",");
+const allowedOrigins = (process.env.FRONTEND_URL || process.env.CLIENT_URL || "http://localhost:5173")
+  .split(",")
+  .map((origin) => origin.trim())
+  .filter(Boolean);
 
 app.use(
   cors({
@@ -318,6 +322,6 @@ const PORT =
 
 server.listen(PORT, () => {
   console.log(
-    `DevVerse backend running on http://localhost:${PORT}`
+    `DevVerse backend running on port ${PORT}`
   );
 });
