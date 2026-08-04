@@ -1,7 +1,9 @@
 import "./Contact.css";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import { sendContactMessage } from "../../services/contactApi";
 
 import {
   FaEnvelope,
@@ -12,11 +14,46 @@ import {
 } from "react-icons/fa";
 
 function Contact() {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    setSending(true);
+
+    await sendContactMessage(form);
+
+    alert(
+      "✅ Message sent successfully!\n\nThank you for contacting DevVerse.\nWe'll get back to you shortly."
+    );
+
+    setForm({
+      name: "",
+      email: "",
+      phone: "",
+      projectType: "",
+      budget: "",
+      message: "",
+    });
+
+  } catch (err) {
+    alert(err.message);
+  } finally {
+    setSending(false);
+  }
+};
 
   const navigate = useNavigate();
+
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    projectType: "",
+    budget: "",
+    message: "",
+  });
+
+  const [sending, setSending] = useState(false);
 
   return (
     <>
@@ -135,6 +172,13 @@ function Contact() {
                   <input
                     type="text"
                     placeholder="Enter your name"
+                    value={form.name}
+                    onChange={(e) =>
+                      setForm({
+                        ...form,
+                        name: e.target.value,
+                      })
+                    }
                     required
                   />
                 </div>
@@ -145,6 +189,13 @@ function Contact() {
                   <input
                     type="email"
                     placeholder="Enter your email"
+                    value={form.email}
+                    onChange={(e) =>
+                      setForm({
+                        ...form,
+                        email: e.target.value,
+                      })
+                    }
                     required
                   />
                 </div>
@@ -159,13 +210,28 @@ function Contact() {
                   <input
                     type="tel"
                     placeholder="Enter your phone number"
+                    value={form.phone}
+                    onChange={(e) =>
+                      setForm({
+                        ...form,
+                        phone: e.target.value,
+                      })
+                    }
                   />
                 </div>
 
                 <div className="contact-input-group">
                   <label>Project Type</label>
 
-                  <select defaultValue="">
+                  <select
+                    value={form.projectType}
+                    onChange={(e) =>
+                      setForm({
+                        ...form,
+                        projectType: e.target.value,
+                      })
+                    }
+                  >
                     <option value="" disabled>
                       Select a service
                     </option>
@@ -184,7 +250,15 @@ function Contact() {
               <div className="contact-input-group">
                 <label>Project Budget</label>
 
-                <select defaultValue="">
+                <select
+                  value={form.budget}
+                  onChange={(e) =>
+                    setForm({
+                      ...form,
+                      budget: e.target.value,
+                    })
+                  }
+                >
                   <option value="" disabled>
                     Select your budget range
                   </option>
@@ -202,7 +276,14 @@ function Contact() {
 
                 <textarea
                   rows="6"
-                  placeholder="Tell us about your idea, requirements and what you're looking to build..."
+                  placeholder="Tell us about your idea..."
+                  value={form.message}
+                  onChange={(e) =>
+                    setForm({
+                      ...form,
+                      message: e.target.value,
+                    })
+                  }
                   required
                 ></textarea>
               </div>
@@ -210,8 +291,10 @@ function Contact() {
               <button
                 type="submit"
                 className="contact-submit-button"
+                disabled={sending}
               >
-                Send Message
+                {sending ? "Sending..." : "Send Message"}
+
                 <FaPaperPlane />
               </button>
 

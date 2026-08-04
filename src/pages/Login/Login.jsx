@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/devverse-logo.png";
 
@@ -15,11 +16,24 @@ import "./Login.css";
 
 function Login() {
   const navigate = useNavigate();
-  const { login } = useAuth();
+const {
+  login,
+  isAuthenticated,
+  isAdmin,
+} = useAuth();
 
+if (isAuthenticated) {
+  return (
+    <Navigate
+      to={isAdmin ? "/admin/chats" : "/"}
+      replace
+    />
+  );
+}
   const [step, setStep] = useState("email");
 
   const [name, setName] = useState("");
+  const [isExistingUser, setIsExistingUser] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [otp, setOtp] = useState("");
@@ -55,18 +69,34 @@ function Login() {
 
       const data = await checkEmail(email.trim());
 
+      // Admin
       if (data.isAdmin) {
         setStep("admin");
-      } else {
-        setStep("customer");
+        return;
       }
+
+      // Existing customer
+      if (data.isExistingUser) {
+        setIsExistingUser(true);
+        setName(data.name);
+
+        const otpData = await sendOTP("", email.trim());
+
+        setMessage(otpData.message);
+        setStep("otp");
+        return;
+      }
+
+      // New customer
+      setIsExistingUser(false);
+      setStep("customer");
+
     } catch (err) {
       setError(err.message);
     } finally {
       setLoading(false);
     }
   };
-
   /* ==============================
      SEND OTP
   ============================== */
@@ -75,7 +105,7 @@ function Login() {
     e.preventDefault();
     resetMessages();
 
-    if (!name.trim()) {
+    if (!isExistingUser && !name.trim()) {
       setError("Please enter your name.");
       return;
     }
@@ -84,19 +114,19 @@ function Login() {
       setLoading(true);
 
       const data = await sendOTP(
-        name.trim(),
+        isExistingUser ? "" : name.trim(),
         email.trim()
       );
 
       setMessage(data.message);
       setStep("otp");
+
     } catch (err) {
       setError(err.message);
     } finally {
       setLoading(false);
     }
   };
-
   /* ==============================
      VERIFY OTP
   ============================== */
@@ -171,8 +201,10 @@ function Login() {
   const handleChangeEmail = () => {
     setStep("email");
     setName("");
+    setEmail("");
     setPassword("");
     setOtp("");
+    setIsExistingUser(false);
     resetMessages();
   };
 
@@ -210,7 +242,9 @@ function Login() {
             {step === "admin"
               ? "Enter your administrator password to continue."
               : step === "otp"
-                ? `We sent a verification code to ${email}`
+                ? isExistingUser
+                  ? `Welcome back ${name}! We sent a verification code to ${email}`
+                  : `We sent a verification code to ${email}`
                 : "Sign in to explore, connect and start building with us."}
           </p>
         </div>

@@ -15,10 +15,12 @@ function Navbar() {
   const navigate = useNavigate();
 
 
-  const handleLogout = () => {
-    logout();
-    navigate("/login");
-  };
+// const { logout } = useAuth();
+
+const handleLogout = () => {
+  logout();
+  navigate("/login", { replace: true });
+};
 
   return (
     <header className="navbar">
