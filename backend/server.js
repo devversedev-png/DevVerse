@@ -305,20 +305,20 @@ io.on("connection", (socket) => {
    TEST ROUTE
 ============================== */
 
-app.get("/", (req, res) => {
+app.post("/api/test", (req, res) => {
+    res.json({
+        success: true,
+        message: "POST API is working"
+    });
+});
 
-  app.post("/api/test", (req, res) => {
-  res.json({
-    success: true,
-    message: "POST API is working"
-  });
+app.get("/", (req, res) => {
+    res.json({
+        success: true,
+        message: "DevVerse backend is running 🚀"
+    });
 });
-  res.json({
-    success: true,
-    message:
-      "DevVerse backend is running 🚀",
-  });
-});
+ 
 
 /* ==============================
    START SERVER
