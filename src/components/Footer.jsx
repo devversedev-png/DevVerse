@@ -104,7 +104,15 @@ function Footer() {
             </a>
           </p>
 
-          <p>📞 +91 81441 04500</p>
+          <p>
+            📞{" "}
+            <a
+              href="tel:+918144104500"
+              aria-label="Call DevVerse"
+            >
+              +91 81441 04500
+            </a>
+          </p>
 
           <p>📍 Chennai, Tamil Nadu</p>
 
