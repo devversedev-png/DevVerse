@@ -417,93 +417,88 @@ function AdminChats() {
           </div>
         ) : (
           <>
-            {/* CHAT HEADER */}
-
-            <header className="admin-chat-header">
-              <button
-                type="button"
-                className="admin-mobile-back-btn"
-                onClick={closeConversation}
-                aria-label="Back to conversations"
-              >
-                ←
-              </button>
-
-              <div className="admin-customer-avatar large">
-                {selectedConversation.customerName
-                  ?.charAt(0)
-                  .toUpperCase() || "U"}
-
-                <span className="admin-avatar-status"></span>
-              </div>
-
-              <div className="admin-chat-customer-details">
-                <h2>
-                  {selectedConversation.customerName ||
-                    "Customer"}
-                </h2>
-
-                <div className="admin-customer-email">
-                  <span className="admin-header-status-dot"></span>
-
-                  <p>
-                    {selectedConversation.customerEmail}
-                  </p>
-                </div>
-              </div>
-
-              <div className="admin-chat-header-brand">
-                <img
-                  src={devverseLogo}
-                  alt="DevVerse"
-                />
-
-                <span>DevVerse</span>
-              </div>
-            </header>
 
             {/* CUSTOMER INFO CARD */}
 
-<div className="admin-customer-info-card">
+<div className="customer-profile-card">
 
-  <div className="admin-info-header">
-    <h3>👤 Customer Information</h3>
-  </div>
+    <div className="customer-top">
 
-  <div className="admin-info-grid">
+        <div className="customer-left">
 
-    <div className="admin-info-item">
-      <span>Name</span>
-      <strong>{selectedConversation.customerName}</strong>
+            <div className="customer-avatar-large">
+                {selectedConversation.customerName?.charAt(0).toUpperCase()}
+            </div>
+
+            <div>
+
+                <h2>
+                    {selectedConversation.customerName}
+                </h2>
+
+                <p>
+                    {selectedConversation.customerEmail}
+                </p>
+
+            </div>
+
+        </div>
+
+        <div className="customer-badges">
+
+            <span className="online-badge">
+                🟢 Online
+            </span>
+
+        </div>
+
     </div>
 
-    <div className="admin-info-item">
-      <span>Email</span>
-      <strong>{selectedConversation.customerEmail}</strong>
-    </div>
+    <div className="customer-details-grid">
 
-    <div className="admin-info-item">
-      <span>Phone</span>
-      <strong>
-        {selectedConversation.phone || "Not provided"}
-      </strong>
-    </div>
+        <div className="customer-detail">
 
-    <div className="admin-info-item">
-      <span>Project</span>
-      <strong>
-        {selectedConversation.projectType || "Not selected"}
-      </strong>
-    </div>
+            <span>📱 Phone</span>
 
-    <div className="admin-info-item">
-      <span>Budget</span>
-      <strong>
-        {selectedConversation.budget || "Not specified"}
-      </strong>
-    </div>
+            <strong>
+                {selectedConversation.phone || "-"}
+            </strong>
 
-  </div>
+        </div>
+
+        <div className="customer-detail">
+
+            <span>💼 Project</span>
+
+            <strong>
+                {selectedConversation.projectType || "-"}
+            </strong>
+
+        </div>
+
+        <div className="customer-detail">
+
+            <span>💰 Budget</span>
+
+            <strong>
+                {selectedConversation.budget || "-"}
+            </strong>
+
+        </div>
+
+        <div className="customer-detail">
+
+            <span>📅 Joined</span>
+
+            <strong>
+                {new Date(
+                    selectedConversation.createdAt
+                ).toLocaleDateString()}
+            </strong>
+
+        </div>
+
+    </div>
 
 </div>
 

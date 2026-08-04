@@ -1023,3 +1023,177 @@
     font-size:15px;
     word-break:break-word;
 }
+
+.customer-profile-card{
+
+    margin:18px 28px;
+
+    padding:26px;
+
+    border-radius:24px;
+
+    background:linear-gradient(
+        145deg,
+        rgba(255,255,255,.06),
+        rgba(255,255,255,.02)
+    );
+
+    border:1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(30px);
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.35),
+        inset 0 1px rgba(255,255,255,.05);
+
+}
+
+.customer-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.customer-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+}
+
+.customer-avatar-large{
+
+    width:72px;
+
+    height:72px;
+
+    border-radius:22px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:28px;
+
+    font-weight:700;
+
+    color:white;
+
+    background:
+    linear-gradient(
+        135deg,
+        #7C3AED,
+        #2563EB
+    );
+
+    box-shadow:
+    0 12px 35px
+    rgba(124,58,237,.45);
+
+}
+
+.customer-left h2{
+
+    margin:0;
+
+    font-size:25px;
+
+}
+
+.customer-left p{
+
+    margin-top:5px;
+
+    color:#9CA3AF;
+
+}
+
+.customer-badges{
+
+    display:flex;
+
+    gap:12px;
+
+}
+
+.online-badge,
+.premium-badge{
+
+    padding:9px 18px;
+
+    border-radius:999px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+.online-badge{
+
+    background:rgba(34,197,94,.15);
+
+    color:#4ADE80;
+
+}
+
+.premium-badge{
+
+    background:rgba(139,92,246,.15);
+
+    color:#C4B5FD;
+
+}
+
+.customer-details-grid{
+
+    margin-top:28px;
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:18px;
+
+}
+
+.customer-detail{
+
+    padding:18px;
+
+    border-radius:18px;
+
+    background:
+    rgba(255,255,255,.03);
+
+    border:1px solid
+    rgba(255,255,255,.05);
+
+}
+
+.customer-detail span{
+
+    display:block;
+
+    color:#8B8BA3;
+
+    font-size:12px;
+
+    margin-bottom:8px;
+
+}
+
+.customer-detail strong{
+
+    font-size:15px;
+
+}
