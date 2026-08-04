@@ -313,7 +313,7 @@ function Login() {
               type="text"
               inputMode="numeric"
               maxLength="6"
-              placeholder="000000"
+              placeholder="Enter OTP"
               value={otp}
               onChange={(e) =>
                 setOtp(
