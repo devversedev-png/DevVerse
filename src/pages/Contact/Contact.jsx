@@ -1,9 +1,13 @@
 import "./Contact.css";
+import { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { sendContactMessage } from "../../services/contactApi";
+import { useAuth } from "../../context/AuthContext";
+import Swal from "sweetalert2";
+import Select from "react-select";
 
 import {
   FaEnvelope,
@@ -13,7 +17,84 @@ import {
   FaArrowRight
 } from "react-icons/fa";
 
+const serviceOptions = [
+  {
+    value: "Website Development",
+    label: "🌐 Website Development",
+  },
+  {
+    value: "Mobile Application",
+    label: "📱 Mobile Application",
+  },
+  {
+    value: "E-Commerce Platform",
+    label: "🛒 E-Commerce Platform",
+  },
+  {
+    value: "Custom Software",
+    label: "⚙️ Custom Software",
+  },
+  {
+    value: "UI / UX Design",
+    label: "🎨 UI / UX Design",
+  },
+  {
+    value: "Other",
+    label: "✨ Other",
+  },
+];
+
+const budgetOptions = [
+  {
+    value: "Let's Discuss",
+    label: "💬 Let's Discuss",
+  },
+  {
+    value: "₹10,000 - ₹25,000",
+    label: "💰 ₹10,000 - ₹25,000",
+  },
+  {
+    value: "₹25,000 - ₹50,000",
+    label: "💰 ₹25,000 - ₹50,000",
+  },
+  {
+    value: "₹50,000 - ₹1,00,000",
+    label: "💎 ₹50,000 - ₹1,00,000",
+  },
+  {
+    value: "₹1,00,000+",
+    label: "🚀 ₹1,00,000+",
+  },
+];
+
+
 function Contact() {
+
+    const navigate = useNavigate();
+  const { user } = useAuth();
+
+  const [form, setForm] = useState({
+  name: user?.name || "",
+  email: user?.email || "",
+  phone: "",
+  projectType: "",
+  budget: "",
+  message: "",
+});
+
+  const [sending, setSending] = useState(false);
+
+   useEffect(() => {
+  if (user) {
+    setForm((prev) => ({
+      ...prev,
+      name: user.name || "",
+      email: user.email || "",
+    }));
+  }
+}, [user]);
+
+
  const handleSubmit = async (e) => {
   e.preventDefault();
 
@@ -22,9 +103,31 @@ function Contact() {
 
     await sendContactMessage(form);
 
-    alert(
-      "✅ Message sent successfully!\n\nThank you for contacting DevVerse.\nWe'll get back to you shortly."
-    );
+    Swal.fire({
+  title: "🎉 Message Sent Successfully!",
+  html: `
+      <div style="font-size:15px;line-height:1.8">
+        <p>Thank you for choosing <b style="color:#7c3aed">DevVerse</b>.</p>
+
+        <p>Your project enquiry has been received.</p>
+
+        <p style="color:#94a3b8">
+          Our team will contact you as soon as possible.
+        </p>
+      </div>
+  `,
+  icon: "success",
+  width: 520,
+  background: "#0F172A",
+  color: "#fff",
+  confirmButtonText: "Continue",
+  confirmButtonColor: "#7C3AED",
+  allowOutsideClick: false,
+  customClass: {
+    popup: "devverse-popup",
+    confirmButton: "devverse-btn"
+  }
+});
 
     setForm({
       name: "",
@@ -42,18 +145,81 @@ function Contact() {
   }
 };
 
-  const navigate = useNavigate();
+const selectStyles = {
+  control: (base, state) => ({
+    ...base,
+    backgroundColor: "#121329",
+    borderRadius: "16px",
+    border: state.isFocused
+      ? "2px solid #8b5cf6"
+      : "1px solid rgba(255,255,255,.08)",
+    boxShadow: state.isFocused
+      ? "0 0 25px rgba(139,92,246,.35)"
+      : "none",
+    minHeight: "60px",
+    transition: "all .25s ease",
+    cursor: "pointer",
+  }),
 
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    projectType: "",
-    budget: "",
-    message: "",
-  });
+  menu: (base) => ({
+    ...base,
+    background: "#16182B",
+    borderRadius: "16px",
+    overflow: "hidden",
+    border: "1px solid rgba(255,255,255,.08)",
+    boxShadow:
+      "0 20px 50px rgba(0,0,0,.55)",
+  }),
 
-  const [sending, setSending] = useState(false);
+  option: (base, state) => ({
+    ...base,
+    background: state.isSelected
+      ? "linear-gradient(90deg,#2563EB,#C026D3)"
+      : state.isFocused
+      ? "rgba(139,92,246,.25)"
+      : "#16182B",
+
+    color: "#fff",
+
+    padding: "15px 18px",
+
+    fontSize: "15px",
+
+    transition: "all .25s",
+  }),
+
+  singleValue: (base) => ({
+    ...base,
+    color: "#fff",
+    fontWeight: 500,
+  }),
+
+  placeholder: (base) => ({
+    ...base,
+    color: "#8d94b3",
+  }),
+
+  dropdownIndicator: (base, state) => ({
+    ...base,
+    color: state.isFocused
+      ? "#C026D3"
+      : "#8B5CF6",
+  }),
+
+  indicatorSeparator: () => ({
+    display: "none",
+  }),
+
+  input: (base) => ({
+    ...base,
+    color: "#fff",
+  }),
+
+  menuList: (base) => ({
+    ...base,
+    padding: 8,
+  }),
+};
 
   return (
     <>
@@ -223,26 +389,24 @@ function Contact() {
                 <div className="contact-input-group">
                   <label>Project Type</label>
 
-                  <select
-                    value={form.projectType}
-                    onChange={(e) =>
-                      setForm({
-                        ...form,
-                        projectType: e.target.value,
-                      })
-                    }
-                  >
-                    <option value="" disabled>
-                      Select a service
-                    </option>
-
-                    <option>Website Development</option>
-                    <option>Mobile Application</option>
-                    <option>E-Commerce Platform</option>
-                    <option>Custom Software</option>
-                    <option>UI / UX Design</option>
-                    <option>Other</option>
-                  </select>
+                 <Select
+  options={serviceOptions}
+  styles={selectStyles}
+  placeholder="Select a service"
+  isSearchable={false}
+  value={
+    serviceOptions.find(
+      (option) =>
+        option.value === form.projectType
+    ) || null
+  }
+  onChange={(selected) =>
+    setForm({
+      ...form,
+      projectType: selected.value,
+    })
+  }
+/>
                 </div>
 
               </div>
@@ -250,25 +414,24 @@ function Contact() {
               <div className="contact-input-group">
                 <label>Project Budget</label>
 
-                <select
-                  value={form.budget}
-                  onChange={(e) =>
-                    setForm({
-                      ...form,
-                      budget: e.target.value,
-                    })
-                  }
-                >
-                  <option value="" disabled>
-                    Select your budget range
-                  </option>
-
-                  <option>Let's Discuss</option>
-                  <option>₹10,000 - ₹25,000</option>
-                  <option>₹25,000 - ₹50,000</option>
-                  <option>₹50,000 - ₹1,00,000</option>
-                  <option>₹1,00,000+</option>
-                </select>
+              <Select
+  options={budgetOptions}
+  styles={selectStyles}
+  placeholder="Select your budget range"
+  isSearchable={false}
+  value={
+    budgetOptions.find(
+      (option) =>
+        option.value === form.budget
+    ) || null
+  }
+  onChange={(selected) =>
+    setForm({
+      ...form,
+      budget: selected.value,
+    })
+  }
+/>
               </div>
 
               <div className="contact-input-group">

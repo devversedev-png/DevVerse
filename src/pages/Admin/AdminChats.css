@@ -983,3 +983,43 @@
     max-width: 150px;
   }
 }
+
+.admin-customer-info-card{
+    margin:18px 20px;
+    padding:22px;
+    border-radius:18px;
+    background:rgba(255,255,255,.05);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.admin-info-header h3{
+    color:#fff;
+    margin-bottom:18px;
+    font-size:18px;
+}
+
+.admin-info-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:18px;
+}
+
+.admin-info-item{
+    display:flex;
+    flex-direction:column;
+}
+
+.admin-info-item span{
+    color:#9ca3af;
+    font-size:12px;
+    margin-bottom:5px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+}
+
+.admin-info-item strong{
+    color:white;
+    font-size:15px;
+    word-break:break-word;
+}

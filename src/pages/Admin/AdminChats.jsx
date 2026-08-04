@@ -462,6 +462,51 @@ function AdminChats() {
               </div>
             </header>
 
+            {/* CUSTOMER INFO CARD */}
+
+<div className="admin-customer-info-card">
+
+  <div className="admin-info-header">
+    <h3>👤 Customer Information</h3>
+  </div>
+
+  <div className="admin-info-grid">
+
+    <div className="admin-info-item">
+      <span>Name</span>
+      <strong>{selectedConversation.customerName}</strong>
+    </div>
+
+    <div className="admin-info-item">
+      <span>Email</span>
+      <strong>{selectedConversation.customerEmail}</strong>
+    </div>
+
+    <div className="admin-info-item">
+      <span>Phone</span>
+      <strong>
+        {selectedConversation.phone || "Not provided"}
+      </strong>
+    </div>
+
+    <div className="admin-info-item">
+      <span>Project</span>
+      <strong>
+        {selectedConversation.projectType || "Not selected"}
+      </strong>
+    </div>
+
+    <div className="admin-info-item">
+      <span>Budget</span>
+      <strong>
+        {selectedConversation.budget || "Not specified"}
+      </strong>
+    </div>
+
+  </div>
+
+</div>
+
             {/* MESSAGES */}
 
             <div className="admin-chat-messages">

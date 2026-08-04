@@ -603,3 +603,18 @@
         font-size: 31px;
     }
 }
+
+.swal2-popup.devverse-popup{
+    border-radius:20px;
+    border:1px solid rgba(124,58,237,.35);
+    box-shadow:
+        0 0 40px rgba(124,58,237,.35),
+        0 0 80px rgba(59,130,246,.20);
+}
+
+.swal2-confirm.devverse-btn{
+    border-radius:12px !important;
+    padding:12px 28px !important;
+    font-weight:700 !important;
+    background:linear-gradient(135deg,#3b82f6,#9333ea,#ec4899)!important;
+}
