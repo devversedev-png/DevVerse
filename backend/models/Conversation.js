@@ -23,6 +23,21 @@ const conversationSchema = new mongoose.Schema(
       trim: true,
     },
 
+    phone: {
+      type: String,
+      default: "",
+    },
+
+    projectType: {
+      type: String,
+      default: "",
+    },
+
+    budget: {
+      type: String,
+      default: "",
+    },
+
     lastMessage: {
       type: String,
       default: "",
