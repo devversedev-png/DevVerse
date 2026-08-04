@@ -22,14 +22,6 @@ transporter.verify((err, success) => {
   }
 });
 
-transporter.verify((error) => {
-  if (error) {
-    console.log("Connection Failed:", error.message);
-  } else {
-    console.log("Ready");
-  }
-});
-
 // Send OTP to customer
 const sendOTPEmail = async (email, otp) => {
   await transporter.sendMail({
