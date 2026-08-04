@@ -26,11 +26,23 @@ function Footer() {
 
           <div className="socials">
 
-            {/* <a href="#"><FaFacebookF /></a> */}
+            <a
+              href="https://www.linkedin.com/in/dev-verse-dev/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="DevVerse LinkedIn"
+            >
+              <FaLinkedinIn />
+            </a>
 
-            <a href="#"><FaLinkedinIn /></a>
-
-            <a href="#"><FaInstagram /></a>
+            <a
+              href="https://www.instagram.com/dev_verse.dev/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="DevVerse Instagram"
+            >
+              <FaInstagram />
+            </a>
 
             <a
               href="https://github.com/devversedev-png"
@@ -85,9 +97,14 @@ function Footer() {
 
           <h3>Contact Info</h3>
 
-          <p>📧 hello@devverse.in</p>
+          <p>
+            📧{" "}
+            <a href="mailto:devverse.dev@gmail.com">
+              devverse.dev@gmail.com
+            </a>
+          </p>
 
-          <p>📞 +91 XXXXX XXXXX</p>
+          <p>📞 +91 81441 04500</p>
 
           <p>📍 Chennai, Tamil Nadu</p>
 

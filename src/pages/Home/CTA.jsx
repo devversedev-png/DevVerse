@@ -71,7 +71,7 @@ function CTA() {
 
               <h4>Call Us</h4>
 
-              <p>+91 XXXXX XXXXX</p>
+              <p>+91 81441 04500</p>
 
             </div>
 
@@ -89,7 +89,7 @@ function CTA() {
 
               <h4>Email Us</h4>
 
-              <p>contact@devverse.in</p>
+              <p>devverse.dev@gmail.com</p>
 
             </div>
 
