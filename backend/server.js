@@ -306,6 +306,13 @@ io.on("connection", (socket) => {
 ============================== */
 
 app.get("/", (req, res) => {
+
+  app.post("/api/test", (req, res) => {
+  res.json({
+    success: true,
+    message: "POST API is working"
+  });
+});
   res.json({
     success: true,
     message:
