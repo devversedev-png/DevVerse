@@ -84,6 +84,14 @@ app.use(express.json());
 ============================== */
 
 app.use("/api/auth", authRoutes);
+console.log("AUTH ROUTES REGISTERED");
+
+app.post("/api/test-auth", (req, res) => {
+  res.json({
+    success: true,
+    message: "Auth test route working"
+  });
+});
 app.use("/api/chat", chatRoutes);
 
 /* ==============================
