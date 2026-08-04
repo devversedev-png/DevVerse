@@ -16,6 +16,7 @@ const authRoutes = require("./routes/authRoutes");
 
 const Conversation = require("./models/Conversation");
 const Message = require("./models/Message");
+const contactRoutes = require("./routes/contactRoutes");
 
 const {
   sendAdminMessageNotification,
@@ -93,6 +94,7 @@ app.post("/api/test-auth", (req, res) => {
   });
 });
 app.use("/api/chat", chatRoutes);
+app.use("/api/contact", contactRoutes);
 
 /* ==============================
    SOCKET.IO

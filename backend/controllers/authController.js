@@ -26,17 +26,46 @@ const checkEmail = async (req, res) => {
 
     const normalizedEmail = email.toLowerCase().trim();
 
-    const isAdmin =
-      normalizedEmail === process.env.ADMIN_EMAIL.toLowerCase().trim();
+    // Admin login
+    if (
+      normalizedEmail ===
+      process.env.ADMIN_EMAIL.toLowerCase().trim()
+    ) {
+      return res.status(200).json({
+        success: true,
+        isAdmin: true,
+        isExistingUser: false,
+      });
+    }
 
-    res.status(200).json({
-      success: true,
-      isAdmin,
+    // Existing customer?
+    const user = await User.findOne({
+      email: normalizedEmail,
     });
+
+    if (user) {
+      return res.status(200).json({
+        success: true,
+        isAdmin: false,
+        isExistingUser: true,
+        name: user.name,
+        email: user.email,
+      });
+    }
+
+    // New customer
+    return res.status(200).json({
+      success: true,
+      isAdmin: false,
+      isExistingUser: false,
+    });
+
   } catch (error) {
-    res.status(500).json({
+    console.error("Check Email Error:", error);
+
+    return res.status(500).json({
       success: false,
-      message: error.message,
+      message: "Something went wrong",
     });
   }
 };
@@ -49,22 +78,36 @@ const sendOTP = async (req, res) => {
   try {
     const { name, email } = req.body;
 
-    if (!name || !email) {
+    if (!email) {
       return res.status(400).json({
         success: false,
-        message: "Name and email are required",
+        message: "Email is required",
       });
     }
 
     const normalizedEmail = email.toLowerCase().trim();
 
-    // Prevent admin from using customer OTP flow
+    // Prevent admin OTP login
     if (
-      normalizedEmail === process.env.ADMIN_EMAIL.toLowerCase().trim()
+      normalizedEmail ===
+      process.env.ADMIN_EMAIL.toLowerCase().trim()
     ) {
       return res.status(403).json({
         success: false,
         message: "Please use admin login",
+      });
+    }
+
+    // Check whether user already exists
+    const existingUser = await User.findOne({
+      email: normalizedEmail,
+    });
+
+    // New user must provide name
+    if (!existingUser && !name) {
+      return res.status(400).json({
+        success: false,
+        message: "Name is required",
       });
     }
 
@@ -76,7 +119,7 @@ const sendOTP = async (req, res) => {
       Date.now() + 5 * 60 * 1000
     );
 
-    // Remove previous OTP
+    // Delete old OTPs
     await OTP.deleteMany({
       email: normalizedEmail,
     });
@@ -91,14 +134,16 @@ const sendOTP = async (req, res) => {
     // Send OTP email
     await sendOTPEmail(normalizedEmail, otp);
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       message: "OTP sent successfully",
+      isExistingUser: !!existingUser,
     });
-  } catch (error) {
-    console.error("Send OTP error:", error);
 
-    res.status(500).json({
+  } catch (error) {
+    console.error("Send OTP Error:", error);
+
+    return res.status(500).json({
       success: false,
       message: "Failed to send OTP",
     });
@@ -166,11 +211,20 @@ const verifyOTP = async (req, res) => {
     }
 
     // Create or update customer
+    // Find existing customer
     let user = await User.findOne({
       email: normalizedEmail,
     });
 
+    // New customer
     if (!user) {
+      if (!name || !name.trim()) {
+        return res.status(400).json({
+          success: false,
+          message: "Name is required",
+        });
+      }
+
       user = await User.create({
         name: name.trim(),
         email: normalizedEmail,
@@ -178,14 +232,14 @@ const verifyOTP = async (req, res) => {
         isVerified: true,
         lastLogin: new Date(),
       });
-    } else {
-      user.name = name.trim();
+    }
+    // Existing customer
+    else {
       user.isVerified = true;
       user.lastLogin = new Date();
 
       await user.save();
     }
-
     // Delete OTP after successful verification
     await OTP.deleteMany({
       email: normalizedEmail,
