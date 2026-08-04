@@ -246,9 +246,8 @@ function AdminChats() {
 
   return (
     <main
-      className={`admin-chats-page ${
-        selectedConversation ? "chat-open" : ""
-      }`}
+      className={`admin-chats-page ${selectedConversation ? "chat-open" : ""
+        }`}
     >
       {/* ==============================
           SIDEBAR
@@ -320,11 +319,10 @@ function AdminChats() {
             <button
               key={conversation._id}
               type="button"
-              className={`admin-conversation-item ${
-                selectedConversation?._id === conversation._id
+              className={`admin-conversation-item ${selectedConversation?._id === conversation._id
                   ? "active"
                   : ""
-              }`}
+                }`}
               onClick={() => openConversation(conversation)}
             >
               <div className="admin-customer-avatar">
@@ -420,87 +418,87 @@ function AdminChats() {
 
             {/* CUSTOMER INFO CARD */}
 
-<div className="customer-profile-card">
+            <div className="customer-profile-card">
 
-    <div className="customer-top">
+              <div className="customer-top">
 
-        <div className="customer-left">
+                <div className="customer-left">
 
-            <div className="customer-avatar-large">
-                {selectedConversation.customerName?.charAt(0).toUpperCase()}
+                  <div className="customer-avatar-large">
+                    {selectedConversation.customerName?.charAt(0).toUpperCase()}
+                  </div>
+
+                  <div>
+
+                    <h2>
+                      {selectedConversation.customerName}
+                    </h2>
+
+                    <p>
+                      {selectedConversation.customerEmail}
+                    </p>
+
+                  </div>
+
+                </div>
+
+                <div className="customer-badges">
+
+                  <span className="online-badge">
+                    🟢 Online
+                  </span>
+
+                </div>
+
+              </div>
+
+              <div className="customer-details-grid">
+
+                <div className="customer-detail">
+
+                  <span>📱 Phone</span>
+
+                  <strong>
+                    {selectedConversation.phone || "-"}
+                  </strong>
+
+                </div>
+
+                <div className="customer-detail">
+
+                  <span>💼 Project</span>
+
+                  <strong>
+                    {selectedConversation.projectType || "-"}
+                  </strong>
+
+                </div>
+
+                <div className="customer-detail">
+
+                  <span>💰 Budget</span>
+
+                  <strong>
+                    {selectedConversation.budget || "-"}
+                  </strong>
+
+                </div>
+
+                <div className="customer-detail">
+
+                  <span>📅 Joined</span>
+
+                  <strong>
+                    {new Date(
+                      selectedConversation.createdAt
+                    ).toLocaleDateString()}
+                  </strong>
+
+                </div>
+
+              </div>
+
             </div>
-
-            <div>
-
-                <h2>
-                    {selectedConversation.customerName}
-                </h2>
-
-                <p>
-                    {selectedConversation.customerEmail}
-                </p>
-
-            </div>
-
-        </div>
-
-        <div className="customer-badges">
-
-            <span className="online-badge">
-                🟢 Online
-            </span>
-
-        </div>
-
-    </div>
-
-    <div className="customer-details-grid">
-
-        <div className="customer-detail">
-
-            <span>📱 Phone</span>
-
-            <strong>
-                {selectedConversation.phone || "-"}
-            </strong>
-
-        </div>
-
-        <div className="customer-detail">
-
-            <span>💼 Project</span>
-
-            <strong>
-                {selectedConversation.projectType || "-"}
-            </strong>
-
-        </div>
-
-        <div className="customer-detail">
-
-            <span>💰 Budget</span>
-
-            <strong>
-                {selectedConversation.budget || "-"}
-            </strong>
-
-        </div>
-
-        <div className="customer-detail">
-
-            <span>📅 Joined</span>
-
-            <strong>
-                {new Date(
-                    selectedConversation.createdAt
-                ).toLocaleDateString()}
-            </strong>
-
-        </div>
-
-    </div>
-
-</div>
 
             {/* MESSAGES */}
 
@@ -527,11 +525,10 @@ function AdminChats() {
                   {messages.map((item) => (
                     <div
                       key={item._id}
-                      className={`admin-message-row ${
-                        item.sender === "admin"
+                      className={`admin-message-row ${item.sender === "admin"
                           ? "admin"
                           : "customer"
-                      }`}
+                        }`}
                     >
                       <div className="admin-message-content">
                         <span className="admin-message-sender">
@@ -541,18 +538,66 @@ function AdminChats() {
                         </span>
 
                         <div className="admin-message-bubble">
-                          <p>{item.message}</p>
+                          {item.message.startsWith("🚀 New Project Enquiry") ? (
+                            <div className="enquiry-card">
+                              <div className="enquiry-header">
+                                🚀 <span>New Project Enquiry</span>
+                              </div>
+
+                              <div className="enquiry-row">
+                                <span>👤 Name</span>
+                                <strong>{selectedConversation.customerName}</strong>
+                              </div>
+
+                              <div className="enquiry-row">
+                                <span>📧 Email</span>
+                                <strong>{selectedConversation.customerEmail}</strong>
+                              </div>
+
+                              <div className="enquiry-row">
+                                <span>📱 Phone</span>
+                                <strong>{selectedConversation.phone}</strong>
+                              </div>
+
+                              <div className="enquiry-row">
+                                <span>💼 Project</span>
+                                <strong>{selectedConversation.projectType}</strong>
+                              </div>
+
+                              <div className="enquiry-row">
+                                <span>💰 Budget</span>
+                                <strong>{selectedConversation.budget}</strong>
+                              </div>
+
+                              <div className="enquiry-description">
+                                <span>📝 Description</span>
+
+                                <p>
+                                  {item.message
+                                    .split("________________________________")[0]
+                                    .split("Testing")[1]
+                                    ?.trim()}
+                                </p>
+                              </div>
+
+                              <div className="enquiry-footer">
+                                Submitted from DevVerse Contact Form
+                              </div>
+                            </div>
+                          ) : (
+                            <p>{item.message}</p>
+                          )}
 
                           <span className="admin-message-time">
                             {item.edited && "Edited · "}
 
                             {item.createdAt
                               ? new Date(
-                                  item.createdAt
-                                ).toLocaleTimeString([], {
-                                  hour: "2-digit",
-                                  minute: "2-digit",
-                                })
+                                item.createdAt
+                              ).toLocaleTimeString([], {
+                                hour: "2-digit",
+                                minute: "2-digit",
+                              })
                               : ""}
                           </span>
                         </div>
@@ -582,10 +627,9 @@ function AdminChats() {
               <div className="admin-chat-input">
                 <input
                   type="text"
-                  placeholder={`Message ${
-                    selectedConversation.customerName ||
+                  placeholder={`Message ${selectedConversation.customerName ||
                     "customer"
-                  }...`}
+                    }...`}
                   value={message}
                   onChange={(e) =>
                     setMessage(e.target.value)
