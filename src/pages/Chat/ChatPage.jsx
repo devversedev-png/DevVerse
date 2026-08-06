@@ -47,9 +47,14 @@ function ChatPage() {
     socketRef.current = socket;
 
     socket.on("connect", () => {
-      console.log("Customer socket connected:", socket.id);
-      setIsConnected(true);
-    });
+  console.log("Customer socket connected:", socket.id);
+
+  setIsConnected(true);
+
+  if (user?.role === "customer") {
+    socket.emit("customer_online", user.id);
+  }
+});
 
     socket.on("disconnect", () => {
       setIsConnected(false);
@@ -58,7 +63,7 @@ function ChatPage() {
     return () => {
       socket.disconnect();
     };
-  }, [token]);
+  }, [token, user]);
 
   /* ==============================
      CREATE / GET CONVERSATION

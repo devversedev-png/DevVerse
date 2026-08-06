@@ -1255,3 +1255,43 @@
     padding-top:12px;
     border-top:1px solid rgba(255,255,255,.08);
 }
+
+.offline-badge{
+
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+
+    padding:7px 14px;
+
+    border-radius:999px;
+
+    background:rgba(120,120,120,.12);
+
+    color:#9CA3AF;
+
+    font-size:12px;
+
+    font-weight:600;
+
+}
+
+.offline-status{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:flex-end;
+
+    gap:4px;
+
+}
+
+.offline-status small{
+
+    color:#9CA3AF;
+
+    font-size:11px;
+
+}

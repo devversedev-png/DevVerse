@@ -88,8 +88,40 @@ function AdminChats() {
       loadConversations();
     });
 
+    socket.on("customer_status", (status) => {
+
+      setConversations((previous) =>
+        previous.map((conversation) =>
+          String(conversation.userId) === String(status.userId)
+            ? {
+              ...conversation,
+              online: status.online,
+              lastSeen: status.lastSeen,
+            }
+            : conversation
+        )
+      );
+
+      setSelectedConversation((previous) => {
+
+        if (!previous) return previous;
+
+        if (String(previous.userId) !== String(status.userId))
+          return previous;
+
+        return {
+          ...previous,
+          online: status.online,
+          lastSeen: status.lastSeen,
+        };
+
+      });
+
+    });
+
     return () => {
       socket.off("conversation_updated");
+      socket.off("customer_status");
       socket.disconnect();
     };
   }, [token]);
@@ -320,8 +352,8 @@ function AdminChats() {
               key={conversation._id}
               type="button"
               className={`admin-conversation-item ${selectedConversation?._id === conversation._id
-                  ? "active"
-                  : ""
+                ? "active"
+                : ""
                 }`}
               onClick={() => openConversation(conversation)}
             >
@@ -444,9 +476,37 @@ function AdminChats() {
 
                 <div className="customer-badges">
 
-                  <span className="online-badge">
-                    🟢 Online
-                  </span>
+                  {selectedConversation.online ? (
+
+                    <span className="online-badge">
+                      🟢 Online
+                    </span>
+
+                  ) : (
+
+                    <div className="offline-status">
+
+                      <span className="offline-badge">
+                        ⚫ Offline
+                      </span>
+
+                      <small>
+                        Last seen{" "}
+                        {selectedConversation.lastSeen
+                          ? new Date(
+                            selectedConversation.lastSeen
+                          ).toLocaleString([], {
+                            day: "2-digit",
+                            month: "short",
+                            hour: "2-digit",
+                            minute: "2-digit",
+                          })
+                          : "Recently"}
+                      </small>
+
+                    </div>
+
+                  )}
 
                 </div>
 
@@ -526,8 +586,8 @@ function AdminChats() {
                     <div
                       key={item._id}
                       className={`admin-message-row ${item.sender === "admin"
-                          ? "admin"
-                          : "customer"
+                        ? "admin"
+                        : "customer"
                         }`}
                     >
                       <div className="admin-message-content">
