@@ -318,9 +318,9 @@ function AdminChats() {
             <h2>Conversations</h2>
           </div>
 
-          <span className="admin-conversation-count">
+          {/* <span className="admin-conversation-count">
             {conversations.length}
-          </span>
+          </span> */}
         </div>
 
         {/* CONVERSATION LIST */}
