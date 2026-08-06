@@ -1,5 +1,6 @@
 const Conversation = require("../models/Conversation");
 const Message = require("../models/Message");
+const User = require("../models/User");
 
 /* ==============================
    CREATE OR GET CUSTOMER CHAT
@@ -90,14 +91,44 @@ const getMessages = async (req, res) => {
 
 const getAllConversations = async (req, res) => {
   try {
-    const conversations =
-      await Conversation.find().sort({
+    const conversations = await Conversation.find()
+      .sort({
         updatedAt: -1,
-      });
+      })
+      .lean();
+
+    const userIds = conversations.map(
+      (conversation) => conversation.userId
+    );
+
+    const users = await User.find({
+      _id: { $in: userIds },
+    })
+      .select("online lastSeen")
+      .lean();
+
+    const userMap = {};
+
+    users.forEach((user) => {
+      userMap[user._id.toString()] = user;
+    });
+
+    const updatedConversations = conversations.map(
+      (conversation) => {
+        const customer =
+          userMap[conversation.userId.toString()];
+
+        return {
+          ...conversation,
+          online: customer?.online || false,
+          lastSeen: customer?.lastSeen || null,
+        };
+      }
+    );
 
     return res.status(200).json({
       success: true,
-      conversations,
+      conversations: updatedConversations,
     });
   } catch (error) {
     console.error(

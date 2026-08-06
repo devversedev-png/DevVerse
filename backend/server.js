@@ -16,6 +16,7 @@ const authRoutes = require("./routes/authRoutes");
 
 const Conversation = require("./models/Conversation");
 const Message = require("./models/Message");
+const User = require("./models/User");
 const contactRoutes = require("./routes/contactRoutes");
 
 const {
@@ -110,6 +111,32 @@ const io = new Server(server, {
 
 io.on("connection", (socket) => {
   console.log("User connected:", socket.id);
+  let connectedUserId = null;
+
+  /* ==============================
+   CUSTOMER ONLINE
+============================== */
+
+  socket.on("customer_online", async (userId) => {
+    try {
+      connectedUserId = userId;
+
+      await User.findByIdAndUpdate(userId, {
+        online: true,
+        lastSeen: new Date(),
+      });
+
+      io.emit("customer_status", {
+        userId,
+        online: true,
+        lastSeen: new Date(),
+      });
+
+      console.log("Customer Online:", userId);
+    } catch (err) {
+      console.log(err.message);
+    }
+  });
 
   /* ==============================
      JOIN CONVERSATION
@@ -303,11 +330,29 @@ io.on("connection", (socket) => {
      DISCONNECT
   ============================== */
 
-  socket.on("disconnect", () => {
-    console.log(
-      "User disconnected:",
-      socket.id
-    );
+  socket.on("disconnect", async () => {
+    console.log("User disconnected:", socket.id);
+
+    if (!connectedUserId) return;
+
+    try {
+      await User.findByIdAndUpdate(connectedUserId, {
+        online: false,
+        lastSeen: new Date(),
+      });
+
+      const lastSeen = new Date();
+
+      io.emit("customer_status", {
+        userId: connectedUserId,
+        online: false,
+        lastSeen,
+      });
+
+      console.log("Customer Offline:", connectedUserId);
+    } catch (err) {
+      console.log(err.message);
+    }
   });
 });
 
@@ -316,19 +361,19 @@ io.on("connection", (socket) => {
 ============================== */
 
 app.post("/api/test", (req, res) => {
-    res.json({
-        success: true,
-        message: "POST API is working"
-    });
+  res.json({
+    success: true,
+    message: "POST API is working"
+  });
 });
 
 app.get("/", (req, res) => {
-    res.json({
-        success: true,
-        message: "DevVerse backend is running 🚀"
-    });
+  res.json({
+    success: true,
+    message: "DevVerse backend is running 🚀"
+  });
 });
- 
+
 
 /* ==============================
    START SERVER

@@ -31,6 +31,18 @@ const userSchema = new mongoose.Schema(
       type: Date,
       default: null,
     },
+
+    // 🟢 Customer online status
+    online: {
+      type: Boolean,
+      default: false,
+    },
+
+    // 🕒 Last seen
+    lastSeen: {
+      type: Date,
+      default: null,
+    },
   },
   {
     timestamps: true,
