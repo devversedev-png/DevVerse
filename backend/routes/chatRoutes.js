@@ -9,6 +9,7 @@ const {
 const {
   protect,
   adminOnly,
+  customerOnly,
 } = require("../middleware/authMiddleware");
 
 const router = express.Router();
@@ -17,10 +18,11 @@ const router = express.Router();
 router.post(
   "/conversation",
   protect,
+  customerOnly,
   createOrGetConversation
 );
 
-/* CUSTOMER + ADMIN: GET MESSAGES */
+/* CUSTOMER + ADMIN: GET AUTHORIZED MESSAGES */
 router.get(
   "/messages/:conversationId",
   protect,

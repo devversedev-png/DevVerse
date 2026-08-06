@@ -8,24 +8,26 @@ const User = require("../models/User");
 
 const createOrGetConversation = async (req, res) => {
   try {
-    const { userId, name, email } = req.body;
+    const user = await User.findById(req.user.id).select(
+      "name email role"
+    );
 
-    if (!userId || !name || !email) {
-      return res.status(400).json({
+    if (!user || user.role !== "customer") {
+      return res.status(404).json({
         success: false,
-        message: "User information is required",
+        message: "Customer account not found",
       });
     }
 
     let conversation = await Conversation.findOne({
-      userId,
+      userId: user._id,
     });
 
     if (!conversation) {
       conversation = await Conversation.create({
-        userId,
-        customerName: name,
-        customerEmail: email,
+        userId: user._id,
+        customerName: user.name,
+        customerEmail: user.email,
         lastMessage: "",
       });
     }
@@ -35,10 +37,7 @@ const createOrGetConversation = async (req, res) => {
       conversation,
     });
   } catch (error) {
-    console.error(
-      "Create/Get conversation error:",
-      error
-    );
+    console.error("Create/Get conversation error:", error);
 
     return res.status(500).json({
       success: false,
@@ -62,6 +61,16 @@ const getMessages = async (req, res) => {
       return res.status(404).json({
         success: false,
         message: "Conversation not found",
+      });
+    }
+
+    if (
+      req.user.role !== "admin" &&
+      String(conversation.userId) !== String(req.user.id)
+    ) {
+      return res.status(403).json({
+        success: false,
+        message: "You cannot access this conversation",
       });
     }
 

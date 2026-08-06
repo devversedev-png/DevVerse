@@ -44,6 +44,11 @@ function AdminChats() {
 
       const data = await response.json();
 
+      if (response.status === 401) {
+        logout();
+        return;
+      }
+
       if (!response.ok) {
         throw new Error(
           data.message || "Failed to load conversations"
@@ -152,6 +157,11 @@ function AdminChats() {
       );
 
       const data = await response.json();
+
+      if (response.status === 401) {
+        logout();
+        return;
+      }
 
       if (!response.ok) {
         throw new Error(

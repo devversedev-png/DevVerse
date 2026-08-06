@@ -17,7 +17,7 @@ const API_URL = `${API_BASE_URL}/chat`;
 const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || "http://localhost:5000";
 
 function ChatPage() {
-  const { user, token } = useAuth();
+  const { user, token, logout } = useAuth();
   const navigate = useNavigate();
 
   const socketRef = useRef(null);
@@ -97,6 +97,12 @@ function ChatPage() {
 
         const data = await response.json();
 
+        if (response.status === 401) {
+          logout();
+          navigate("/login", { replace: true });
+          return;
+        }
+
         if (!response.ok) {
           throw new Error(
             data.message || "Failed to load conversation"
@@ -126,6 +132,12 @@ function ChatPage() {
         const messagesData =
           await messagesResponse.json();
 
+        if (messagesResponse.status === 401) {
+          logout();
+          navigate("/login", { replace: true });
+          return;
+        }
+
         if (!messagesResponse.ok) {
           throw new Error(
             messagesData.message ||
@@ -143,7 +155,7 @@ function ChatPage() {
     };
 
     loadConversation();
-  }, [user, token]);
+  }, [user, token, logout, navigate]);
 
   /* ==============================
      JOIN ROOM AFTER SOCKET CONNECTS

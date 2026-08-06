@@ -22,14 +22,6 @@ const {
   isAdmin,
 } = useAuth();
 
-if (isAuthenticated) {
-  return (
-    <Navigate
-      to={isAdmin ? "/admin/chats" : "/"}
-      replace
-    />
-  );
-}
   const [step, setStep] = useState("email");
 
   const [name, setName] = useState("");
@@ -207,6 +199,15 @@ if (isAuthenticated) {
     setIsExistingUser(false);
     resetMessages();
   };
+
+  if (isAuthenticated) {
+    return (
+      <Navigate
+        to={isAdmin ? "/admin/chats" : "/"}
+        replace
+      />
+    );
+  }
 
   return (
     <main className="login-page">
