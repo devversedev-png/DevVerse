@@ -1,3 +1,4 @@
+const crypto = require("crypto");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
@@ -356,7 +357,97 @@ const adminLogin = async (req, res) => {
   }
 };
 
+
+/* ==============================
+   VISITOR CHAT SESSION (no login page)
+   A visitor gives an email; a random per-browser key keeps the chat theirs.
+============================== */
+
+const visitorSession = async (req, res) => {
+  try {
+    const email = String(req.body?.email || "").toLowerCase().trim();
+    const visitorKey = String(req.body?.visitorKey || "");
+    const name = String(req.body?.name || "").trim().slice(0, 60);
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 254) {
+      return res.status(400).json({
+        success: false,
+        message: "Please enter a valid email address.",
+      });
+    }
+
+    if (visitorKey.length < 16 || visitorKey.length > 100) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid visitor session.",
+      });
+    }
+
+    if (
+      process.env.ADMIN_EMAIL &&
+      email === process.env.ADMIN_EMAIL.toLowerCase().trim()
+    ) {
+      return res.status(403).json({
+        success: false,
+        message: "This email can't be used for chat.",
+      });
+    }
+
+    const keyHash = crypto
+      .createHash("sha256")
+      .update(visitorKey)
+      .digest("hex");
+
+    let user = await User.findOne({ email }).select("+visitorKeyHash");
+
+    if (!user) {
+      user = await User.create({
+        name: name || email.split("@")[0],
+        email,
+        role: "customer",
+        isVerified: false,
+        visitorKeyHash: keyHash,
+        lastLogin: new Date(),
+      });
+    } else if (user.role !== "customer" || user.visitorKeyHash !== keyHash) {
+      return res.status(409).json({
+        success: false,
+        message:
+          "A chat for this email was started on another device. Please use the project form or email us instead.",
+      });
+    } else {
+      user.lastLogin = new Date();
+      await user.save();
+    }
+
+    const token = jwt.sign(
+      { id: user._id, role: user.role },
+      process.env.JWT_SECRET,
+      { expiresIn: "7d" }
+    );
+
+    return res.status(200).json({
+      success: true,
+      token,
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+      },
+    });
+  } catch (error) {
+    console.error("Visitor session error:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Could not start the chat.",
+    });
+  }
+};
+
 module.exports = {
+  visitorSession,
   checkEmail,
   sendOTP,
   verifyOTP,

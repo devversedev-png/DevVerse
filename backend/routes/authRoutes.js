@@ -1,28 +1,21 @@
 const express = require("express");
 
 const {
-  checkEmail,
-  sendOTP,
-  verifyOTP,
   adminLogin,
+  visitorSession,
 } = require("../controllers/authController");
 
 const router = express.Router();
 
 /* ==============================
    AUTH ROUTES
+   (Customer OTP login was removed. Visitors no longer log in.)
 ============================== */
-
-// Check whether entered email is admin or customer
-router.post("/check-email", checkEmail);
-
-// Send OTP to normal customer
-router.post("/send-otp", sendOTP);
-
-// Verify customer OTP and login
-router.post("/verify-otp", verifyOTP);
 
 // Admin email + password login
 router.post("/admin-login", adminLogin);
+
+// Chat session for a visitor, based on the email they entered
+router.post("/visitor-session", visitorSession);
 
 module.exports = router;

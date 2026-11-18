@@ -27,6 +27,14 @@ const userSchema = new mongoose.Schema(
       default: false,
     },
 
+    // Hash of a random key kept in the visitor's browser. It stops someone
+    // else from opening this email's chat by typing the same address.
+    visitorKeyHash: {
+      type: String,
+      default: null,
+      select: false,
+    },
+
     lastLogin: {
       type: Date,
       default: null,

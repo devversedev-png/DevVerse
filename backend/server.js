@@ -11,6 +11,7 @@ const app = express();
 const server = http.createServer(app);
 
 const connectDB = require("./config/db");
+const leadRoutes = require("./routes/leadRoutes");
 const chatRoutes = require("./routes/chatRoutes");
 const authRoutes = require("./routes/authRoutes");
 
@@ -95,6 +96,7 @@ app.post("/api/test-auth", (req, res) => {
   });
 });
 app.use("/api/chat", chatRoutes);
+app.use("/api/leads", leadRoutes);
 app.use("/api/contact", contactRoutes);
 
 /* ==============================
