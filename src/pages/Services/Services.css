@@ -8,14 +8,14 @@
     overflow: hidden;
     background:
         radial-gradient(circle at top left,
-            rgba(99, 102, 241, 0.18),
+            rgba(243,205,163,0.288),
             transparent 35%),
         radial-gradient(circle at bottom right,
-            rgba(168, 85, 247, 0.18),
+            rgba(233,184,102,0.288),
             transparent 35%),
-        #050816;
+        #fbf5e9;
 
-    color: #ffffff;
+    color: #2a1b12;
     padding-bottom: 100px;
 
 }
@@ -37,8 +37,8 @@
 
     background:
         linear-gradient(135deg,
-            #6366f1,
-            #ec4899);
+            #f3cda3,
+            #efb59a);
 
     filter: blur(150px);
 
@@ -63,8 +63,8 @@
 
     background:
         linear-gradient(135deg,
-            #06b6d4,
-            #8b5cf6);
+            #f3cda3,
+            #e9b866);
 
     filter: blur(160px);
 
@@ -133,7 +133,7 @@
 
     font-weight: 600;
 
-    color: #a5b4fc;
+    color: rgb(138,90,46);
 
     margin-bottom: 25px;
 
@@ -165,8 +165,8 @@
     background:
 
         linear-gradient(90deg,
-            #6366f1,
-            #ec4899);
+            #b8763a,
+            #a0522d);
 
 
     -webkit-background-clip: text;
@@ -186,7 +186,7 @@
 
     line-height: 1.8;
 
-    color: #cbd5e1;
+    color: #66513f;
 
     max-width: 750px;
 
@@ -250,7 +250,7 @@
 
     background:
 
-        rgba(255, 255, 255, 0.06);
+        rgba(255,252,245,0.630);
 
 
     backdrop-filter:
@@ -260,7 +260,7 @@
 
     border:
 
-        1px solid rgba(255, 255, 255, .12);
+        1px solid rgba(42,27,18,0.252);
 
 
     overflow: hidden;
@@ -295,16 +295,16 @@
     background:
 
         linear-gradient(135deg,
-            #6366f1,
+            #f3cda3,
             transparent,
-            #ec4899);
+            #efb59a);
 
 
     -webkit-mask:
 
-        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fffcf5 0 0) content-box,
 
-        linear-gradient(#fff 0 0);
+        linear-gradient(#fffcf5 0 0);
 
 
     -webkit-mask-composite:
@@ -347,7 +347,7 @@
 
     box-shadow:
 
-        0 30px 60px rgba(0, 0, 0, .35);
+        0 30px 60px rgba(42,27,18,0.193);
 
 
 }
@@ -378,8 +378,8 @@
     background:
 
         linear-gradient(135deg,
-            #6366f1,
-            #ec4899);
+            #f3cda3,
+            #efb59a);
 
 
     margin-bottom: 25px;
@@ -387,7 +387,7 @@
 
     box-shadow:
 
-        0 10px 30px rgba(99, 102, 241, .35);
+        0 10px 30px rgba(184,138,87,0.280);
 
 
 }
@@ -409,7 +409,7 @@
 .service-card p {
 
 
-    color: #cbd5e1;
+    color: #66513f;
 
 
     line-height: 1.7;
@@ -424,7 +424,7 @@
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    color: #a5b4fc;
+    color: rgb(138,90,46);
     font-size: 16px;
     font-weight: 600;
     text-decoration: none;
@@ -433,7 +433,7 @@
 
 .service-learn-more:hover {
     gap: 15px;
-    color: #ffffff;
+    color: #2a1b12;
 }
 
 /* ================================
@@ -508,7 +508,7 @@
     margin-top: 25px;
 
 
-    color: #cbd5e1;
+    color: #66513f;
 
 
     font-size: 18px;
@@ -569,9 +569,9 @@
 
         linear-gradient(to bottom,
 
-            #6366f1,
+            #f3cda3,
 
-            #ec4899);
+            #efb59a);
 
 
     opacity: .5;
@@ -601,12 +601,12 @@
 
     background:
 
-        rgba(255, 255, 255, .05);
+        rgba(255,252,245,0.600);
 
 
     border:
 
-        1px solid rgba(255, 255, 255, .1);
+        1px solid rgba(42,27,18,0.220);
 
 
     backdrop-filter:
@@ -634,7 +634,7 @@
 
     background:
 
-        rgba(255, 255, 255, .09);
+        rgba(255,252,245,0.720);
 
 
 }
@@ -672,14 +672,14 @@
 
         linear-gradient(135deg,
 
-            #6366f1,
+            #f3cda3,
 
-            #ec4899);
+            #efb59a);
 
 
     box-shadow:
 
-        0 10px 30px rgba(99, 102, 241, .4);
+        0 10px 30px rgba(184,138,87,0.320);
 
 
     position: relative;
@@ -708,7 +708,7 @@
 .step-card p {
 
 
-    color: #cbd5e1;
+    color: #66513f;
 
 
     line-height: 1.6;
@@ -816,12 +816,12 @@
 
     background:
 
-        rgba(255, 255, 255, .06);
+        rgba(255,252,245,0.630);
 
 
     border:
 
-        1px solid rgba(255, 255, 255, .12);
+        1px solid rgba(42,27,18,0.252);
 
 
     backdrop-filter:
@@ -829,7 +829,7 @@
         blur(15px);
 
 
-    color: #e2e8f0;
+    color: #2a1b12;
 
 
     font-size: 18px;
@@ -848,7 +848,7 @@
 .tech-card svg {
 
 
-    color: #818cf8;
+    color: rgb(138,90,46);
 
 
     font-size: 22px;
@@ -868,12 +868,12 @@
 
     border-color:
 
-        rgba(99, 102, 241, .8);
+        rgba(138,90,46,0.800);
 
 
     box-shadow:
 
-        0 20px 40px rgba(99, 102, 241, .2);
+        0 20px 40px rgba(184,138,87,0.160);
 
 
 }
@@ -914,14 +914,14 @@
 
         linear-gradient(135deg,
 
-            rgba(99, 102, 241, .18),
+            rgba(243,205,163,0.288),
 
-            rgba(236, 72, 153, .18));
+            rgba(239,181,154,0.288));
 
 
     border:
 
-        1px solid rgba(255, 255, 255, .15);
+        1px solid rgba(42,27,18,0.300);
 
 
     backdrop-filter:
@@ -952,7 +952,7 @@
 
     background:
 
-        #6366f1;
+        #f3cda3;
 
 
     filter:
@@ -998,9 +998,9 @@
 
         linear-gradient(90deg,
 
-            #6366f1,
+            #b8763a,
 
-            #ec4899);
+            #a0522d);
 
 
     -webkit-background-clip: text;
@@ -1018,7 +1018,7 @@
     margin: 25px auto 40px;
 
 
-    color: #cbd5e1;
+    color: #66513f;
 
 
     font-size: 18px;
@@ -1057,7 +1057,7 @@
     font-weight: 600;
 
 
-    color: white;
+    color: #2a1b12;
 
 
     cursor: pointer;
@@ -1068,9 +1068,9 @@
 
         linear-gradient(135deg,
 
-            #6366f1,
+            #f3cda3,
 
-            #ec4899);
+            #efb59a);
 
 
     transition: .35s;
@@ -1091,7 +1091,7 @@
     box-shadow:
 
 
-        0 20px 40px rgba(236, 72, 153, .35);
+        0 20px 40px rgba(184,138,87,0.280);
 
 
 }
@@ -1105,7 +1105,7 @@
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    color: #a5b4fc;
+    color: rgb(138,90,46);
     font-size: 16px;
     font-weight: 600;
     text-decoration: none;
@@ -1114,7 +1114,7 @@
 
 .service-learn-more:hover {
     gap: 15px;
-    color: #ffffff;
+    color: #2a1b12;
 }
 
 
@@ -1132,18 +1132,18 @@
     gap: 12px;
     font-size: 17px;
     font-weight: 600;
-    color: white;
+    color: #2a1b12;
     text-decoration: none;
     background: linear-gradient(135deg,
-            #6366f1,
-            #ec4899);
+            #f3cda3,
+            #efb59a);
     transition: 0.35s ease;
 }
 
 .services-cta-button:hover {
     transform: translateY(-5px);
     box-shadow:
-        0 20px 40px rgba(236, 72, 153, 0.35);
+        0 20px 40px rgba(184,138,87,0.280);
 }
 
 .service-card::before,
@@ -1163,7 +1163,7 @@
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    color: #a5b4fc;
+    color: rgb(138,90,46);
     font-size: 16px;
     font-weight: 600;
     text-decoration: none;
@@ -1173,5 +1173,5 @@
 
 .service-learn-more:hover {
     gap: 15px;
-    color: #ffffff;
+    color: #2a1b12;
 }

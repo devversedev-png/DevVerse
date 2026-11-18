@@ -8,10 +8,10 @@
     padding: 160px 5% 120px;
     overflow: hidden;
     background:
-        radial-gradient(circle at 85% 10%, rgba(147, 64, 255, 0.18), transparent 28%),
-        radial-gradient(circle at 10% 45%, rgba(45, 140, 255, 0.14), transparent 30%),
-        radial-gradient(circle at 80% 85%, rgba(255, 59, 199, 0.1), transparent 30%),
-        #050816;
+        radial-gradient(circle at 85% 10%, rgba(233,184,102,0.288), transparent 28%),
+        radial-gradient(circle at 10% 45%, rgba(243,205,163,0.224), transparent 30%),
+        radial-gradient(circle at 80% 85%, rgba(239,181,154,0.160), transparent 30%),
+        #fbf5e9;
 }
 
 /* ==========================================
@@ -28,7 +28,7 @@
 .process-intro-content > span,
 .process-support-content > span,
 .process-cta > span {
-    color: #59a8ff;
+    color: rgb(138,90,46);
     font-size: 14px;
     font-weight: 700;
     letter-spacing: 3px;
@@ -46,9 +46,9 @@
 .process-cta h2 span {
     background: linear-gradient(
         90deg,
-        #2d8cff,
-        #9340ff,
-        #ff3bc7
+        #b8763a,
+        #8a5a2e,
+        #a0522d
     );
     background-clip: text;
     -webkit-background-clip: text;
@@ -59,7 +59,7 @@
 .process-hero p {
     max-width: 720px;
     margin: auto;
-    color: #aeb5d0;
+    color: #66513f;
     font-size: 18px;
     line-height: 1.9;
 }
@@ -85,7 +85,7 @@
 }
 
 .process-intro > p {
-    color: #aeb5d0;
+    color: #66513f;
     font-size: 17px;
     line-height: 1.9;
 }
@@ -111,9 +111,9 @@
     background: linear-gradient(
         to bottom,
         transparent,
-        #2d8cff,
-        #9340ff,
-        #ff3bc7,
+        #f3cda3,
+        #e9b866,
+        #efb59a,
         transparent
     );
 }
@@ -145,9 +145,9 @@
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    background: #070b18;
-    border: 2px solid #9340ff;
-    box-shadow: 0 0 35px rgba(147, 64, 255, 0.45);
+    background: #fbf5e9;
+    border: 2px solid rgba(138,90,46,0.550);
+    box-shadow: 0 0 35px rgba(184,138,87,0.360);
 }
 
 .process-step-left .process-step-marker {
@@ -161,7 +161,7 @@
 .process-step-marker span {
     font-size: 13px;
     font-weight: 800;
-    color: #ffffff;
+    color: #2a1b12;
 }
 
 /* ==========================================
@@ -173,8 +173,8 @@
     overflow: hidden;
     padding: 38px;
     border-radius: 28px;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255,252,245,0.570);
+    border: 1px solid rgba(42,27,18,0.188);
     backdrop-filter: blur(24px);
     transition: 0.4s ease;
 }
@@ -186,17 +186,17 @@
     opacity: 0;
     background: linear-gradient(
         135deg,
-        rgba(45, 140, 255, 0.08),
-        rgba(147, 64, 255, 0.08),
-        rgba(255, 59, 199, 0.06)
+        rgba(243,205,163,0.128),
+        rgba(233,184,102,0.128),
+        rgba(239,181,154,0.096)
     );
     transition: 0.4s ease;
 }
 
 .process-step-card:hover {
     transform: translateY(-10px);
-    border-color: rgba(147, 64, 255, 0.7);
-    box-shadow: 0 25px 70px rgba(147, 64, 255, 0.2);
+    border-color: rgba(138,90,46,0.700);
+    box-shadow: 0 25px 70px rgba(184,138,87,0.160);
 }
 
 .process-step-card:hover::before {
@@ -225,19 +225,19 @@
     align-items: center;
     justify-content: center;
     border-radius: 22px;
-    color: #ffffff;
+    color: #2a1b12;
     font-size: 29px;
     background: linear-gradient(
         135deg,
-        #2d8cff,
-        #9340ff,
-        #ff3bc7
+        #f3cda3,
+        #e9b866,
+        #efb59a
     );
-    box-shadow: 0 15px 40px rgba(147, 64, 255, 0.25);
+    box-shadow: 0 15px 40px rgba(184,138,87,0.200);
 }
 
 .process-step-number {
-    color: rgba(255, 255, 255, 0.2);
+    color: rgba(42,27,18,0.300);
     font-size: 14px;
     font-weight: 800;
     letter-spacing: 2px;
@@ -250,7 +250,7 @@
 
 .process-step-card > p {
     margin-bottom: 25px;
-    color: #aeb5d0;
+    color: #66513f;
     line-height: 1.8;
 }
 
@@ -264,13 +264,13 @@
     display: flex;
     align-items: center;
     gap: 11px;
-    color: #d5daf0;
+    color: #2a1b12;
     font-size: 14px;
 }
 
 .process-step-points svg {
     flex-shrink: 0;
-    color: #59a8ff;
+    color: rgb(138,90,46);
 }
 
 /* ==========================================
@@ -290,12 +290,12 @@
     background:
         linear-gradient(
             135deg,
-            rgba(45, 140, 255, 0.1),
-            rgba(147, 64, 255, 0.1),
-            rgba(255, 59, 199, 0.08)
+            rgba(243,205,163,0.160),
+            rgba(233,184,102,0.160),
+            rgba(239,181,154,0.128)
         ),
-        rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.09);
+        rgba(255,252,245,0.540);
+    border: 1px solid rgba(42,27,18,0.204);
     backdrop-filter: blur(25px);
 }
 
@@ -306,15 +306,15 @@
     align-items: center;
     justify-content: center;
     border-radius: 35px;
-    color: #ffffff;
+    color: #2a1b12;
     font-size: 50px;
     background: linear-gradient(
         135deg,
-        #2d8cff,
-        #9340ff,
-        #ff3bc7
+        #f3cda3,
+        #e9b866,
+        #efb59a
     );
-    box-shadow: 0 25px 60px rgba(147, 64, 255, 0.3);
+    box-shadow: 0 25px 60px rgba(184,138,87,0.240);
 }
 
 .process-support h2 {
@@ -325,7 +325,7 @@
 
 .process-support p {
     max-width: 900px;
-    color: #aeb5d0;
+    color: #66513f;
     font-size: 17px;
     line-height: 1.9;
 }
@@ -343,8 +343,8 @@
     overflow: hidden;
     text-align: center;
     border-radius: 35px;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.09);
+    background: rgba(255,252,245,0.570);
+    border: 1px solid rgba(42,27,18,0.204);
     backdrop-filter: blur(25px);
 }
 
@@ -357,7 +357,7 @@
     height: 500px;
     transform: translateX(-50%);
     border-radius: 50%;
-    background: #9340ff;
+    background: #e9b866;
     opacity: 0.3;
     filter: blur(130px);
 }
@@ -375,7 +375,7 @@
     z-index: 2;
     max-width: 680px;
     margin: 0 auto 35px;
-    color: #aeb5d0;
+    color: #66513f;
     font-size: 17px;
     line-height: 1.8;
 }
@@ -389,22 +389,22 @@
     padding: 17px 34px;
     border: none;
     border-radius: 14px;
-    color: #ffffff;
+    color: #2a1b12;
     font-size: 16px;
     font-weight: 700;
     cursor: pointer;
     background: linear-gradient(
         135deg,
-        #2d8cff,
-        #9340ff,
-        #ff3bc7
+        #f3cda3,
+        #e9b866,
+        #efb59a
     );
     transition: 0.35s ease;
 }
 
 .process-cta button:hover {
     transform: translateY(-5px);
-    box-shadow: 0 20px 50px rgba(147, 64, 255, 0.35);
+    box-shadow: 0 20px 50px rgba(184,138,87,0.280);
 }
 
 /* ==========================================

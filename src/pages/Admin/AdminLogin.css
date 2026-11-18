@@ -1,0 +1,98 @@
+.al-page {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  padding: 1.25rem;
+  background:
+    radial-gradient(40rem 28rem at 0% 100%, rgba(243, 205, 163, 0.7), transparent 70%),
+    radial-gradient(36rem 26rem at 100% 0%, rgba(233, 184, 102, 0.45), transparent 70%),
+    #fbf5e9;
+  color: #2a1b12;
+}
+
+.al-card {
+  display: grid;
+  gap: 0.5rem;
+  width: min(420px, 100%);
+  padding: 2rem;
+  border: 1px solid rgba(42, 27, 18, 0.1);
+  border-radius: 28px;
+  background: #fffcf5;
+  box-shadow: 0 40px 80px -40px rgba(42, 27, 18, 0.45);
+}
+
+.al-logo {
+  width: 150px;
+  height: auto;
+  margin: 0 auto 0.5rem;
+}
+
+.al-card h1 {
+  font-size: 1.8rem;
+  letter-spacing: -0.03em;
+}
+
+.al-sub {
+  margin-bottom: 0.75rem;
+  color: #66513f;
+}
+
+.al-card label {
+  margin-top: 0.5rem;
+  font-weight: 600;
+}
+
+.al-card input {
+  min-height: 50px;
+  padding: 0.75rem 1rem;
+  border: 1.5px solid rgba(42, 27, 18, 0.35);
+  border-radius: 14px;
+  background: #fff;
+  color: #2a1b12;
+  font-size: 1rem;
+}
+
+.al-card input:focus {
+  outline: 3px solid rgba(138, 90, 46, 0.35);
+  border-color: #8a5a2e;
+}
+
+.al-error {
+  color: #9a2a1a;
+  font-size: 0.93rem;
+}
+
+.al-card button {
+  min-height: 50px;
+  margin-top: 0.75rem;
+  border: 0;
+  border-radius: 999px;
+  background: #2a1b12;
+  color: #f7f1e5;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.al-card button:hover {
+  background: #8a5a2e;
+}
+
+.al-card button:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.al-back {
+  margin-top: 0.5rem;
+  text-align: center;
+  color: #66513f;
+  font-size: 0.95rem;
+  text-decoration: underline;
+}
+
+.al-card :focus-visible,
+.al-back:focus-visible {
+  outline: 3px solid #8a5a2e;
+  outline-offset: 3px;
+}

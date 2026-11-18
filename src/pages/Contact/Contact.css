@@ -8,10 +8,10 @@
     padding: 160px 5% 120px;
     overflow: hidden;
     background:
-        radial-gradient(circle at 85% 10%, rgba(147, 64, 255, 0.18), transparent 28%),
-        radial-gradient(circle at 10% 45%, rgba(45, 140, 255, 0.14), transparent 30%),
-        radial-gradient(circle at 80% 85%, rgba(255, 59, 199, 0.1), transparent 30%),
-        #050816;
+        radial-gradient(circle at 85% 10%, rgba(233,184,102,0.288), transparent 28%),
+        radial-gradient(circle at 10% 45%, rgba(243,205,163,0.224), transparent 30%),
+        radial-gradient(circle at 80% 85%, rgba(239,181,154,0.160), transparent 30%),
+        #fbf5e9;
 }
 
 /* ==========================================
@@ -28,7 +28,7 @@
 .contact-small-label,
 .contact-form-header > span,
 .contact-bottom-cta > div > span {
-    color: #59a8ff;
+    color: rgb(138,90,46);
     font-size: 14px;
     font-weight: 700;
     letter-spacing: 3px;
@@ -46,9 +46,9 @@
 .contact-bottom-cta h2 span {
     background: linear-gradient(
         90deg,
-        #2d8cff,
-        #9340ff,
-        #ff3bc7
+        #b8763a,
+        #8a5a2e,
+        #a0522d
     );
     background-clip: text;
     -webkit-background-clip: text;
@@ -59,7 +59,7 @@
 .contact-hero p {
     max-width: 750px;
     margin: auto;
-    color: #aeb5d0;
+    color: #66513f;
     font-size: 18px;
     line-height: 1.9;
 }
@@ -91,7 +91,7 @@
 .contact-description {
     max-width: 580px;
     margin-bottom: 45px;
-    color: #aeb5d0;
+    color: #66513f;
     font-size: 17px;
     line-height: 1.9;
 }
@@ -108,17 +108,17 @@
     gap: 20px;
     padding: 22px;
     border-radius: 20px;
-    background: rgba(255, 255, 255, 0.035);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255,252,245,0.555);
+    border: 1px solid rgba(42,27,18,0.188);
     backdrop-filter: blur(20px);
     transition: 0.35s ease;
 }
 
 .contact-detail-card:hover {
     transform: translateX(10px);
-    border-color: rgba(147, 64, 255, 0.55);
-    background: rgba(255, 255, 255, 0.055);
-    box-shadow: 0 20px 50px rgba(147, 64, 255, 0.12);
+    border-color: rgba(138,90,46,0.550);
+    background: rgba(255,252,245,0.615);
+    box-shadow: 0 20px 50px rgba(184,138,87,0.096);
 }
 
 .contact-detail-icon {
@@ -129,21 +129,21 @@
     align-items: center;
     justify-content: center;
     border-radius: 17px;
-    color: #ffffff;
+    color: #2a1b12;
     font-size: 21px;
     background: linear-gradient(
         135deg,
-        #2d8cff,
-        #9340ff,
-        #ff3bc7
+        #f3cda3,
+        #e9b866,
+        #efb59a
     );
-    box-shadow: 0 12px 30px rgba(147, 64, 255, 0.25);
+    box-shadow: 0 12px 30px rgba(184,138,87,0.200);
 }
 
 .contact-detail-card span {
     display: block;
     margin-bottom: 7px;
-    color: #818aa8;
+    color: #66513f;
     font-size: 12px;
     font-weight: 700;
     letter-spacing: 1px;
@@ -151,7 +151,7 @@
 }
 
 .contact-detail-card p {
-    color: #ffffff;
+    color: #2a1b12;
     font-size: 15px;
     line-height: 1.5;
 }
@@ -174,9 +174,9 @@
     border-radius: 50%;
     background: linear-gradient(
         135deg,
-        #2d8cff,
-        #9340ff,
-        #ff3bc7
+        #f3cda3,
+        #e9b866,
+        #efb59a
     );
     opacity: 0.16;
     filter: blur(120px);
@@ -195,17 +195,17 @@
     background:
         linear-gradient(
             135deg,
-            rgba(45, 140, 255, 0.06),
-            rgba(147, 64, 255, 0.07),
-            rgba(255, 59, 199, 0.04)
+            rgba(243,205,163,0.096),
+            rgba(233,184,102,0.112),
+            rgba(239,181,154,0.064)
         ),
-        rgba(255, 255, 255, 0.035);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+        rgba(255,252,245,0.555);
+    border: 1px solid rgba(42,27,18,0.220);
     backdrop-filter: blur(30px);
     -webkit-backdrop-filter: blur(30px);
     box-shadow:
-        0 40px 100px rgba(0, 0, 0, 0.35),
-        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+        0 40px 100px rgba(42,27,18,0.193),
+        inset 0 1px 0 rgba(42,27,18,0.150);
 }
 
 .contact-form::before {
@@ -216,14 +216,14 @@
     border-radius: 35px;
     background: linear-gradient(
         135deg,
-        rgba(45, 140, 255, 0.45),
-        rgba(147, 64, 255, 0.15),
-        rgba(255, 59, 199, 0.35)
+        rgba(243,205,163,0.720),
+        rgba(233,184,102,0.240),
+        rgba(239,181,154,0.560)
     );
 
     -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
+        linear-gradient(#fffcf5 0 0) content-box,
+        linear-gradient(#fffcf5 0 0);
 
     -webkit-mask-composite: xor;
     mask-composite: exclude;
@@ -250,7 +250,7 @@
 
 .contact-form-header p {
     max-width: 550px;
-    color: #929ab8;
+    color: #66513f;
     font-size: 15px;
     line-height: 1.7;
 }
@@ -276,7 +276,7 @@
 .contact-input-group label {
     display: block;
     margin-bottom: 10px;
-    color: #dce1f1;
+    color: #2a1b12;
     font-size: 13px;
     font-weight: 600;
 }
@@ -288,11 +288,11 @@
     padding: 16px 18px;
     outline: none;
     border-radius: 13px;
-    color: #ffffff;
+    color: #2a1b12;
     font-size: 14px;
     font-family: inherit;
-    background: rgba(5, 8, 22, 0.65);
-    border: 1px solid rgba(255, 255, 255, 0.09);
+    background: rgba(251,245,233,0.650);
+    border: 1px solid rgba(42,27,18,0.204);
     transition: 0.3s ease;
 }
 
@@ -308,23 +308,23 @@
 
 .contact-input-group input::placeholder,
 .contact-input-group textarea::placeholder {
-    color: #69718e;
+    color: #66513f;
 }
 
 .contact-input-group input:hover,
 .contact-input-group select:hover,
 .contact-input-group textarea:hover {
-    border-color: rgba(147, 64, 255, 0.35);
+    border-color: rgba(138,90,46,0.350);
 }
 
 .contact-input-group input:focus,
 .contact-input-group select:focus,
 .contact-input-group textarea:focus {
-    border-color: #9340ff;
-    background: rgba(10, 14, 32, 0.9);
+    border-color: rgba(138,90,46,0.550);
+    background: rgba(251,245,233,0.900);
     box-shadow:
-        0 0 0 4px rgba(147, 64, 255, 0.1),
-        0 10px 30px rgba(147, 64, 255, 0.08);
+        0 0 0 4px rgba(184,138,87,0.080),
+        0 10px 30px rgba(184,138,87,0.064);
 }
 
 .contact-input-group select {
@@ -332,8 +332,8 @@
 }
 
 .contact-input-group select option {
-    color: #ffffff;
-    background: #090d1d;
+    color: #2a1b12;
+    background: #fbf5e9;
 }
 
 /* ==========================================
@@ -350,23 +350,23 @@
     gap: 12px;
     border: none;
     border-radius: 14px;
-    color: #ffffff;
+    color: #2a1b12;
     font-size: 15px;
     font-weight: 700;
     cursor: pointer;
     background: linear-gradient(
         135deg,
-        #2d8cff,
-        #9340ff,
-        #ff3bc7
+        #f3cda3,
+        #e9b866,
+        #efb59a
     );
-    box-shadow: 0 15px 40px rgba(147, 64, 255, 0.25);
+    box-shadow: 0 15px 40px rgba(184,138,87,0.200);
     transition: 0.35s ease;
 }
 
 .contact-submit-button:hover {
     transform: translateY(-4px);
-    box-shadow: 0 22px 55px rgba(147, 64, 255, 0.4);
+    box-shadow: 0 22px 55px rgba(184,138,87,0.320);
 }
 
 .contact-submit-button svg {
@@ -396,12 +396,12 @@
     background:
         linear-gradient(
             135deg,
-            rgba(45, 140, 255, 0.1),
-            rgba(147, 64, 255, 0.1),
-            rgba(255, 59, 199, 0.07)
+            rgba(243,205,163,0.160),
+            rgba(233,184,102,0.160),
+            rgba(239,181,154,0.112)
         ),
-        rgba(255, 255, 255, 0.035);
-    border: 1px solid rgba(255, 255, 255, 0.09);
+        rgba(255,252,245,0.555);
+    border: 1px solid rgba(42,27,18,0.204);
     backdrop-filter: blur(25px);
 }
 
@@ -413,7 +413,7 @@
     width: 400px;
     height: 400px;
     border-radius: 50%;
-    background: #9340ff;
+    background: #e9b866;
     opacity: 0.22;
     filter: blur(110px);
 }
@@ -432,7 +432,7 @@
 
 .contact-bottom-cta p {
     max-width: 750px;
-    color: #aeb5d0;
+    color: #66513f;
     font-size: 16px;
     line-height: 1.8;
 }
@@ -443,27 +443,27 @@
     align-items: center;
     gap: 12px;
     padding: 17px 28px;
-    border: 1px solid rgba(255, 255, 255, 0.13);
+    border: 1px solid rgba(42,27,18,0.268);
     border-radius: 14px;
-    color: #ffffff;
+    color: #2a1b12;
     font-size: 14px;
     font-weight: 700;
     cursor: pointer;
-    background: rgba(255, 255, 255, 0.07);
+    background: rgba(255,252,245,0.660);
     backdrop-filter: blur(15px);
     transition: 0.35s ease;
 }
 
 .contact-bottom-cta button:hover {
     transform: translateY(-5px);
-    border-color: rgba(147, 64, 255, 0.7);
+    border-color: rgba(138,90,46,0.700);
     background: linear-gradient(
         135deg,
-        #2d8cff,
-        #9340ff,
-        #ff3bc7
+        #f3cda3,
+        #e9b866,
+        #efb59a
     );
-    box-shadow: 0 20px 50px rgba(147, 64, 255, 0.3);
+    box-shadow: 0 20px 50px rgba(184,138,87,0.240);
 }
 
 .contact-bottom-cta button svg {
@@ -606,15 +606,15 @@
 
 .swal2-popup.devverse-popup{
     border-radius:20px;
-    border:1px solid rgba(124,58,237,.35);
+    border:1px solid rgba(138,90,46,0.350);
     box-shadow:
-        0 0 40px rgba(124,58,237,.35),
-        0 0 80px rgba(59,130,246,.20);
+        0 0 40px rgba(184,138,87,0.280),
+        0 0 80px rgba(184,138,87,0.160);
 }
 
 .swal2-confirm.devverse-btn{
     border-radius:12px !important;
     padding:12px 28px !important;
     font-weight:700 !important;
-    background:linear-gradient(135deg,#3b82f6,#9333ea,#ec4899)!important;
+    background:linear-gradient(135deg,#f3cda3,#e9b866,#efb59a)!important;
 }

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { io } from "socket.io-client";
+import { Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import "./AdminChats.css";
 
@@ -411,6 +412,14 @@ function AdminChats() {
               <p>DevVerse Team</p>
             </div>
           </div>
+
+          <Link
+            to="/admin/leads"
+            className="admin-logout-btn"
+            style={{ textAlign: "center" }}
+          >
+            Leads
+          </Link>
 
           <button
             type="button"

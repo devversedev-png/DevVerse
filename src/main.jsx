@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 
 import App from "./App.jsx";
 import { AuthProvider } from "./context/AuthContext.jsx";
+import { VisitorProvider } from "./context/VisitorContext.jsx";
 
 import "./index.css";
 
@@ -13,7 +14,9 @@ ReactDOM.createRoot(
   <React.StrictMode>
     <BrowserRouter>
       <AuthProvider>
-        <App />
+        <VisitorProvider>
+          <App />
+        </VisitorProvider>
       </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>

@@ -1,118 +1,63 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import ProtectedRoute from "./components/Auth/ProtectedRoute";
+import VisitorGate from "./components/Visitor/VisitorGate";
 
-import Login from "./pages/Login/Login";
 import Home from "./pages/Home/Home";
 import Services from "./pages/Services/Services";
 import ServiceDetails from "./pages/Services/ServiceDetails";
 import Portfolio from "./pages/Portfolio/Portfolio";
+import ProjectDetails from "./pages/Portfolio/ProjectDetails";
 import Process from "./pages/Process/Process";
 import About from "./pages/About/About";
 import Contact from "./pages/Contact/Contact";
 
 import ChatPage from "./pages/Chat/ChatPage";
 import AdminChats from "./pages/Admin/AdminChats";
+import AdminLogin from "./pages/Admin/AdminLogin";
+import AdminLeads from "./pages/Admin/AdminLeads";
 
 function App() {
   return (
-    <Routes>
-      {/* PUBLIC ROUTE */}
-      <Route path="/login" element={<Login />} />
+    <>
+      <Routes>
+        {/* PUBLIC WEBSITE (no login needed) */}
+        <Route path="/" element={<Home />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/services/:slug" element={<ServiceDetails />} />
+        <Route path="/portfolio" element={<Portfolio />} />
+        <Route path="/portfolio/:slug" element={<ProjectDetails />} />
+        <Route path="/process" element={<Process />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/chat" element={<ChatPage />} />
 
-      {/* HOME */}
-      <Route
-        path="/"
-        element={
-          <ProtectedRoute>
-            <Home />
-          </ProtectedRoute>
-        }
-      />
+        {/* ADMIN: separate URLs, not linked from the public site */}
+        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/admin" element={<Navigate to="/admin/leads" replace />} />
+        <Route
+          path="/admin/leads"
+          element={
+            <ProtectedRoute>
+              <AdminLeads />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/chats"
+          element={
+            <ProtectedRoute>
+              <AdminChats />
+            </ProtectedRoute>
+          }
+        />
 
-      {/* SERVICES */}
-      <Route
-        path="/services"
-        element={
-          <ProtectedRoute>
-            <Services />
-          </ProtectedRoute>
-        }
-      />
+        {/* UNKNOWN URL */}
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
 
-      {/* SERVICE DETAILS */}
-      <Route
-        path="/services/:slug"
-        element={
-          <ProtectedRoute>
-            <ServiceDetails />
-          </ProtectedRoute>
-        }
-      />
-
-      {/* PORTFOLIO */}
-      <Route
-        path="/portfolio"
-        element={
-          <ProtectedRoute>
-            <Portfolio />
-          </ProtectedRoute>
-        }
-      />
-
-      {/* PROCESS */}
-      <Route
-        path="/process"
-        element={
-          <ProtectedRoute>
-            <Process />
-          </ProtectedRoute>
-        }
-      />
-
-      {/* ABOUT */}
-      <Route
-        path="/about"
-        element={
-          <ProtectedRoute>
-            <About />
-          </ProtectedRoute>
-        }
-      />
-
-      {/* CONTACT */}
-      <Route
-        path="/contact"
-        element={
-          <ProtectedRoute>
-            <Contact />
-          </ProtectedRoute>
-        }
-      />
-
-      {/* CUSTOMER CHAT */}
-      <Route
-        path="/chat"
-        element={
-          <ProtectedRoute customerOnly>
-            <ChatPage />
-          </ProtectedRoute>
-        }
-      />
-
-      {/* ADMIN ONLY */}
-      <Route
-        path="/admin/chats"
-        element={
-          <ProtectedRoute adminOnly>
-            <AdminChats />
-          </ProtectedRoute>
-        }
-      />
-
-      {/* UNKNOWN URL */}
-      <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
+      <VisitorGate />
+    </>
   );
 }
 

@@ -18,6 +18,7 @@ const projects = [
     icon: <FaMobileAlt />,
     category: "Mobile Application",
     title: "Business Mobile App",
+    slug: "business-mobile-app",
     description:
       "A modern mobile application designed to simplify business operations and improve customer engagement.",
     technologies: ["React Native", "Spring Boot", "MongoDB"],
@@ -27,6 +28,7 @@ const projects = [
     icon: <FaShoppingCart />,
     category: "E-Commerce",
     title: "Online Shopping Platform",
+    slug: "online-shopping-platform",
     description:
       "A responsive e-commerce solution designed for smooth product browsing, ordering and business management.",
     technologies: ["React", "Node.js", "MongoDB"],
@@ -36,6 +38,7 @@ const projects = [
     icon: <FaLaptopCode />,
     category: "Web Application",
     title: "Business Management System",
+    slug: "business-management-system",
     description:
       "A custom web-based platform designed to organize workflows and improve day-to-day business operations.",
     technologies: ["React", "Spring Boot", "MySQL"],
@@ -45,6 +48,7 @@ const projects = [
     icon: <FaCode />,
     category: "Custom Software",
     title: "Upcoming Digital Solution",
+    slug: "upcoming-digital-solution",
     description:
       "We're continuously exploring new ideas and building digital products that solve real business problems.",
     technologies: ["Modern Stack", "Scalable", "Secure"],
@@ -154,10 +158,13 @@ function Portfolio() {
 
                   </div>
 
-                  <button className="portfolio-view-button">
+                  <Link
+                    className="portfolio-view-button"
+                    to={`/portfolio/${project.slug}`}
+                  >
                     View Project
                     <FaArrowRight />
-                  </button>
+                  </Link>
 
                 </div>
 

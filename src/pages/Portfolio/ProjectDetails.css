@@ -1,0 +1,251 @@
+.pd-page {
+  --pd-espresso: #2a1b12;
+  --pd-mocha: #66513f;
+  --pd-bronze: #8a5a2e;
+  --pd-paper: #fffcf5;
+  --pd-sand: #f1e3c8;
+  --pd-apricot: #f3cda3;
+
+  min-height: 100vh;
+  padding: 7.5rem 0 5rem;
+  background:
+    radial-gradient(40rem 28rem at 100% 0%, rgba(243, 205, 163, 0.6), transparent 70%),
+    radial-gradient(36rem 26rem at 0% 40%, rgba(236, 201, 128, 0.3), transparent 70%),
+    #fbf5e9;
+  color: var(--pd-espresso);
+  font-family: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.6;
+}
+
+.pd-page *,
+.pd-page h1,
+.pd-page h2 {
+  font-family: inherit;
+}
+
+.pd-page h1,
+.pd-page h2 {
+  font-family: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.pd-wrap {
+  width: min(1100px, 100% - 2.5rem);
+  margin: 0 auto;
+}
+
+.pd-back {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  border-bottom: 1.5px solid currentColor;
+  font-weight: 600;
+}
+
+.pd-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  color: var(--pd-mocha);
+  font-weight: 600;
+}
+
+.pd-meta span:first-child {
+  padding: 0.15rem 0.8rem;
+  border: 1.5px solid var(--pd-bronze);
+  border-radius: 999px;
+  color: var(--pd-bronze);
+}
+
+.pd-head h1 {
+  margin: 0.9rem 0 1rem;
+  font-size: clamp(2.8rem, 7vw, 6rem);
+  font-weight: 800;
+}
+
+.pd-lead {
+  max-width: 40rem;
+  color: var(--pd-mocha);
+  font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+}
+
+.pd-media {
+  --dv-ivory: #fbf5e9;
+  --dv-paper: #fffcf5;
+  --dv-sand: #f1e3c8;
+  --dv-sand-deep: #e6cfa6;
+  --dv-espresso: #2a1b12;
+  --dv-mocha: #66513f;
+  --dv-bronze: #8a5a2e;
+  --dv-bronze-soft: #b88a57;
+  --dv-font-display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+
+  position: relative;
+  aspect-ratio: 16 / 9;
+  margin-top: 2.5rem;
+  overflow: hidden;
+  border-radius: 28px;
+  background: var(--pd-sand);
+  box-shadow: 0 40px 70px -45px rgba(42, 27, 18, 0.6);
+}
+
+.pd-note {
+  margin-top: 0.6rem;
+  color: var(--pd-mocha);
+  font-size: 0.9rem;
+}
+
+.pd-grid {
+  display: grid;
+  gap: 2.5rem 4rem;
+  margin-top: 3.5rem;
+}
+
+.pd-block h2 {
+  margin: 1.75rem 0 0.9rem;
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
+}
+
+.pd-block h2:first-child {
+  margin-top: 0;
+}
+
+.pd-block p {
+  margin-bottom: 1rem;
+  color: var(--pd-mocha);
+  font-size: 1.1rem;
+}
+
+.pd-tags,
+.pd-list,
+.pd-more ul {
+  list-style: none;
+  padding: 0;
+}
+
+.pd-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.pd-tags li {
+  padding: 0.3rem 0.9rem;
+  border: 1px solid rgba(42, 27, 18, 0.3);
+  border-radius: 999px;
+}
+
+.pd-list li {
+  padding: 0.75rem 0;
+  border-top: 1px solid rgba(42, 27, 18, 0.15);
+}
+
+.pd-list li:last-child {
+  border-bottom: 1px solid rgba(42, 27, 18, 0.15);
+}
+
+.pd-cta {
+  margin-top: 4rem;
+  padding: clamp(1.75rem, 4vw, 3rem);
+  border-radius: 32px;
+  background: linear-gradient(135deg, var(--pd-apricot), #ecc980);
+}
+
+.pd-cta h2 {
+  font-size: clamp(2rem, 4.5vw, 3.4rem);
+  font-weight: 800;
+}
+
+.pd-cta p {
+  margin: 0.9rem 0 1.5rem;
+  color: var(--pd-mocha);
+}
+
+.pd-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.pd-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 1.6rem;
+  border: 1.5px solid var(--pd-espresso);
+  border-radius: 999px;
+  font-weight: 600;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.pd-btn--solid {
+  background: var(--pd-espresso);
+  color: #fbf5e9;
+}
+
+.pd-btn--solid:hover {
+  background: var(--pd-bronze);
+  border-color: var(--pd-bronze);
+}
+
+.pd-btn--ghost:hover {
+  background: var(--pd-espresso);
+  color: #fbf5e9;
+}
+
+.pd-more {
+  margin-top: 4rem;
+}
+
+.pd-more h2 {
+  margin-bottom: 1rem;
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
+}
+
+.pd-more ul {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.pd-more a {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.1rem 1.25rem;
+  border-radius: 20px;
+  background: var(--pd-paper);
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.pd-more a:hover {
+  background: var(--pd-apricot);
+}
+
+.pd-more small {
+  color: var(--pd-mocha);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.pd-page :focus-visible {
+  outline: 3px solid var(--pd-bronze);
+  outline-offset: 3px;
+}
+
+@media (min-width: 860px) {
+  .pd-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .pd-more ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .pd-more a {
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+}

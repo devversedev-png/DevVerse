@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { sendContactMessage } from "../../services/contactApi";
-import { useAuth } from "../../context/AuthContext";
+import { useVisitor } from "../../context/VisitorContext";
 import Swal from "sweetalert2";
 import Select from "react-select";
 
@@ -71,11 +71,11 @@ const budgetOptions = [
 function Contact() {
 
     const navigate = useNavigate();
-  const { user } = useAuth();
+  const { email: visitorEmail } = useVisitor();
 
   const [form, setForm] = useState({
-  name: user?.name || "",
-  email: user?.email || "",
+  name: "",
+  email: visitorEmail || "",
   phone: "",
   projectType: "",
   budget: "",
@@ -85,14 +85,13 @@ function Contact() {
   const [sending, setSending] = useState(false);
 
    useEffect(() => {
-  if (user) {
+  if (visitorEmail) {
     setForm((prev) => ({
       ...prev,
-      name: user.name || "",
-      email: user.email || "",
+      email: prev.email || visitorEmail,
     }));
   }
-}, [user]);
+}, [visitorEmail]);
 
 
  const handleSubmit = async (e) => {
@@ -107,21 +106,21 @@ function Contact() {
   title: "🎉 Message Sent Successfully!",
   html: `
       <div style="font-size:15px;line-height:1.8">
-        <p>Thank you for choosing <b style="color:#7c3aed">DevVerse</b>.</p>
+        <p>Thank you for choosing <b style="color:#8a5a2e">DevVerse</b>.</p>
 
         <p>Your project enquiry has been received.</p>
 
-        <p style="color:#94a3b8">
+        <p style="color:#66513f">
           Our team will contact you as soon as possible.
         </p>
       </div>
   `,
   icon: "success",
   width: 520,
-  background: "#0F172A",
-  color: "#fff",
+  background: "#fffcf5",
+  color: "#2a1b12",
   confirmButtonText: "Continue",
-  confirmButtonColor: "#7C3AED",
+  confirmButtonColor: "#2a1b12",
   allowOutsideClick: false,
   customClass: {
     popup: "devverse-popup",
@@ -148,13 +147,13 @@ function Contact() {
 const selectStyles = {
   control: (base, state) => ({
     ...base,
-    backgroundColor: "#121329",
+    backgroundColor: "#fffcf5",
     borderRadius: "16px",
     border: state.isFocused
-      ? "2px solid #8b5cf6"
-      : "1px solid rgba(255,255,255,.08)",
+      ? "2px solid #8a5a2e"
+      : "1px solid rgba(42,27,18,.25)",
     boxShadow: state.isFocused
-      ? "0 0 25px rgba(139,92,246,.35)"
+      ? "0 0 0 4px rgba(138,90,46,.2)"
       : "none",
     minHeight: "60px",
     transition: "all .25s ease",
@@ -163,23 +162,23 @@ const selectStyles = {
 
   menu: (base) => ({
     ...base,
-    background: "#16182B",
+    background: "#fffcf5",
     borderRadius: "16px",
     overflow: "hidden",
-    border: "1px solid rgba(255,255,255,.08)",
+    border: "1px solid rgba(42,27,18,.25)",
     boxShadow:
-      "0 20px 50px rgba(0,0,0,.55)",
+      "0 20px 50px rgba(42,27,18,.25)",
   }),
 
   option: (base, state) => ({
     ...base,
     background: state.isSelected
-      ? "linear-gradient(90deg,#2563EB,#C026D3)"
+      ? "linear-gradient(90deg,#f3cda3,#e9b866)"
       : state.isFocused
-      ? "rgba(139,92,246,.25)"
-      : "#16182B",
+      ? "rgba(233,184,102,.3)"
+      : "#fffcf5",
 
-    color: "#fff",
+    color: "#2a1b12",
 
     padding: "15px 18px",
 
@@ -190,20 +189,20 @@ const selectStyles = {
 
   singleValue: (base) => ({
     ...base,
-    color: "#fff",
+    color: "#2a1b12",
     fontWeight: 500,
   }),
 
   placeholder: (base) => ({
     ...base,
-    color: "#8d94b3",
+    color: "#66513f",
   }),
 
   dropdownIndicator: (base, state) => ({
     ...base,
     color: state.isFocused
-      ? "#C026D3"
-      : "#8B5CF6",
+      ? "#8a5a2e"
+      : "#8a5a2e",
   }),
 
   indicatorSeparator: () => ({
@@ -212,7 +211,7 @@ const selectStyles = {
 
   input: (base) => ({
     ...base,
-    color: "#fff",
+    color: "#2a1b12",
   }),
 
   menuList: (base) => ({

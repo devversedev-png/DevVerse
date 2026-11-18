@@ -1,0 +1,117 @@
+.vg-root {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+
+.vg-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(42, 27, 18, 0.45);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+}
+
+.vg-card {
+  position: relative;
+  width: min(440px, 100%);
+  padding: 2rem;
+  border-radius: 28px;
+  background: #fffcf5;
+  color: #2a1b12;
+  box-shadow: 0 40px 80px -30px rgba(42, 27, 18, 0.55);
+  font-family: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
+.vg-card * {
+  font-family: inherit;
+}
+
+.vg-card h2 {
+  font-family: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  font-size: 1.9rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.vg-text {
+  margin: 0.85rem 0 1.25rem;
+  color: #66513f;
+  line-height: 1.55;
+}
+
+.vg-card label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+}
+
+.vg-card input {
+  width: 100%;
+  min-height: 50px;
+  padding: 0.75rem 1rem;
+  border: 1.5px solid rgba(42, 27, 18, 0.35);
+  border-radius: 14px;
+  background: #fff;
+  color: #2a1b12;
+  font-size: 1rem;
+}
+
+.vg-card input:focus {
+  outline: 3px solid rgba(138, 90, 46, 0.35);
+  border-color: #8a5a2e;
+}
+
+.vg-card input[aria-invalid="true"] {
+  border-color: #a12a1a;
+}
+
+.vg-error {
+  margin-top: 0.5rem;
+  color: #9a2a1a;
+  font-size: 0.93rem;
+}
+
+.vg-primary {
+  width: 100%;
+  min-height: 50px;
+  margin-top: 1rem;
+  border: 0;
+  border-radius: 999px;
+  background: #2a1b12;
+  color: #f7f1e5;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.vg-primary:hover {
+  background: #8a5a2e;
+}
+
+.vg-primary:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.vg-skip {
+  display: block;
+  margin: 0.9rem auto 0;
+  padding: 0.5rem;
+  border: 0;
+  background: none;
+  color: #66513f;
+  font-size: 0.95rem;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.vg-card :focus-visible,
+.vg-skip:focus-visible {
+  outline: 3px solid #8a5a2e;
+  outline-offset: 3px;
+}

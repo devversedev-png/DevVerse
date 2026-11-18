@@ -7,7 +7,8 @@ import {
   FaShieldAlt,
 } from "react-icons/fa";
 
-import { useAuth } from "../../context/AuthContext";
+import useChatSession from "../../hooks/useChatSession";
+import { useVisitor } from "../../context/VisitorContext";
 import devverseLogo from "../../assets/devverse-logo.png";
 
 import "./ChatPage.css";
@@ -17,7 +18,14 @@ const API_URL = `${API_BASE_URL}/chat`;
 const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || "http://localhost:5000";
 
 function ChatPage() {
-  const { user, token, logout } = useAuth();
+  const {
+    user,
+    token,
+    error: sessionError,
+    needsEmail,
+    resetSession,
+  } = useChatSession();
+  const { openGate } = useVisitor();
   const navigate = useNavigate();
 
   const socketRef = useRef(null);
@@ -98,8 +106,7 @@ function ChatPage() {
         const data = await response.json();
 
         if (response.status === 401) {
-          logout();
-          navigate("/login", { replace: true });
+          resetSession();
           return;
         }
 
@@ -133,8 +140,7 @@ function ChatPage() {
           await messagesResponse.json();
 
         if (messagesResponse.status === 401) {
-          logout();
-          navigate("/login", { replace: true });
+          resetSession();
           return;
         }
 
@@ -155,7 +161,7 @@ function ChatPage() {
     };
 
     loadConversation();
-  }, [user, token, logout, navigate]);
+  }, [user, token, resetSession]);
 
   /* ==============================
      JOIN ROOM AFTER SOCKET CONNECTS
@@ -276,6 +282,50 @@ function ChatPage() {
   /* ==============================
      UI
   ============================== */
+
+  if (needsEmail || sessionError) {
+    return (
+      <div
+        style={{
+          minHeight: "100vh",
+          display: "grid",
+          placeItems: "center",
+          padding: "1.5rem",
+          textAlign: "center",
+        }}
+      >
+        <div style={{ maxWidth: 420 }}>
+          <h1 style={{ marginBottom: "0.75rem" }}>
+            {needsEmail ? "Chat with DevVerse" : "Chat unavailable"}
+          </h1>
+
+          <p style={{ marginBottom: "1.25rem", opacity: 0.8 }}>
+            {needsEmail
+              ? "Enter your email address and you can start chatting with our team."
+              : sessionError}
+          </p>
+
+          {needsEmail ? (
+            <button
+              type="button"
+              className="chat-gate-btn"
+              onClick={openGate}
+            >
+              Enter your email
+            </button>
+          ) : (
+            <button
+              type="button"
+              className="chat-gate-btn"
+              onClick={() => navigate("/contact")}
+            >
+              Use the project form
+            </button>
+          )}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <main className="chat-page">

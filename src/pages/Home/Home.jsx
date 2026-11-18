@@ -1,43 +1,62 @@
-import "./Home.css";
+import { useCallback, useEffect, useState } from "react";
 
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
+import "./studio/studio.css";
 
-import Hero from "./Hero";
-import FloatingCards from "./FloatingCards";
-import ServicesPreview from "./ServicesPreview";
-import Stats from "./Stats";
-import WhyChoose from "./WhyChoose";
-// import Projects from "./Projects";
-import CTA from "./CTA";
+import StudioHeader from "./studio/StudioHeader";
+import HeroReveal from "./studio/HeroReveal";
+import SelectedWork from "./studio/SelectedWork";
+import ServicesList from "./studio/ServicesList";
+import HowWeWork from "./studio/HowWeWork";
+import TeamIntro from "./studio/TeamIntro";
+import Statement from "./studio/Statement";
+import Comparison from "./studio/Comparison";
+import Faq from "./studio/Faq";
+import ContactSection from "./studio/ContactSection";
+import InquiryDrawer from "./studio/InquiryDrawer";
 
 function Home() {
+  const [inquiryOpen, setInquiryOpen] = useState(false);
+
+  const openInquiry = useCallback(() => setInquiryOpen(true), []);
+  const closeInquiry = useCallback(() => setInquiryOpen(false), []);
+
+  // The global stylesheet paints the body dark. Switch it to the studio
+  // palette while the homepage is mounted, and restore it on the way out.
+  useEffect(() => {
+    document.body.classList.add("dv-studio-body");
+
+    const previousTitle = document.title;
+    document.title = "DevVerse | Websites, apps and software from Chennai";
+
+    return () => {
+      document.body.classList.remove("dv-studio-body");
+      document.title = previousTitle;
+    };
+  }, []);
+
   return (
-    <div className="home-page">
+    <div className="dv-home">
+      {/* inert keeps the page behind the drawer out of reach while it is open */}
+      <div inert={inquiryOpen}>
+        <StudioHeader onStart={openInquiry} />
 
-      {/* Background Effects */}
-      <div className="background-blur blur-one"></div>
-      <div className="background-blur blur-two"></div>
-      <div className="background-blur blur-three"></div>
+        <main>
+          <HeroReveal onStart={openInquiry} />
 
-      <Navbar />
+          <div className="dv-after">
+            <Statement />
+            <SelectedWork />
+            <ServicesList />
+            <Comparison />
+            <HowWeWork onStart={openInquiry} />
+            <TeamIntro />
+            <Faq />
+            <ContactSection onStart={openInquiry} />
+          </div>
+        </main>
+      </div>
 
-      <Hero />
-
-      <FloatingCards />
-
-      <ServicesPreview />
-
-      <Stats />
-
-      <WhyChoose />
-
-      {/* <Projects /> */}
-
-      <CTA />
-
-      <Footer />
-
+      <InquiryDrawer open={inquiryOpen} onClose={closeInquiry} />
     </div>
   );
 }
