@@ -21,6 +21,8 @@ const phases = [
   },
 ];
 
+import Reveal from "./Reveal";
+
 function HowWeWork({ onStart }) {
   return (
     <section
@@ -29,18 +31,26 @@ function HowWeWork({ onStart }) {
       aria-labelledby="process-title"
     >
       <div className="dv-container">
-        <header className="dv-process__head">
-          <h2 className="dv-display dv-h2" id="process-title">
-            From first chat to launch in three steps.
-          </h2>
+        <Reveal as="header" className="dv-process__head">
+          <div>
+            <p className="dv-eyebrow">How we work</p>
+            <h2 className="dv-display dv-h2" id="process-title">
+              From first chat to launch in three steps.
+            </h2>
+          </div>
           <Link className="dv-textlink" to="/process">
             Read the full process
           </Link>
-        </header>
+        </Reveal>
 
         <ol className="dv-phases">
           {phases.map((phase, index) => (
-            <li className="dv-phase" key={phase.title}>
+            <Reveal
+              as="li"
+              className="dv-phase"
+              delay={index * 0.1}
+              key={phase.title}
+            >
               <span className="dv-display dv-phase__num" aria-hidden="true">
                 {String(index + 1).padStart(2, "0")}
               </span>
@@ -56,7 +66,7 @@ function HowWeWork({ onStart }) {
                   Start here
                 </button>
               )}
-            </li>
+            </Reveal>
           ))}
         </ol>
       </div>

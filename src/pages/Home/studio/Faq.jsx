@@ -27,15 +27,20 @@ const faqs = [
   },
 ];
 
+import Reveal from "./Reveal";
+
 function Faq() {
   return (
     <section className="dv-section dv-faq" id="faq" aria-labelledby="faq-title">
       <div className="dv-container dv-faq__grid">
-        <h2 className="dv-display dv-h2" id="faq-title">
-          Frequently asked questions
-        </h2>
+        <Reveal>
+          <p className="dv-eyebrow">Questions</p>
+          <h2 className="dv-display dv-h2" id="faq-title">
+            Frequently asked questions
+          </h2>
+        </Reveal>
 
-        <div className="dv-faq__list">
+        <Reveal className="dv-faq__list" delay={0.1}>
           {faqs.map((item) => (
             <details className="dv-faq__item" key={item.q}>
               <summary>
@@ -45,7 +50,7 @@ function Faq() {
               <p>{item.a}</p>
             </details>
           ))}
-        </div>
+        </Reveal>
       </div>
     </section>
   );

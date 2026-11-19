@@ -24,7 +24,7 @@ function ContactSection({ onStart }) {
             <div className="dv-contact__actions">
               <button
                 type="button"
-                className="dv-btn dv-btn--solid"
+                className="dv-btn dv-btn--solid dv-btn--arrow"
                 onClick={onStart}
               >
                 Start a project
@@ -72,6 +72,10 @@ function ContactSection({ onStart }) {
       </section>
 
       <footer className="dv-footer">
+        <p className="dv-wordmark dv-display" aria-hidden="true">
+          DevVerse
+        </p>
+
         <div className="dv-container dv-footer__row">
           <p>&copy; 2026 DevVerse. All rights reserved.</p>
           <nav aria-label="Footer">

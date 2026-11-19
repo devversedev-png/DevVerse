@@ -20,8 +20,14 @@ const SHRINK_END = 0.55;
 function HeroContent({ onStart, interactive = true }) {
   return (
     <div className="dv-hero">
+      <p className="dv-hero__eyebrow">
+        <span className="dv-hero__dot" aria-hidden="true" />
+        Based in Chennai, a young team of five
+      </p>
+
       <h1 className="dv-display dv-hero__title">
-        Your next idea deserves a great website.
+        Your next idea deserves{" "}
+        <span className="dv-grad">a great website.</span>
       </h1>
 
       <div className="dv-hero__lower">
@@ -34,7 +40,7 @@ function HeroContent({ onStart, interactive = true }) {
           <div className="dv-hero__actions" inert={!interactive}>
             <button
               type="button"
-              className="dv-btn dv-btn--solid"
+              className="dv-btn dv-btn--solid dv-btn--arrow"
               onClick={onStart}
             >
               Start a project

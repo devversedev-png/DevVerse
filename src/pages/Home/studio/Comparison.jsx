@@ -26,6 +26,8 @@ const rows = [
   },
 ];
 
+import Reveal from "./Reveal";
+
 function Comparison() {
   return (
     <section
@@ -33,11 +35,14 @@ function Comparison() {
       aria-labelledby="compare-title"
     >
       <div className="dv-container">
-        <h2 className="dv-display dv-h2" id="compare-title">
-          A small team, on purpose.
-        </h2>
+        <Reveal>
+          <p className="dv-eyebrow">Why a small team</p>
+          <h2 className="dv-display dv-h2" id="compare-title">
+            A small team, on purpose.
+          </h2>
+        </Reveal>
 
-        <div className="dv-compare__scroll">
+        <Reveal className="dv-compare__scroll" delay={0.1}>
           <table className="dv-compare__table">
             <caption className="dv-visually-hidden">
               How working with DevVerse compares with a typical large agency
@@ -63,7 +68,7 @@ function Comparison() {
               ))}
             </tbody>
           </table>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

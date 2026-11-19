@@ -1,6 +1,24 @@
 import { Link } from "react-router-dom";
+import {
+  FaLaptopCode,
+  FaMobileAlt,
+  FaShoppingCart,
+  FaCode,
+  FaCloud,
+  FaPenNib,
+} from "react-icons/fa";
 
 import { services } from "../../../data/site";
+import Reveal from "./Reveal";
+
+const icons = {
+  "website-development": FaLaptopCode,
+  "mobile-applications": FaMobileAlt,
+  "e-commerce-solutions": FaShoppingCart,
+  "custom-software": FaCode,
+  "cloud-solutions": FaCloud,
+  "ui-ux-design": FaPenNib,
+};
 
 function ServicesList() {
   return (
@@ -10,7 +28,8 @@ function ServicesList() {
       aria-labelledby="services-title"
     >
       <div className="dv-container">
-        <header className="dv-services__head">
+        <Reveal as="header" className="dv-services__head">
+          <p className="dv-eyebrow">What we do</p>
           <h2 className="dv-display dv-h2" id="services-title">
             Don&rsquo;t buy a poster.
             <br />
@@ -20,12 +39,18 @@ function ServicesList() {
             We combine design, technology and a bit of strategy to build
             digital products that fit your business.
           </p>
-        </header>
+        </Reveal>
 
         <ul className="dv-svc-grid">
-          {services.map((service, index) => (
-            <li key={service.slug}>
+          {services.map((service, index) => {
+            const Icon = icons[service.slug] || FaCode;
+
+            return (
+            <Reveal as="li" delay={(index % 3) * 0.08} key={service.slug}>
               <Link to={`/services/${service.slug}`} className="dv-svc">
+                <span className="dv-svc__icon" aria-hidden="true">
+                  <Icon />
+                </span>
                 <span className="dv-svc__num" aria-hidden="true">
                   {String(index + 1).padStart(2, "0")}
                 </span>
@@ -35,8 +60,9 @@ function ServicesList() {
                   Explore
                 </span>
               </Link>
-            </li>
-          ))}
+            </Reveal>
+            );
+          })}
         </ul>
       </div>
     </section>

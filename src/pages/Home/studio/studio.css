@@ -1729,3 +1729,484 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* ==========================================================
+   Premium layer
+   Refinements on top of the base styles above.
+   ========================================================== */
+
+.dv-home ::selection {
+  background: #ecc980;
+  color: #2a1b12;
+}
+
+.dv-home h1,
+.dv-home h2,
+.dv-home h3 {
+  text-wrap: balance;
+}
+
+.dv-home p {
+  text-wrap: pretty;
+}
+
+/* ---------- Eyebrow labels ---------- */
+
+.dv-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.1rem;
+  color: var(--dv-bronze);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.dv-eyebrow::before {
+  content: "";
+  width: 2rem;
+  height: 1.5px;
+  background: currentColor;
+}
+
+/* ---------- Header: glass with a lit edge ---------- */
+
+.dv-header__bar {
+  border-color: rgba(255, 255, 255, 0.55);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 252, 245, 0.78),
+    rgba(251, 245, 233, 0.6)
+  );
+  -webkit-backdrop-filter: blur(22px) saturate(1.5);
+  backdrop-filter: blur(22px) saturate(1.5);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    0 1px 2px rgba(42, 27, 18, 0.06),
+    0 24px 48px -26px rgba(42, 27, 18, 0.5);
+}
+
+.dv-nav a {
+  position: relative;
+  background: none !important;
+}
+
+.dv-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0.9rem;
+  right: 0.9rem;
+  bottom: 0.3rem;
+  height: 1.5px;
+  background: var(--dv-bronze);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.dv-nav a:hover::after {
+  transform: scaleX(1);
+}
+
+/* ---------- Buttons ---------- */
+
+.dv-home .dv-btn {
+  transition:
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.3s,
+    background-color 0.25s,
+    color 0.25s,
+    border-color 0.25s;
+}
+
+.dv-home .dv-btn--solid {
+  background: linear-gradient(180deg, #3b281c, #2a1b12);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    0 12px 26px -14px rgba(42, 27, 18, 0.75);
+}
+
+.dv-home .dv-btn--solid:hover {
+  background: linear-gradient(180deg, #a06a38, #8a5a2e);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    0 16px 30px -14px rgba(138, 90, 46, 0.8);
+  transform: translateY(-2px);
+}
+
+.dv-home .dv-btn--ghost {
+  background: rgba(255, 252, 245, 0.35);
+}
+
+.dv-home .dv-btn--ghost:hover {
+  transform: translateY(-2px);
+}
+
+.dv-btn--arrow::after {
+  content: "";
+  width: 1.1em;
+  height: 1.1em;
+  margin-left: 0.6rem;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><path d='M5 12h14M13 6l6 6-6 6'/></svg>") center / contain no-repeat;
+  mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><path d='M5 12h14M13 6l6 6-6 6'/></svg>") center / contain no-repeat;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.dv-btn--arrow:hover::after {
+  transform: translateX(4px);
+}
+
+/* ---------- Hero ---------- */
+
+.dv-hero-tile,
+.dv-flow {
+  isolation: isolate;
+}
+
+/* soft colour glow behind the headline */
+.dv-hero-tile::before,
+.dv-flow::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(34% 30% at 82% 22%, rgba(243, 205, 163, 0.95), transparent 70%),
+    radial-gradient(30% 28% at 96% 72%, rgba(236, 201, 128, 0.75), transparent 70%),
+    radial-gradient(28% 26% at 58% 96%, rgba(239, 181, 154, 0.6), transparent 70%),
+    radial-gradient(26% 24% at 8% 8%, rgba(236, 201, 128, 0.4), transparent 70%);
+  animation: dv-glow 20s ease-in-out infinite alternate;
+}
+
+@keyframes dv-glow {
+  from {
+    transform: translate3d(-2%, -1%, 0) scale(1);
+  }
+  to {
+    transform: translate3d(2%, 2%, 0) scale(1.08);
+  }
+}
+
+.dv-hero {
+  position: relative;
+}
+
+.dv-hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 0.6rem;
+  margin-bottom: clamp(1rem, 3vh, 1.75rem);
+  padding: 0.4rem 1rem 0.4rem 0.8rem;
+  border: 1px solid rgba(42, 27, 18, 0.14);
+  border-radius: 999px;
+  background: rgba(255, 252, 245, 0.6);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  color: var(--dv-mocha);
+  font-size: 0.92rem;
+  font-weight: 500;
+}
+
+.dv-hero__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #c58a4a, #8a5a2e);
+  box-shadow: 0 0 0 4px rgba(138, 90, 46, 0.16);
+}
+
+.dv-home .dv-hero__title {
+  letter-spacing: -0.045em;
+}
+
+.dv-home .dv-grad {
+  background: linear-gradient(100deg, #8a5a2e 5%, #c4752f 45%, #a8612a 75%, #8a5a2e);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  padding-bottom: 0.08em;
+}
+
+.dv-home .dv-hero__lede {
+  color: #5a4535;
+}
+
+/* ---------- Marquee ---------- */
+
+.dv-marquee {
+  border-block-color: rgba(42, 27, 18, 0.12);
+  padding-block: 0.9rem;
+}
+
+.dv-marquee__track {
+  gap: 0;
+}
+
+.dv-home .dv-marquee__track span {
+  display: inline-flex;
+  align-items: center;
+  font-size: clamp(1.2rem, 2.2vw, 1.8rem);
+}
+
+.dv-home .dv-marquee__track span::after {
+  content: "";
+  width: 7px;
+  height: 7px;
+  margin-inline: 1.9rem;
+  background: var(--dv-bronze);
+  opacity: 0.45;
+  transform: rotate(45deg);
+}
+
+@keyframes dv-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ---------- Mosaic stage ---------- */
+
+.dv-reveal__stage {
+  background:
+    radial-gradient(60% 50% at 20% 20%, rgba(255, 252, 245, 0.7), transparent 70%),
+    linear-gradient(160deg, #f6e8cc, #efd9b0);
+}
+
+.dv-tile {
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.35),
+    0 24px 44px -30px rgba(42, 27, 18, 0.45);
+}
+
+.dv-hero-tile {
+  box-shadow: 0 30px 70px -30px rgba(42, 27, 18, 0.45);
+}
+
+/* ---------- Statement ---------- */
+
+.dv-home .dv-statement__text {
+  font-size: clamp(2.3rem, 6.4vw, 6rem);
+  letter-spacing: -0.045em;
+}
+
+/* ---------- Case panels ---------- */
+
+.dv-case__media {
+  border-radius: 30px;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.4),
+    0 50px 80px -44px rgba(42, 27, 18, 0.6);
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) and (min-width: 768px) {
+    .dv-case__media {
+      animation: dv-float linear both;
+      animation-timeline: view();
+      animation-range: entry 0% exit 100%;
+    }
+  }
+}
+
+@keyframes dv-float {
+  from {
+    transform: translateY(46px) rotate(0.6deg);
+  }
+  to {
+    transform: translateY(-46px) rotate(-0.6deg);
+  }
+}
+
+.dv-case__more::after {
+  content: " \2192";
+}
+
+/* ---------- Illustrated previews: richer ---------- */
+
+.dv-wf {
+  background:
+    radial-gradient(70% 70% at 15% 10%, rgba(255, 252, 245, 0.55), transparent 70%),
+    linear-gradient(150deg, #f1e3c8, #e3c995);
+}
+
+.dv-wf-box--accent {
+  background: linear-gradient(135deg, #d9a15c, #8a5a2e);
+}
+
+.dv-wf-bar--accent {
+  background: linear-gradient(180deg, #d9a15c, #8a5a2e);
+}
+
+.dv-wf-phone,
+.dv-wf-product,
+.dv-wf-split {
+  box-shadow: 0 18px 34px -22px rgba(42, 27, 18, 0.55);
+}
+
+.dv-wf-phone {
+  border-width: 2.5px;
+  border-radius: 24px;
+}
+
+/* ---------- Services cards ---------- */
+
+.dv-svc {
+  position: relative;
+  border: 1px solid rgba(42, 27, 18, 0.07);
+  background: linear-gradient(180deg, #fffdf8, #fbf3e3);
+  box-shadow:
+    inset 0 1px 0 #fff,
+    0 1px 2px rgba(42, 27, 18, 0.05),
+    0 26px 44px -32px rgba(42, 27, 18, 0.45);
+}
+
+.dv-svc:hover {
+  background: linear-gradient(160deg, #f6d6b0, #ecc980);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    0 34px 54px -30px rgba(138, 90, 46, 0.6);
+}
+
+.dv-svc__icon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #f6d6b0, #ecc980);
+  color: var(--dv-bronze);
+  font-size: 1.25rem;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  transition: background 0.3s, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.dv-svc:hover .dv-svc__icon {
+  background: #fffcf5;
+  transform: rotate(-6deg) scale(1.06);
+}
+
+.dv-svc__num {
+  position: absolute;
+  top: 1.6rem;
+  right: 1.6rem;
+}
+
+/* ---------- Comparison ---------- */
+
+.dv-compare {
+  background:
+    radial-gradient(50% 60% at 100% 0%, rgba(243, 205, 163, 0.7), transparent 70%),
+    var(--dv-sand);
+}
+
+.dv-compare__table .dv-compare__us {
+  background: linear-gradient(180deg, #9a6a3a, #7d4f26);
+  box-shadow: 0 30px 50px -30px rgba(138, 90, 46, 0.8);
+}
+
+/* ---------- Process ---------- */
+
+.dv-phase {
+  position: relative;
+  overflow: hidden;
+  border-color: rgba(42, 27, 18, 0.07);
+  background: linear-gradient(180deg, #fffdf8, #fbf3e3);
+  box-shadow:
+    inset 0 1px 0 #fff,
+    0 26px 44px -32px rgba(42, 27, 18, 0.45);
+}
+
+.dv-home .dv-phase__num {
+  background: linear-gradient(135deg, #c58a4a, #8a5a2e);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* ---------- Team ---------- */
+
+.dv-home .dv-team__motto {
+  background:
+    radial-gradient(60% 80% at 100% 0%, rgba(255, 252, 245, 0.7), transparent 70%),
+    linear-gradient(135deg, #f6d6b0, #ecc980);
+  box-shadow: 0 40px 60px -40px rgba(138, 90, 46, 0.6);
+}
+
+/* ---------- FAQ ---------- */
+
+.dv-faq__item summary:hover .dv-display {
+  color: var(--dv-bronze);
+}
+
+/* ---------- Contact + footer wordmark ---------- */
+
+.dv-contact {
+  position: relative;
+  overflow: hidden;
+}
+
+.dv-contact::after {
+  content: "";
+  position: absolute;
+  right: -10rem;
+  bottom: -14rem;
+  width: 36rem;
+  height: 36rem;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(255, 252, 245, 0.65), transparent 68%);
+}
+
+.dv-contact__grid {
+  position: relative;
+  z-index: 1;
+}
+
+.dv-footer {
+  position: relative;
+  overflow: hidden;
+  padding-top: 0;
+}
+
+.dv-home .dv-wordmark {
+  margin: 0;
+  padding-top: clamp(1rem, 3vw, 2.5rem);
+  text-align: center;
+  font-size: clamp(4.5rem, 19.5vw, 19rem);
+  font-weight: 800;
+  line-height: 0.82;
+  letter-spacing: -0.06em;
+  background: linear-gradient(180deg, #8a5a2e 0%, rgba(138, 90, 46, 0.35) 62%, rgba(138, 90, 46, 0) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  user-select: none;
+}
+
+.dv-footer__row {
+  position: relative;
+  padding-top: 1.25rem;
+}
+
+/* ---------- Drawer ---------- */
+
+.dv-drawer {
+  background: linear-gradient(180deg, #fffdf8, #fbf3e3);
+}
+
+/* ---------- Motion preferences ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .dv-hero-tile::before,
+  .dv-flow::before {
+    animation: none;
+  }
+}

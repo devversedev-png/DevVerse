@@ -34,9 +34,12 @@ function SelectedWork() {
   return (
     <section className="dv-work" id="work" aria-labelledby="work-title">
       <div className="dv-container dv-work__head">
-        <h2 className="dv-display dv-h2" id="work-title">
-          Selected work
-        </h2>
+        <div>
+          <p className="dv-eyebrow">Our work</p>
+          <h2 className="dv-display dv-h2" id="work-title">
+            Selected work
+          </h2>
+        </div>
         <p className="dv-work__intro">
           We&rsquo;re at the beginning of our journey, so instead of filling
           this page with made-up case studies, we show the work we&rsquo;re

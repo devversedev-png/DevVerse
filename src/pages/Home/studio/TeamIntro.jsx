@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 
 import { teamHighlights } from "../../../data/site";
 
+import Reveal from "./Reveal";
+
 function TeamIntro() {
   return (
     <section
@@ -10,7 +12,8 @@ function TeamIntro() {
       aria-labelledby="team-title"
     >
       <div className="dv-container dv-team__grid">
-        <div className="dv-team__lead">
+        <Reveal className="dv-team__lead">
+          <p className="dv-eyebrow">Who we are</p>
           <h2 className="dv-display dv-h2" id="team-title">
             A small team with big ideas.
           </h2>
@@ -24,9 +27,9 @@ function TeamIntro() {
           <Link className="dv-textlink" to="/about">
             More about us
           </Link>
-        </div>
+        </Reveal>
 
-        <div className="dv-team__side">
+        <Reveal className="dv-team__side" delay={0.12}>
           <p className="dv-display dv-team__motto">
             Listen.
             <br />
@@ -40,7 +43,7 @@ function TeamIntro() {
               <li key={item}>{item}</li>
             ))}
           </ul>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
