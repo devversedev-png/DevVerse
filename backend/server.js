@@ -12,6 +12,7 @@ const server = http.createServer(app);
 
 const connectDB = require("./config/db");
 const leadRoutes = require("./routes/leadRoutes");
+const projectRoutes = require("./routes/projectRoutes");
 const chatRoutes = require("./routes/chatRoutes");
 const authRoutes = require("./routes/authRoutes");
 
@@ -79,6 +80,10 @@ app.use(
     credentials: true,
   })
 );
+
+// Project screenshots are sent as base64, so this route accepts a larger body.
+// It must come before the default JSON parser below.
+app.use("/api/projects", express.json({ limit: "12mb" }), projectRoutes);
 
 app.use(express.json());
 
