@@ -6,6 +6,9 @@ import {
   FaLinkedinIn,
   FaInstagram,
   FaGithub,
+  FaEnvelope,
+  FaPhoneAlt,
+  FaMapMarkerAlt,
 } from "react-icons/fa";
 
 function Footer() {
@@ -98,14 +101,14 @@ function Footer() {
           <h3>Contact Info</h3>
 
           <p>
-            📧{" "}
+            <FaEnvelope className="footer-contact-icon" aria-hidden="true" />{" "}
             <a href="mailto:devverse.dev@gmail.com">
               devverse.dev@gmail.com
             </a>
           </p>
 
           <p>
-            📞{" "}
+            <FaPhoneAlt className="footer-contact-icon" aria-hidden="true" />{" "}
             <a
               href="tel:+918144104500"
               aria-label="Call DevVerse"
@@ -114,7 +117,10 @@ function Footer() {
             </a>
           </p>
 
-          <p>📍 Chennai, Tamil Nadu</p>
+          <p>
+            <FaMapMarkerAlt className="footer-contact-icon" aria-hidden="true" />{" "}
+            Chennai, Tamil Nadu
+          </p>
 
         </div>
 

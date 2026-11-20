@@ -32,3 +32,31 @@ The Render service must run this version of `backend/`. If it is old, these retu
 ## Detail pages
 - `/portfolio/:slug` explains each project (text lives in `src/data/site.js`, `details`).
 - Services "Explore" opens `/services/:slug`; "Read the full process" opens `/process`; "More about us" opens `/about`.
+
+## Real projects
+Added to `src/data/site.js` with cropped screenshots in `src/assets/projects/`:
+- Thulirkum Ver Book Store: https://thulirkum-ver.vercel.app/home
+- Akshay Dance Portfolio: https://akshay-aks-portfolio.vercel.app
+The "technologies" tags for these two are generic (Storefront, Admin dashboard, Hosted on Vercel).
+Replace them in `data/site.js` with the real tech stack if you want.
+
+## Digital card
+- Open `/card` (for example https://dev-verse-dev.vercel.app/card). It is made for phones.
+- Buttons: Save contact (downloads a .vcf), Share, Call, WhatsApp, Email, Website, Location.
+- Also shows services, recent work, social links and a QR code that opens the card.
+- The QR code is generated in the browser from the site's own address, so it stays correct on any domain.
+- WhatsApp uses the same phone number (`whatsappHref` in `src/data/site.js`). Remove it if that number is not on WhatsApp.
+- The email pop-up does not appear on `/card`.
+
+## Admin projects (new)
+- `/admin/projects` lets the admin add, edit and delete projects with screenshots.
+  They appear on the home page and the Portfolio page right away, newest first.
+- Only the two built-in projects (Thulirkum Ver, Akshay) are in the code; the placeholder projects were removed.
+- Backend: `GET /api/projects` (public), `GET /api/projects/manage/all`, `POST`, `PUT /:id`, `DELETE /:id` (admin only).
+  Screenshots are resized in the browser and stored in MongoDB.
+- Redeploy the backend (Render) after copying this version. The new routes do not exist on the old deployment.
+
+## Other updates
+- Digital card: the QR code, "Copy link" and "Share" open the home page. Change the address in `site.url` (`src/data/site.js`).
+- Leads: click an email to open your mail app with a new message to that person.
+- Admin login (`/admin/login`) uses the same admin email and password as before (ADMIN_EMAIL and ADMIN_PASSWORD_HASH in the backend .env).

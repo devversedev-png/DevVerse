@@ -906,15 +906,15 @@
   box-shadow: 0 -30px 50px -35px rgba(42, 27, 18, 0.5);
 }
 
-.dv-case:nth-child(2) {
+.dv-case:nth-child(4n + 2) {
   --bg: var(--dv-apricot);
 }
 
-.dv-case:nth-child(3) {
+.dv-case:nth-child(4n + 3) {
   --bg: var(--dv-gold);
 }
 
-.dv-case:nth-child(4) {
+.dv-case:nth-child(4n + 4) {
   --bg: var(--dv-clay);
 }
 
@@ -2209,4 +2209,109 @@
   .dv-flow::before {
     animation: none;
   }
+}
+
+/* ---------- Real project screenshots, shown in a browser window ---------- */
+
+.dv-shot {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 5% 6%;
+  background:
+    radial-gradient(70% 70% at 15% 10%, rgba(255, 252, 245, 0.6), transparent 70%),
+    linear-gradient(150deg, #f1e3c8, #e3c995);
+}
+
+.dv-shot__window {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #fffcf5;
+  box-shadow:
+    0 0 0 1px rgba(42, 27, 18, 0.1),
+    0 28px 50px -24px rgba(42, 27, 18, 0.55);
+}
+
+.dv-shot__bar {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  height: clamp(16px, 2.2vw, 26px);
+  padding-inline: 10px;
+  background: #f6ecd8;
+  border-bottom: 1px solid rgba(42, 27, 18, 0.1);
+}
+
+.dv-shot__bar i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(42, 27, 18, 0.28);
+}
+
+.dv-shot__bar span {
+  margin-left: 8px;
+  padding: 1px 10px;
+  border-radius: 999px;
+  background: rgba(255, 252, 245, 0.85);
+  color: var(--dv-mocha, #66513f);
+  font-size: 0.68rem;
+  line-height: 1.5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dv-shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.dv-case__links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.75rem;
+  margin-top: 1.5rem;
+}
+
+.dv-case__links .dv-case__more {
+  margin-top: 0;
+}
+
+.dv-case__live {
+  position: relative;
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 1.25rem;
+  border: 1.5px solid currentColor;
+  border-radius: 999px;
+  font-weight: 600;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.dv-case__live::after {
+  content: "\2197";
+  margin-left: 0.5rem;
+}
+
+.dv-case__live:hover {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+/* Wide website screenshots get a wider frame so less space is wasted. */
+@media (min-width: 768px) {
+  .dv-case__media:has(.dv-shot) {
+    aspect-ratio: 16 / 10;
+  }
+}
+
+.dv-case__media .dv-shot {
+  padding: 4% 5%;
 }

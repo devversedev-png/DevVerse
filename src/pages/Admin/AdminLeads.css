@@ -1,68 +1,17 @@
+.ald-page,
+.ald-page * {
+  font-family: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
+.ald-page h1,
+.ald-stat strong {
+  font-family: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+}
+
 .ald-page {
   min-height: 100vh;
   background: #fbf5e9;
   color: #2a1b12;
-}
-
-.ald-top {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
-  padding: 0.75rem clamp(1rem, 4vw, 2.5rem);
-  border-bottom: 1px solid rgba(42, 27, 18, 0.12);
-  background: rgba(251, 245, 233, 0.92);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-}
-
-.ald-brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  margin-right: auto;
-  font-weight: 700;
-}
-
-.ald-brand img {
-  height: 44px;
-  width: auto;
-}
-
-.ald-nav {
-  display: flex;
-  gap: 0.25rem;
-}
-
-.ald-nav a {
-  padding: 0.5rem 0.9rem;
-  border-radius: 999px;
-  font-weight: 500;
-}
-
-.ald-nav a:hover,
-.ald-nav a[aria-current="page"] {
-  background: #f1e3c8;
-}
-
-.ald-logout,
-.ald-tools button {
-  min-height: 44px;
-  padding: 0 1.25rem;
-  border: 1.5px solid #2a1b12;
-  border-radius: 999px;
-  background: transparent;
-  color: #2a1b12;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.ald-logout:hover,
-.ald-tools button:hover {
-  background: #2a1b12;
-  color: #f7f1e5;
 }
 
 .ald-main {
@@ -200,15 +149,44 @@
   outline-offset: 3px;
 }
 
-@media (max-width: 640px) {
-  .ald-top {
-    flex-wrap: wrap;
-    gap: 0.5rem 1rem;
-  }
 
-  .ald-nav {
-    order: 3;
-    width: 100%;
-    overflow-x: auto;
-  }
+.ald-mail {
+  display: inline-block;
+  border-bottom: 1.5px solid rgba(138, 90, 46, 0.45);
+  color: #2a1b12;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.ald-mail:hover {
+  border-color: #8a5a2e;
+  color: #8a5a2e;
+}
+
+.ald-note {
+  margin-bottom: 1rem;
+  padding: 0.7rem 1rem;
+  border-radius: 14px;
+  background: #f6dcb5;
+  color: #2a1b12;
+}
+
+.ald-tools button {
+  min-height: 44px;
+  padding: 0 1.25rem;
+  border: 1.5px solid #2a1b12;
+  border-radius: 999px;
+  background: transparent;
+  color: #2a1b12;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ald-tools button:hover:not(:disabled) {
+  background: #2a1b12;
+  color: #fbf5e9;
+}
+
+.ald-tools button:disabled {
+  opacity: 0.6;
+  cursor: progress;
 }

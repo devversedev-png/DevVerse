@@ -1,0 +1,276 @@
+.apj-page,
+.apj-page * {
+  font-family: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
+.apj-page h1,
+.apj-page h2 {
+  font-family: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  letter-spacing: -0.03em;
+}
+
+.apj-page {
+  min-height: 100vh;
+  background: #fbf5e9;
+  color: #2a1b12;
+}
+
+.apj-main {
+  width: min(1000px, 100% - 2rem);
+  margin: 0 auto;
+  padding: clamp(1.5rem, 4vw, 3rem) 0 4rem;
+}
+
+.apj-main h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.apj-sub,
+.apj-note {
+  margin-top: 0.4rem;
+  color: #66513f;
+}
+
+.apj-message {
+  margin: 1rem 0;
+  padding: 0.8rem 1.1rem;
+  border-radius: 14px;
+  background: #e3efd9;
+  color: #2f5a2a;
+  font-weight: 500;
+}
+
+.apj-panel {
+  margin: 1.75rem 0 2.5rem;
+  padding: clamp(1.1rem, 3vw, 2rem);
+  border: 1px solid rgba(42, 27, 18, 0.1);
+  border-radius: 28px;
+  background: #fffcf5;
+  box-shadow: 0 30px 50px -40px rgba(42, 27, 18, 0.45);
+}
+
+.apj-panel h2 {
+  margin-bottom: 1.25rem;
+  font-size: 1.6rem;
+}
+
+.apj-grid {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.apj-field {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.apj-field label {
+  font-weight: 600;
+}
+
+.apj-field label span {
+  margin-left: 0.4rem;
+  color: #66513f;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.apj-field input,
+.apj-field select,
+.apj-field textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: 0.7rem 1rem;
+  border: 1.5px solid rgba(42, 27, 18, 0.3);
+  border-radius: 14px;
+  background: #fff;
+  color: #2a1b12;
+  font-size: 1rem;
+}
+
+.apj-field textarea {
+  resize: vertical;
+}
+
+.apj-field input[type="file"] {
+  padding: 0.6rem;
+}
+
+.apj-field input:focus,
+.apj-field select:focus,
+.apj-field textarea:focus {
+  outline: 3px solid rgba(138, 90, 46, 0.35);
+  border-color: #8a5a2e;
+}
+
+.apj-thumbs {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 0.75rem;
+  margin: 1rem 0;
+  padding: 0;
+  list-style: none;
+}
+
+.apj-thumbs li {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.apj-thumbs img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  object-fit: cover;
+  object-position: top;
+  box-shadow: 0 0 0 1px rgba(42, 27, 18, 0.12);
+}
+
+.apj-thumbs button {
+  min-height: 36px;
+  border: 1px solid rgba(42, 27, 18, 0.3);
+  border-radius: 999px;
+  background: transparent;
+  color: #9a2a1a;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.apj-error {
+  margin: 0.75rem 0;
+  color: #9a2a1a;
+}
+
+.apj-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.apj-btn {
+  min-height: 44px;
+  padding: 0 1.25rem;
+  border: 1.5px solid #2a1b12;
+  border-radius: 999px;
+  background: transparent;
+  color: #2a1b12;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.apj-btn:hover:not(:disabled) {
+  background: #2a1b12;
+  color: #fbf5e9;
+}
+
+.apj-btn--solid {
+  background: #2a1b12;
+  color: #fbf5e9;
+}
+
+.apj-btn--solid:hover:not(:disabled) {
+  background: #8a5a2e;
+  border-color: #8a5a2e;
+}
+
+.apj-btn--danger {
+  border-color: #9a2a1a;
+  color: #9a2a1a;
+}
+
+.apj-btn--danger:hover:not(:disabled) {
+  background: #9a2a1a;
+  color: #fffcf5;
+}
+
+.apj-btn:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.apj-list-title {
+  margin-bottom: 1rem;
+  font-size: 1.6rem;
+}
+
+.apj-list {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0 0 1rem;
+  padding: 0;
+  list-style: none;
+}
+
+.apj-item {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  align-items: center;
+  gap: 0.75rem 1rem;
+  padding: 0.7rem;
+  border: 1px solid rgba(42, 27, 18, 0.1);
+  border-radius: 20px;
+  background: #fffcf5;
+}
+
+.apj-item__img {
+  display: grid;
+  place-items: center;
+  width: 120px;
+  height: 70px;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #f1e3c8;
+  color: #66513f;
+  font-size: 0.8rem;
+}
+
+.apj-item__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.apj-item__text {
+  display: grid;
+  min-width: 0;
+}
+
+.apj-item__text small {
+  overflow: hidden;
+  color: #66513f;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.apj-item__actions {
+  display: flex;
+  grid-column: 1 / -1;
+  gap: 0.5rem;
+}
+
+.apj-page :focus-visible {
+  outline: 3px solid #8a5a2e;
+  outline-offset: 3px;
+}
+
+@media (min-width: 720px) {
+  .apj-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .apj-wide {
+    grid-column: 1 / -1;
+  }
+
+  .apj-item {
+    grid-template-columns: 120px 1fr auto;
+  }
+
+  .apj-item__actions {
+    grid-column: auto;
+  }
+}

@@ -13,6 +13,7 @@ function AdminLogin() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
@@ -45,44 +46,69 @@ function AdminLogin() {
 
   return (
     <main className="al-page">
-      <form className="al-card" onSubmit={handleSubmit} noValidate>
-        <img className="al-logo" src={logo} alt="DevVerse" />
+      <section className="al-brand" aria-hidden="true">
+        <img src={logo} alt="" />
+        <p className="al-brand__big">Welcome back to DevVerse.</p>
+        <p className="al-brand__small">
+          Leads, projects and chats, all in one place.
+        </p>
+      </section>
 
-        <h1>Admin sign in</h1>
-        <p className="al-sub">This area is for the DevVerse team only.</p>
+      <section className="al-panel">
+        <form className="al-card" onSubmit={handleSubmit} noValidate>
+          <p className="al-eyebrow">Admin area</p>
+          <h1>Sign in</h1>
+          <p className="al-sub">This area is for the DevVerse team only.</p>
 
-        <label htmlFor="al-email">Email</label>
-        <input
-          id="al-email"
-          type="email"
-          autoComplete="username"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-        />
+          <label htmlFor="al-email">Email</label>
+          <input
+            id="al-email"
+            type="email"
+            autoComplete="username"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+          />
 
-        <label htmlFor="al-password">Password</label>
-        <input
-          id="al-password"
-          type="password"
-          autoComplete="current-password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-        />
+          <label htmlFor="al-password">Password</label>
+          <div className="al-password">
+            <input
+              id="al-password"
+              type={showPassword ? "text" : "password"}
+              autoComplete="current-password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+            />
+            <button
+              type="button"
+              className="al-toggle"
+              onClick={() => setShowPassword((current) => !current)}
+              aria-pressed={showPassword}
+            >
+              {showPassword ? "Hide" : "Show"}
+            </button>
+          </div>
 
-        {error && (
-          <p className="al-error" role="alert">
-            {error}
-          </p>
-        )}
+          {error && (
+            <p className="al-error" role="alert">
+              {error}
+            </p>
+          )}
 
-        <button type="submit" disabled={submitting}>
-          {submitting ? "Signing in\u2026" : "Sign in"}
-        </button>
+          <button type="submit" className="al-submit" disabled={submitting}>
+            {submitting ? "Signing in\u2026" : "Sign in"}
+          </button>
 
-        <Link className="al-back" to="/">
-          Back to the website
-        </Link>
-      </form>
+          {submitting && (
+            <p className="al-hint" role="status">
+              The server can take up to a minute to wake up.
+            </p>
+          )}
+
+          <Link className="al-back" to="/">
+            Back to the website
+          </Link>
+        </form>
+      </section>
     </main>
   );
 }

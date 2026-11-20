@@ -3,12 +3,13 @@ import { Link, Navigate, useParams } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import ProjectPreview from "../Home/studio/ProjectPreview";
-import { getProject, projects } from "../../data/site";
+import { useProjects } from "../../context/ProjectsContext";
 
 import "./ProjectDetails.css";
 
 function ProjectDetails() {
   const { slug } = useParams();
+  const { projects, getProject } = useProjects();
   const project = getProject(slug);
 
   if (!project) {
@@ -16,7 +17,15 @@ function ProjectDetails() {
   }
 
   const others = projects.filter((item) => item.slug !== project.slug);
-  const isUpcoming = project.kind === "soon";
+  const isUpcoming = project.status === "Coming soon";
+
+  const details = project.details || {};
+  const overview =
+    details.overview && details.overview.length
+      ? details.overview
+      : [project.description];
+  const scope = details.scope || [];
+  const fit = details.fit || [];
 
   return (
     <>
@@ -35,6 +44,21 @@ function ProjectDetails() {
             </p>
             <h1>{project.title}</h1>
             <p className="pd-lead">{project.description}</p>
+
+            {project.href && (
+              <a
+                className="pd-btn pd-btn--solid pd-live"
+                href={project.href}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Visit live site
+                <span className="pd-visually-hidden">
+                  {" "}
+                  (opens in a new tab)
+                </span>
+              </a>
+            )}
           </header>
 
           <div className="pd-media">
@@ -47,10 +71,28 @@ function ProjectDetails() {
             <p className="pd-note">Illustrated preview, not a screenshot.</p>
           )}
 
+          {project.images && project.images.length > 1 && (
+            <section className="pd-shots" aria-label="Screenshots">
+              <h2>Screens from the project</h2>
+              <ul>
+                {project.images.map((src, index) => (
+                  <li key={src}>
+                    <img
+                      src={src}
+                      alt={`${project.title} screen ${index + 1}`}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+
           <section className="pd-grid" aria-label="About this project">
             <div className="pd-block">
               <h2>About this project</h2>
-              {project.details.overview.map((paragraph) => (
+              {overview.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
             </div>
@@ -63,19 +105,27 @@ function ProjectDetails() {
                 ))}
               </ul>
 
-              <h2>{isUpcoming ? "How we would start" : "What it covers"}</h2>
-              <ul className="pd-list">
-                {project.details.scope.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
+              {scope.length > 0 && (
+                <>
+                  <h2>{isUpcoming ? "How we would start" : "What it covers"}</h2>
+                  <ul className="pd-list">
+                    {scope.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </>
+              )}
 
-              <h2>A good fit if</h2>
-              <ul className="pd-list">
-                {project.details.fit.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
+              {fit.length > 0 && (
+                <>
+                  <h2>A good fit if</h2>
+                  <ul className="pd-list">
+                    {fit.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </>
+              )}
             </div>
           </section>
 
@@ -98,6 +148,7 @@ function ProjectDetails() {
             </div>
           </section>
 
+          {others.length > 0 && (
           <nav className="pd-more" aria-label="More projects">
             <h2>More projects</h2>
             <ul>
@@ -111,6 +162,7 @@ function ProjectDetails() {
               ))}
             </ul>
           </nav>
+          )}
         </div>
       </main>
 

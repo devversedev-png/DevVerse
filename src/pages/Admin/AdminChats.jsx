@@ -421,6 +421,14 @@ function AdminChats() {
             Leads
           </Link>
 
+          <Link
+            to="/admin/projects"
+            className="admin-logout-btn"
+            style={{ textAlign: "center" }}
+          >
+            Projects
+          </Link>
+
           <button
             type="button"
             className="admin-logout-btn"

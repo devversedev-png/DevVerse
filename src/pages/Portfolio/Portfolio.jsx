@@ -3,6 +3,7 @@ import "./Portfolio.css";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { Link } from "react-router-dom";
+import { useProjects } from "../../context/ProjectsContext";
 
 import {
   FaMobileAlt,
@@ -13,50 +14,24 @@ import {
   FaRocket
 } from "react-icons/fa";
 
-const projects = [
-  {
-    icon: <FaMobileAlt />,
-    category: "Mobile Application",
-    title: "Business Mobile App",
-    slug: "business-mobile-app",
-    description:
-      "A modern mobile application designed to simplify business operations and improve customer engagement.",
-    technologies: ["React Native", "Spring Boot", "MongoDB"],
-    status: "Completed"
-  },
-  {
-    icon: <FaShoppingCart />,
-    category: "E-Commerce",
-    title: "Online Shopping Platform",
-    slug: "online-shopping-platform",
-    description:
-      "A responsive e-commerce solution designed for smooth product browsing, ordering and business management.",
-    technologies: ["React", "Node.js", "MongoDB"],
-    status: "Completed"
-  },
-  {
-    icon: <FaLaptopCode />,
-    category: "Web Application",
-    title: "Business Management System",
-    slug: "business-management-system",
-    description:
-      "A custom web-based platform designed to organize workflows and improve day-to-day business operations.",
-    technologies: ["React", "Spring Boot", "MySQL"],
-    status: "In Progress"
-  },
-  {
-    icon: <FaCode />,
-    category: "Custom Software",
-    title: "Upcoming Digital Solution",
-    slug: "upcoming-digital-solution",
-    description:
-      "We're continuously exploring new ideas and building digital products that solve real business problems.",
-    technologies: ["Modern Stack", "Scalable", "Secure"],
-    status: "Coming Soon"
-  }
-];
+const iconByKind = {
+  mobile: <FaMobileAlt />,
+  shop: <FaShoppingCart />,
+  dashboard: <FaLaptopCode />,
+  soon: <FaCode />,
+};
+
+function statusClass(status) {
+  const value = status.toLowerCase();
+
+  if (value === "completed" || value === "live") return "status-completed";
+  if (value === "in progress") return "status-progress";
+  return "status-coming";
+}
 
 function Portfolio() {
+  const { projects } = useProjects();
+
   return (
     <>
       <Navbar />
@@ -121,17 +96,22 @@ function Portfolio() {
                     0{index + 1}
                   </div>
 
-                  <div className="portfolio-project-icon">
-                    {project.icon}
-                  </div>
+                  {project.images && project.images.length > 0 ? (
+                    <img
+                      className="portfolio-card-shot"
+                      src={project.images[0]}
+                      alt={`${project.title} homepage`}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  ) : (
+                    <div className="portfolio-project-icon">
+                      {iconByKind[project.kind]}
+                    </div>
+                  )}
 
                   <span
-                    className={`portfolio-status ${project.status === "Completed"
-                        ? "status-completed"
-                        : project.status === "In Progress"
-                          ? "status-progress"
-                          : "status-coming"
-                      }`}
+                    className={`portfolio-status ${statusClass(project.status)}`}
                   >
                     {project.status}
                   </span>

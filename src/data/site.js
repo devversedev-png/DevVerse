@@ -2,10 +2,30 @@
 // (Hero, Portfolio, ServicesPreview, Process, About, Footer, Contact).
 // Edit here to change what the redesigned homepage shows.
 
+import thulirkumHome from "../assets/projects/thulirkum-home.webp";
+import thulirkumCategories from "../assets/projects/thulirkum-categories.webp";
+import thulirkumCart from "../assets/projects/thulirkum-cart.webp";
+import thulirkumAdminDashboard from "../assets/projects/thulirkum-admin-dashboard.webp";
+import thulirkumAdminSections from "../assets/projects/thulirkum-admin-sections.webp";
+import akshayHero from "../assets/projects/akshay-hero.webp";
+import akshayHello from "../assets/projects/akshay-hello.webp";
+import akshayStudio from "../assets/projects/akshay-studio.webp";
+import akshaySpotlight from "../assets/projects/akshay-spotlight.webp";
+import akshayGallery from "../assets/projects/akshay-gallery.webp";
+import akshaySkills from "../assets/projects/akshay-skills.webp";
+
+// Public address of the website. The digital card, its QR code and its
+// "copy link" button all point here. Change it if you get a custom domain.
+export const site = {
+  url: "https://dev-verse-dev.vercel.app",
+};
+
 export const contact = {
   email: "devverse.dev@gmail.com",
   phone: "+91 81441 04500",
   phoneHref: "tel:+918144104500",
+  // WhatsApp uses the same number. Remove this line if it is not on WhatsApp.
+  whatsappHref: "https://wa.me/918144104500",
   location: "Chennai, Tamil Nadu, India",
 };
 
@@ -48,116 +68,75 @@ export const stack = [
  *
  * "href" (when present) is used for the project link instead of /portfolio.
  */
-export const projects = [
+// Projects that ship with the website. Projects added in the admin area are
+// loaded from the server and shown alongside these.
+export const builtInProjects = [
   {
-    slug: "business-mobile-app",
-    title: "Business Mobile App",
-    category: "Mobile application",
-    description:
-      "A modern mobile application designed to simplify business operations and improve customer engagement.",
-    technologies: ["React Native", "Spring Boot", "MongoDB"],
-    status: "Completed",
-    kind: "mobile",
-    images: [],
-    href: null,
-    details: {
-      overview: [
-        "Business Mobile App is a mobile application designed to make running a business easier and to keep it closer to its customers.",
-        "On the technical side it combines a React Native app, a Spring Boot server behind it and a MongoDB database, so one team looks after the whole product.",
-      ],
-      scope: [
-        "Mobile screens built with React Native, for Android and iOS",
-        "A Spring Boot server (API) that the app talks to",
-        "A MongoDB database for business and customer data",
-        "Testing on real devices before release",
-      ],
-      fit: [
-        "You want to run or grow a business from a phone",
-        "You want customers to reach you through your own app",
-      ],
-    },
-  },
-  {
-    slug: "online-shopping-platform",
-    title: "Online Shopping Platform",
+    slug: "thulirkum-ver-book-store",
+    title: "Thulirkum Ver Book Store",
     category: "E-commerce",
     description:
-      "A responsive e-commerce solution designed for smooth product browsing, ordering and business management.",
-    technologies: ["React", "Node.js", "MongoDB"],
-    status: "Completed",
+      "An online bookstore for Tamil and English books, with a customer storefront and a separate admin dashboard to run the store.",
+    technologies: ["Storefront", "Admin dashboard", "Hosted on Vercel"],
+    status: "Live",
     kind: "shop",
-    images: [],
-    href: null,
+    images: [
+      thulirkumHome,
+      thulirkumCategories,
+      thulirkumCart,
+      thulirkumAdminDashboard,
+      thulirkumAdminSections,
+    ],
+    href: "https://thulirkum-ver.vercel.app/home",
     details: {
       overview: [
-        "Online Shopping Platform is a responsive e-commerce solution, made so customers can browse products and order smoothly while the owner manages the business behind the scenes.",
-        "It is built with React on the front end and Node.js with MongoDB behind it, and works on phones, tablets and desktops.",
+        "Thulirkum Ver is an online bookstore for Tamil and English books. Visitors can search the catalogue, browse categories and featured authors, save books to a wishlist and order through a cart.",
+        "Behind the storefront sits a separate admin dashboard, where the store team manages orders, books, customers, authors, offers and the sections shown on the home page.",
       ],
       scope: [
-        "A responsive storefront with product browsing and ordering, built in React",
-        "A Node.js server and MongoDB database for products and orders",
-        "Business management tools for the store owner",
-        "Layouts tested on phone, tablet and desktop screens",
+        "A storefront with search, category browsing, offers and featured authors",
+        "Wishlist, cart with coupon codes, and a cashback wallet",
+        "Customer accounts with order tracking and saved delivery addresses",
+        "An admin dashboard for orders, books, customers, authors, offers and home sections",
       ],
       fit: [
-        "You want to sell products online",
-        "You want one place to manage products and orders",
+        "You want to sell products online with your own storefront",
+        "You need an admin area so your team can manage the store day to day",
       ],
     },
   },
   {
-    slug: "business-management-system",
-    title: "Business Management System",
-    category: "Web application",
+    slug: "akshay-dance-portfolio",
+    title: "Akshay Dance Portfolio",
+    category: "Portfolio website",
     description:
-      "A custom web-based platform designed to organize workflows and improve day-to-day business operations.",
-    technologies: ["React", "Spring Boot", "MySQL"],
-    status: "In progress",
+      "A bold, editorial portfolio website for a dance choreographer and instructor, showing his studio, school work, skills and photo gallery.",
+    technologies: ["Portfolio website", "Scroll animations", "Hosted on Vercel"],
+    status: "Live",
     kind: "dashboard",
-    images: [],
-    href: null,
+    images: [
+      akshayHero,
+      akshayHello,
+      akshayStudio,
+      akshaySpotlight,
+      akshayGallery,
+      akshaySkills,
+    ],
+    href: "https://akshay-aks-portfolio.vercel.app",
     details: {
       overview: [
-        "Business Management System is a custom web-based platform that organizes workflows and improves day-to-day business operations. It is still in progress.",
-        "It is being built with React, Spring Boot and MySQL, and it shows how we approach custom software: start from how a business actually works, then shape the tool around it.",
+        "This is the personal portfolio of D. Akshay Kumar, a dance teacher and choreographer. We gave it a confident, poster-like look with large type, a paper texture and torn-edge sections.",
+        "It tells his story in sections: who he is, the studio he teaches at, the schools he choreographs for, his skills, highlights and a polaroid-style gallery, finishing with a clear way to get in touch.",
       ],
       scope: [
-        "A React web interface for daily work",
-        "A Spring Boot server that holds the business rules",
-        "A MySQL database for structured business data",
-        "Regular progress updates while it is being built",
+        "A full-screen editorial hero with scroll-driven sections",
+        "Sections for the dance studio, schools, skills and highlights",
+        "A polaroid-style photo gallery",
+        "A contact section linking to email, phone, Instagram and YouTube",
       ],
       fit: [
-        "Your team still runs on spreadsheets and messages",
-        "You need software shaped around your own workflow",
-      ],
-    },
-  },
-  {
-    slug: "upcoming-digital-solution",
-    title: "Upcoming Digital Solution",
-    category: "Custom software",
-    description:
-      "We're continuously exploring new ideas and building digital products that solve real business problems.",
-    technologies: ["Modern stack", "Scalable", "Secure"],
-    status: "Coming soon",
-    kind: "soon",
-    images: [],
-    href: null,
-    details: {
-      overview: [
-        "This space is for the next product we build. We keep exploring new ideas and building digital products that solve real business problems.",
-        "If you have an idea you would like to see here, we would love to hear it. Your project could be the next one on this page.",
-      ],
-      scope: [
-        "A first conversation to understand your idea and goals",
-        "A plan covering scope and the technologies we would use",
-        "Design, development and testing with regular updates",
-        "Launch, and support after it goes live",
-      ],
-      fit: [
-        "You have an idea but are not sure where to begin",
-        "You would like to work directly with the developers",
+        "You are a creator or professional who needs a portfolio with personality",
+        "You want one page that shows your work and makes it easy to contact you",
       ],
     },
   },
@@ -261,6 +240,3 @@ export const budgetOptions = [
   "₹50,000 - ₹1,00,000",
   "₹1,00,000+",
 ];
-
-export const getProject = (slug) =>
-  projects.find((project) => project.slug === slug);

@@ -1,28 +1,16 @@
 import { Link } from "react-router-dom";
 
-import { projects } from "../../../data/site";
+import { useProjects } from "../../../context/ProjectsContext";
 import ProjectPreview from "./ProjectPreview";
 
 const statusClass = {
+  Live: "dv-status--done",
   Completed: "dv-status--done",
   "In progress": "dv-status--progress",
   "Coming soon": "dv-status--soon",
 };
 
 function CaseLink({ project, children }) {
-  if (project.href) {
-    return (
-      <a
-        className="dv-case__link"
-        href={project.href}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {children}
-      </a>
-    );
-  }
-
   return (
     <Link className="dv-case__link" to={`/portfolio/${project.slug}`}>
       {children}
@@ -31,6 +19,8 @@ function CaseLink({ project, children }) {
 }
 
 function SelectedWork() {
+  const { projects } = useProjects();
+
   return (
     <section className="dv-work" id="work" aria-labelledby="work-title">
       <div className="dv-container dv-work__head">
@@ -88,9 +78,26 @@ function SelectedWork() {
                     ))}
                   </ul>
 
-                  <p className="dv-case__more" aria-hidden="true">
-                    Read more
-                  </p>
+                  <div className="dv-case__links">
+                    <span className="dv-case__more" aria-hidden="true">
+                      Read more
+                    </span>
+
+                    {project.href && (
+                      <a
+                        className="dv-case__live"
+                        href={project.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Visit live site
+                        <span className="dv-visually-hidden">
+                          {" "}
+                          for {project.title} (opens in a new tab)
+                        </span>
+                      </a>
+                    )}
+                  </div>
                 </div>
 
                 <div className="dv-case__media">

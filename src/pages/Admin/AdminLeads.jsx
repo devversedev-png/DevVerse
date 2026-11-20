@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
+import AdminTopBar from "../../components/Admin/AdminTopBar";
 import { useAuth } from "../../context/AuthContext";
 import { fetchLeads } from "../../services/leadApi";
-import logo from "../../assets/devverse-logo.png";
 
 import "./AdminLeads.css";
 
@@ -29,6 +29,7 @@ function AdminLeads() {
     leads: [],
   });
   const [loading, setLoading] = useState(true);
+  const [slow, setSlow] = useState(false);
   const [error, setError] = useState("");
   const [query, setQuery] = useState("");
 
@@ -56,6 +57,17 @@ function AdminLeads() {
     load();
   }, [load]);
 
+  // The free hosting plan sleeps when idle. Tell the admin why it is slow.
+  useEffect(() => {
+    if (!loading) {
+      setSlow(false);
+      return undefined;
+    }
+
+    const timer = setTimeout(() => setSlow(true), 4000);
+    return () => clearTimeout(timer);
+  }, [loading]);
+
   const visible = useMemo(() => {
     const term = query.trim().toLowerCase();
 
@@ -64,37 +76,15 @@ function AdminLeads() {
       : data.leads;
   }, [data.leads, query]);
 
-  const handleLogout = () => {
-    logout();
-    navigate("/admin/login", { replace: true });
-  };
-
   return (
     <div className="ald-page">
-      <header className="ald-top">
-        <Link to="/admin/leads" className="ald-brand" aria-label="DevVerse admin">
-          <img src={logo} alt="DevVerse" />
-          <span>Admin</span>
-        </Link>
-
-        <nav className="ald-nav" aria-label="Admin">
-          <Link to="/admin/leads" aria-current="page">
-            Leads
-          </Link>
-          <Link to="/admin/chats">Chats</Link>
-          <Link to="/">View site</Link>
-        </nav>
-
-        <button type="button" className="ald-logout" onClick={handleLogout}>
-          Log out
-        </button>
-      </header>
+      <AdminTopBar current="/admin/leads" />
 
       <main className="ald-main">
         <h1>Leads</h1>
         <p className="ald-sub">
           Everyone who entered an email on the website, and how many times
-          they have visited.
+          they have visited. Click an email to write to them.
         </p>
 
         <div className="ald-stats">
@@ -125,6 +115,12 @@ function AdminLeads() {
           </button>
         </div>
 
+        {slow && (
+          <p className="ald-note" role="status">
+            Waking up the server. This can take up to a minute.
+          </p>
+        )}
+
         {error && (
           <p className="ald-error" role="alert">
             {error}
@@ -145,7 +141,17 @@ function AdminLeads() {
             <tbody>
               {visible.map((lead) => (
                 <tr key={lead.email}>
-                  <th scope="row">{lead.email}</th>
+                  <th scope="row">
+                    <a
+                      className="ald-mail"
+                      href={`mailto:${lead.email}?subject=${encodeURIComponent(
+                        "Hello from DevVerse"
+                      )}`}
+                      title={`Write an email to ${lead.email}`}
+                    >
+                      {lead.email}
+                    </a>
+                  </th>
                   <td>
                     <span className="ald-count">{lead.visitCount}</span>
                   </td>

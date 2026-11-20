@@ -5,6 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App.jsx";
 import { AuthProvider } from "./context/AuthContext.jsx";
 import { VisitorProvider } from "./context/VisitorContext.jsx";
+import { ProjectsProvider } from "./context/ProjectsContext.jsx";
 
 import "./index.css";
 
@@ -15,7 +16,9 @@ ReactDOM.createRoot(
     <BrowserRouter>
       <AuthProvider>
         <VisitorProvider>
-          <App />
+          <ProjectsProvider>
+            <App />
+          </ProjectsProvider>
         </VisitorProvider>
       </AuthProvider>
     </BrowserRouter>

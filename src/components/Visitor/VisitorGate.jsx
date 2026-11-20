@@ -21,7 +21,9 @@ function VisitorGate() {
   const [saving, setSaving] = useState(false);
 
   const inputRef = useRef(null);
-  const isAdminArea = pathname.startsWith("/admin");
+  // No pop-up on admin pages or on the shareable digital card.
+  const isAdminArea =
+    pathname.startsWith("/admin") || pathname.startsWith("/card");
 
   // Let the page appear first, then ask.
   useEffect(() => {

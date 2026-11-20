@@ -145,6 +145,14 @@ function Wireframe({ kind, variant }) {
   );
 }
 
+function hostOf(project) {
+  try {
+    return project.href ? new URL(project.href).host : "";
+  } catch {
+    return "";
+  }
+}
+
 function framesFor(project) {
   if (project.images && project.images.length > 0) {
     return project.images.map((src) => ({ src }));
@@ -173,6 +181,7 @@ function ProjectPreview({ project, interval = 4600, alt = "" }) {
   }, [reduceMotion, frames.length, interval]);
 
   const step = 100 / frames.length;
+  const host = hostOf(project);
 
   return (
     <div className="dv-slides">
@@ -190,12 +199,22 @@ function ProjectPreview({ project, interval = 4600, alt = "" }) {
             key={n}
           >
             {frame.src ? (
-              <img
-                src={frame.src}
-                alt={alt}
-                loading="lazy"
-                decoding="async"
-              />
+              <div className="dv-shot">
+                <div className="dv-shot__window">
+                  <div className="dv-shot__bar" aria-hidden="true">
+                    <i />
+                    <i />
+                    <i />
+                    {host && <span>{host}</span>}
+                  </div>
+                  <img
+                    src={frame.src}
+                    alt={alt}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              </div>
             ) : (
               <Wireframe kind={project.kind} variant={frame.variant} />
             )}

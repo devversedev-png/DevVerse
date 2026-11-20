@@ -1,0 +1,85 @@
+.atb,
+.atb * {
+  font-family: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
+.atb {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 0.7rem clamp(1rem, 4vw, 2.5rem);
+  border-bottom: 1px solid rgba(42, 27, 18, 0.12);
+  background: rgba(251, 245, 233, 0.92);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  color: #2a1b12;
+}
+
+.atb-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-right: auto;
+  font-family: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.atb-brand img {
+  height: 44px;
+  width: auto;
+}
+
+.atb-nav {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.atb-nav a {
+  padding: 0.5rem 0.95rem;
+  border-radius: 999px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.atb-nav a:hover,
+.atb-nav a[aria-current="page"] {
+  background: #f3cda3;
+}
+
+.atb-logout {
+  min-height: 44px;
+  padding: 0 1.25rem;
+  border: 1.5px solid #2a1b12;
+  border-radius: 999px;
+  background: transparent;
+  color: #2a1b12;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.atb-logout:hover {
+  background: #2a1b12;
+  color: #fbf5e9;
+}
+
+.atb :focus-visible {
+  outline: 3px solid #8a5a2e;
+  outline-offset: 3px;
+}
+
+@media (max-width: 700px) {
+  .atb {
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+  }
+
+  .atb-nav {
+    order: 3;
+    width: 100%;
+    overflow-x: auto;
+  }
+}

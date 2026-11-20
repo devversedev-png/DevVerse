@@ -8,10 +8,29 @@ import {
   easeInOut,
 } from "framer-motion";
 
-import { projects, stack } from "../../../data/site";
+import { builtInProjects, stack } from "../../../data/site";
 import markImage from "../../../assets/devverse-mark.png";
 import ProjectPreview from "./ProjectPreview";
 import { useMediaQuery } from "./hooks";
+
+/* Mosaic tiles use screenshots from the two built-in projects. */
+const bookStoreProject = builtInProjects.find(
+  (project) => project.slug === "thulirkum-ver-book-store"
+);
+const portfolioProject = builtInProjects.find(
+  (project) => project.slug === "akshay-dance-portfolio"
+);
+const pick = (project, indexes) => ({
+  ...project,
+  images: indexes.map((index) => project.images[index]),
+});
+
+const TILE_PROJECTS = {
+  a: pick(portfolioProject, [3, 4]),
+  b: bookStoreProject,
+  e: pick(bookStoreProject, [2, 3]),
+  g: portfolioProject,
+};
 
 /* The hero lives at full size first, then scales into the centre tile. */
 const TILE_SCALE = 0.36;
@@ -140,7 +159,7 @@ function PinnedReveal({ onStart }) {
     setCtaLive(value > 0.75);
   });
 
-  const [mobileApp, shop, dashboard, soon] = projects;
+
 
   return (
     <section
@@ -157,7 +176,7 @@ function PinnedReveal({ onStart }) {
             className="dv-tile--a"
           >
             <div aria-hidden="true" className="dv-tile__fill">
-              <ProjectTile project={mobileApp} interval={4200} />
+              <ProjectTile project={TILE_PROJECTS.a} interval={4200} />
             </div>
           </MosaicTile>
 
@@ -168,7 +187,7 @@ function PinnedReveal({ onStart }) {
             className="dv-tile--b"
           >
             <div aria-hidden="true" className="dv-tile__fill">
-              <ProjectTile project={shop} interval={4900} />
+              <ProjectTile project={TILE_PROJECTS.b} interval={4900} />
             </div>
           </MosaicTile>
 
@@ -203,7 +222,7 @@ function PinnedReveal({ onStart }) {
             className="dv-tile--e"
           >
             <div aria-hidden="true" className="dv-tile__fill">
-              <ProjectTile project={dashboard} interval={5300} />
+              <ProjectTile project={TILE_PROJECTS.e} interval={5300} />
             </div>
           </MosaicTile>
 
@@ -225,7 +244,7 @@ function PinnedReveal({ onStart }) {
             className="dv-tile--g"
           >
             <div aria-hidden="true" className="dv-tile__fill">
-              <ProjectTile project={soon} interval={5000} />
+              <ProjectTile project={TILE_PROJECTS.g} interval={5000} />
             </div>
           </MosaicTile>
 
