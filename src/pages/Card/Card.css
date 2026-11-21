@@ -413,3 +413,43 @@
     transform: none;
   }
 }
+
+.dc-image {
+  display: block;
+  width: min(260px, 70%);
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow:
+    0 0 0 1px rgba(42, 27, 18, 0.1),
+    0 26px 40px -26px rgba(42, 27, 18, 0.55);
+  transition: transform 0.25s;
+}
+
+.dc-image:hover {
+  transform: translateY(-3px);
+}
+
+.dc-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.dc-primary--share {
+  margin-top: 1rem;
+}
+
+a.dc-btn {
+  text-decoration: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dc-image {
+    transition: none;
+  }
+
+  .dc-image:hover {
+    transform: none;
+  }
+}

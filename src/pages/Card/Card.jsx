@@ -12,6 +12,7 @@ import {
   FaShareAlt,
   FaDownload,
   FaRegCopy,
+  FaImage,
 } from "react-icons/fa";
 
 import QrCode from "../../components/QrCode";
@@ -95,6 +96,30 @@ function Card() {
     } catch {
       setNotice("Could not copy. Long-press the link to copy it.");
     }
+  };
+
+  // Shares the card as a picture, with the website link as the caption.
+  const shareImage = async () => {
+    try {
+      const response = await fetch("/devverse-card.jpg");
+      const blob = await response.blob();
+      const file = new File([blob], "DevVerse-digital-card.jpg", {
+        type: "image/jpeg",
+      });
+
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        await navigator.share({
+          files: [file],
+          title: "DevVerse",
+          text: `DevVerse: websites, apps and software from Chennai.\n${siteUrl}`,
+        });
+        return;
+      }
+    } catch (error) {
+      if (error && error.name === "AbortError") return;
+    }
+
+    setNotice("Sharing a picture is not supported here. Use Download image.");
   };
 
   const share = async () => {
@@ -246,6 +271,41 @@ function Card() {
                 );
               })}
             </ul>
+          </section>
+
+          <section className="dc-section" aria-labelledby="dc-share">
+            <h2 id="dc-share">Share this card</h2>
+
+            <a
+              className="dc-image"
+              href={siteUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="/devverse-card.jpg"
+                alt="DevVerse digital card. Opens our website."
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+
+            <div className="dc-primary dc-primary--share">
+              <button
+                type="button"
+                className="dc-btn dc-btn--solid"
+                onClick={shareImage}
+              >
+                <FaImage aria-hidden="true" /> Share image
+              </button>
+              <a
+                className="dc-btn dc-btn--ghost"
+                href="/devverse-card.jpg"
+                download="DevVerse-digital-card.jpg"
+              >
+                <FaDownload aria-hidden="true" /> Download
+              </a>
+            </div>
           </section>
 
           <section className="dc-qr" aria-labelledby="dc-qr-title">

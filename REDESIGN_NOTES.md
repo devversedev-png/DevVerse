@@ -60,3 +60,14 @@ Replace them in `data/site.js` with the real tech stack if you want.
 - Digital card: the QR code, "Copy link" and "Share" open the home page. Change the address in `site.url` (`src/data/site.js`).
 - Leads: click an email to open your mail app with a new message to that person.
 - Admin login (`/admin/login`) uses the same admin email and password as before (ADMIN_EMAIL and ADMIN_PASSWORD_HASH in the backend .env).
+
+## Shareable card image with link
+- Link preview: `index.html` has Open Graph tags that use `public/devverse-og.jpg` (1200x630, 68 KB).
+  When the site link is shared on WhatsApp, Instagram, LinkedIn, Facebook or Telegram, this picture
+  shows as a big card. Tapping it opens the site. It only works on the deployed https site.
+- `/card` page: "Share image" sends `public/devverse-card.jpg` with the site link as the caption;
+  "Download" saves it. Tapping the picture on the page opens the site.
+- If you change the domain, update the three https://dev-verse-dev.vercel.app addresses in `index.html`
+  and `site.url` in `src/data/site.js`.
+- WhatsApp and Facebook cache previews. To refresh after a change, share the link with ?v=2 at the end,
+  or use the Facebook Sharing Debugger (developers.facebook.com/tools/debug).
